@@ -1,0 +1,127 @@
+p, a{
+  margin-bottom: 0;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Bebas Neue', cursive;
+  margin-bottom: 0;
+}
+
+header{
+  background-color: rgba(0,0,0,0.8);
+  backdrop-filter: saturate(180%) blur(20px);
+  padding: 10px 30px;
+}
+
+header .header-content{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .title, .image{
+  width: 200px;
+  display: flex;
+  justify-content: center;
+}
+
+header .title h1{
+  color: white;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: .2s ease-in;
+}
+
+header .title h1:hover{
+  color: mediumpurple;
+}
+
+header img{
+  height: 50px;
+  width: auto;
+}
+
+header .list{
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+}
+
+header .list p{
+  color: white;
+  cursor: pointer;
+  transition: .2s ease-in;
+}
+
+header .list p:hover{
+  color: mediumpurple;
+}
+
+main{
+  background-color: black;
+  color: white;
+}
+
+main .about-wrap .bgimage{
+  background: url("../../assets/background.jpg");
+  background-size: cover;
+  padding: 220px 0;
+  display: flex;
+  justify-content: center;
+}
+
+main .introduction{
+  width: 1300px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+main .introduction h1{
+  color: white;
+  font-size: 200px;
+}
+
+main .information-wrap{
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+}
+
+main .information{
+  width: 1300px;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.information .info-part-1, .info-part-2{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.information-text-1, .information-text-2{
+  width: 50%;
+}
+
+.information img{
+  height: 400px;
+  width: auto;
+}
+
+
+
+
+@media (min-width: 1900px) {
+  main .about-wrap .bgimage{
+    padding: 320px 0;
+  }
+
+  main .information{
+    width: 1500px;
+  }
+
+}
+
+

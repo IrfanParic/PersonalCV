@@ -1,0 +1,62 @@
+<header class="sticky-top">
+  <div class="header-content">
+    <div class="title">
+      <h1 style="text-transform: uppercase" (click)="scrolltop()">irfanparic</h1>
+    </div>
+    <div class="image">
+      <img src="../../assets/logowhite.png" alt="logo"/>
+    </div>
+    <div class="list">
+      <p (click)="scroll(about)">About</p>
+      <p (click)="scroll(projects)">Projects</p>
+      <p (click)="scroll(contact)">Contact</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="about-wrap">
+    <div class="bgimage">
+      <div class="introduction">
+        <h1 style="text-transform: uppercase" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="2000">welcome</h1>
+        <h1 data-aos="fade-in" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="2000">&</h1>
+        <h1 style="text-transform: uppercase" data-aos="fade-up" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="2000">enjoy</h1>
+      </div>
+    </div>
+    <div class="information-wrap">
+      <div #about class="information">
+        <div class="info-part-1" data-aos="fade-in" data-aos-offset="300" data-aos-easing="ease-in-sine">
+          <div class="information-text-1" style="text-align: justify">
+            <h1>Who am I?</h1>
+            <p >I am an undergraduate 3
+            rd year student of Computer Science at the university of Sarajevo
+            School of Science and Technology, with strong foundation in math, logic, and design,
+            seeking to acquire new high-level skills in web development and UI/UX Design.</p>
+          </div>
+          <div style="display: flex; justify-content: center; width: 50%">
+            <img src="../../assets/profile.png" alt="profilepicture">
+          </div>
+        </div>
+        <div class="info-part-2" data-aos="fade-in" data-aos-offset="300" data-aos-easing="ease-in-sine">
+          <div style="display: flex; justify-content: center; width: 50%">
+            <img src="../../assets/drawing.png" alt="drawing">
+          </div>
+          <div class="information-text-2" style="text-align: justify">
+            <h1>What do I do?</h1>
+            <p>I am well experienced at working in multiple developing environments and programming
+                languages such as Java and C++, Adobe Illustrator/Photoshop and Figma for graphical
+                design and UI/UX, as well as HTML, CSS, and JS for web development. </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div #projects class="projects-wrap">
+
+  </div>
+  <div #contact class="contact-wrap">
+
+  </div>
+</main>
