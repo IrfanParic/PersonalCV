@@ -103,6 +103,10 @@ main .information{
   align-items: center;
 }
 
+.info-part-1{
+  margin-bottom: 200px;
+}
+
 .information-text-1, .information-text-2{
   width: 50%;
 }
