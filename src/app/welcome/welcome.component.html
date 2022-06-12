@@ -1,4 +1,4 @@
-<header class="sticky-top">
+<header>
   <div class="header-content">
     <div class="title">
       <h1 style="text-transform: uppercase" (click)="scrolltop()">irfanparic</h1>
@@ -23,8 +23,8 @@
         <h1 style="text-transform: uppercase" data-aos="fade-up" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="2000">enjoy</h1>
       </div>
     </div>
-    <div class="information-wrap">
-      <div #about class="information">
+    <div #about class="information-wrap">
+      <div class="information">
         <div class="info-part-1" data-aos="fade-in" data-aos-offset="300" data-aos-easing="ease-in-sine">
           <div class="information-text-1" style="text-align: justify">
             <h1>Who am I?</h1>
@@ -49,14 +49,49 @@
           </div>
         </div>
       </div>
-
     </div>
-
   </div>
+
   <div #projects class="projects-wrap">
-
+    <div class="projects">
+      <h1>my projects</h1>
+      <div class="projects-content">
+        <div class="projects-card shadow" data-aos="fade-up" data-aos-offset="300" data-aos-easing="ease-in-sine">
+          <div>
+            <h4>Project name</h4>
+            <p>Short description</p>
+          </div>
+          <div style="text-align: center">
+            <p>Project purpose</p>
+            <p>Project date</p>
+          </div>
+          <div>
+            <p>View project on:</p>
+            <div style="display: flex; justify-content: space-evenly">
+              <a href=""><i class="bi bi-house-fill"></i></a>
+              <a href=""><i class="bi bi-github"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div #contact class="contact-wrap">
 
+  <div #contact class="contact-wrap">
+    <div class="contact">
+        <h1>contact me</h1>
+        <p>Let's get in touch and discuss future ground-breaking projects!</p>
+      <div class="contact-icons">
+        <a href="https://github.com/IrfanParic" target="_blank"><i class="bi bi-github git"></i></a>
+        <a href="https://www.linkedin.com/in/irfan-paric-b96b6a160/" target="_blank"><i class="bi bi-linkedin link"></i></a>
+        <a href="https://www.instagram.com/irfanparic/" target="_blank"><i class="bi bi-instagram insta"></i></a>
+      </div>
+      <p>... or send me an email at <span style="color: mediumpurple">irfanparic@hotmail.com</span></p>
+    </div>
   </div>
 </main>
+
+<footer>
+  <img src="../../assets/logowhite.png" alt="logo"/>
+  <h3>&copy; irfanparic</h3>
+</footer>

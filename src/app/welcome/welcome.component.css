@@ -11,6 +11,9 @@ header{
   background-color: rgba(0,0,0,0.8);
   backdrop-filter: saturate(180%) blur(20px);
   padding: 10px 30px;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
 }
 
 header .header-content{
@@ -63,9 +66,9 @@ main{
 }
 
 main .about-wrap .bgimage{
-  background: url("../../assets/background.jpg");
+  background:linear-gradient(transparent,black), url("../../assets/background4.jpg");
   background-size: cover;
-  padding: 220px 0;
+  padding: 250px 0;
   display: flex;
   justify-content: center;
 }
@@ -84,13 +87,12 @@ main .introduction h1{
 main .information-wrap{
   display: flex;
   justify-content: center;
-  padding: 50px;
+  padding: 200px;
 }
 
 main .information{
   width: 1300px;
   padding: 20px;
-  border-radius: 20px;
   display: flex;
   flex-direction: column;
 }
@@ -110,15 +112,105 @@ main .information{
   width: auto;
 }
 
+.projects-wrap{
+  background:linear-gradient(black,transparent,black), url("../../assets/background5.jpg");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  padding: 200px 0;
+}
 
+.projects{
+  width: 1300px;
+}
+
+.projects-card{
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: rgba(0,0,0,0.7);
+  backdrop-filter: saturate(180%) blur(20px);
+  display: flex;
+  justify-content: space-between;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+}
+
+i{
+  font-size: 30px;
+  transition: .2s ease-in;
+}
+
+.projects-card i:hover{
+  color: mediumpurple;
+}
+
+.contact-wrap{
+  display: flex;
+  justify-content: center;
+  padding: 200px 0;
+}
+
+.contact{
+  width: 1300px;
+}
+
+.contact-icons{
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.contact-icons i{
+  font-size: 40px;
+}
+
+.git:hover{
+  color: mediumpurple;
+}
+
+.link:hover{
+  color: #0072b1;
+}
+
+.insta:hover{
+  background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+footer{
+  padding: 10px 30px;
+  background-color: rebeccapurple;
+  display: flex;
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer img{
+  height: 50px;
+  width: auto;
+}
 
 
 @media (min-width: 1900px) {
   main .about-wrap .bgimage{
-    padding: 320px 0;
+    padding: 350px 0;
   }
 
   main .information{
+    width: 1500px;
+  }
+
+  .projects{
+    width: 1500px;
+  }
+
+  .contact{
     width: 1500px;
   }
 

@@ -19,6 +19,6 @@ export class WelcomeComponent implements OnInit {
   }
 
   scrolltop() {
-    window.scroll(0,0)
+    window.scroll(0,0);
   }
 }
