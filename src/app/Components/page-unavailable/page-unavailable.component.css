@@ -1,0 +1,44 @@
+p, a{
+  margin-bottom: 0;
+}
+
+a{
+  background-color: rgba(147, 112, 219, 0.6);
+  backdrop-filter: saturate(180%) blur(20px);
+  text-decoration: none;
+  color: white;
+  padding: 20px;
+  transition: .2s ease-in;
+}
+
+a:hover{
+  background-color: mediumpurple;
+  transform: scale(1.1);
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Bebas Neue', cursive;
+  margin-bottom: 0;
+}
+
+h1{
+  font-size: 150px;
+}
+
+h2{
+  font-size: 100px;
+  margin-bottom: 100px;
+}
+
+.page-unavailable-wrap{
+  background: linear-gradient(black,transparent,black), url("../../../assets/background4.jpg");
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-unavailable{
+  color: white;
+  text-align: center;
+}

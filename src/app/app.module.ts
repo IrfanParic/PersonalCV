@@ -8,11 +8,15 @@ import { AppRoutingModule } from './app-routing.module';
 import {ProjectService} from "./Services/project.service";
 import {ProjectResolver} from "./Resolvers/project.resolver";
 import {HttpClientModule} from "@angular/common/http";
+import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
+import { PageUnavailableComponent } from './Components/page-unavailable/page-unavailable.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    PageNotFoundComponent,
+    PageUnavailableComponent
   ],
   imports: [
     BrowserModule,
