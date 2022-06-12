@@ -57,11 +57,11 @@
       <h1>my projects</h1>
       <div class="projects-content" *ngFor="let project of projects">
         <div class="projects-card shadow" data-aos="fade-up" data-aos-offset="300" data-aos-easing="ease-in-sine">
-          <div>
+          <div style="width: 300px">
             <h4>{{project.name}}</h4>
             <p>{{project.description}}</p>
           </div>
-          <div>
+          <div style="width: 300px">
             <p>Purpose: {{project.purpose}}</p>
             <p>Start: {{project.startDate}}</p>
             <p>End: {{project.endDate}}</p>
