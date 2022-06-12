@@ -4,11 +4,11 @@
       <h1 style="text-transform: uppercase" (click)="scrolltop()">irfanparic</h1>
     </div>
     <div class="image">
-      <img src="../../assets/logowhite.png" alt="logo"/>
+      <img src="../../../assets/logowhite.png" alt="logo"/>
     </div>
     <div class="list">
       <p (click)="scroll(about)">About</p>
-      <p (click)="scroll(projects)">Projects</p>
+      <p (click)="scroll(projectsscr)">Projects</p>
       <p (click)="scroll(contact)">Contact</p>
     </div>
   </div>
@@ -34,12 +34,12 @@
             seeking to acquire new high-level skills in web development and UI/UX Design.</p>
           </div>
           <div style="display: flex; justify-content: center; width: 50%">
-            <img src="../../assets/profile.png" alt="profilepicture">
+            <img src="../../../assets/profile.png" alt="profilepicture">
           </div>
         </div>
         <div class="info-part-2" data-aos="fade-in" data-aos-offset="300" data-aos-easing="ease-in-sine">
           <div style="display: flex; justify-content: center; width: 50%">
-            <img src="../../assets/drawing.png" alt="drawing">
+            <img src="../../../assets/drawing.png" alt="drawing">
           </div>
           <div class="information-text-2" style="text-align: justify">
             <h1>What do I do?</h1>
@@ -52,24 +52,27 @@
     </div>
   </div>
 
-  <div #projects class="projects-wrap">
+  <div #projectsscr class="projects-wrap">
     <div class="projects">
       <h1>my projects</h1>
-      <div class="projects-content">
+      <div class="projects-content" *ngFor="let project of projects">
         <div class="projects-card shadow" data-aos="fade-up" data-aos-offset="300" data-aos-easing="ease-in-sine">
           <div>
-            <h4>Project name</h4>
-            <p>Short description</p>
+            <h4>{{project.name}}</h4>
+            <p>{{project.description}}</p>
           </div>
-          <div style="text-align: center">
-            <p>Project purpose</p>
-            <p>Project date</p>
+          <div>
+            <p>Purpose: {{project.purpose}}</p>
+            <p>Start: {{project.startDate}}</p>
+            <p>End: {{project.endDate}}</p>
           </div>
           <div>
             <p>View project on:</p>
             <div style="display: flex; justify-content: space-evenly">
-              <a href=""><i class="bi bi-house-fill"></i></a>
-              <a href=""><i class="bi bi-github"></i></a>
+              <a *ngIf="project.pageLink!=null" href="{{project.pageLink}}" target="_blank"><i class="bi bi-house-fill"></i></a>
+                <a *ngIf="project.pageLink==null" routerLink="/page-unavailable" target="_blank"><i class="bi bi-house-fill"></i></a>
+              <a *ngIf="project.gitLink!=null" href="{{project.gitLink}}" target="_blank"><i class="bi bi-github"></i></a>
+                <a *ngIf="project.gitLink==null" routerLink="/page-unavailable" target="_blank"><i class="bi bi-github"></i></a>
             </div>
           </div>
         </div>
@@ -92,6 +95,6 @@
 </main>
 
 <footer>
-  <img src="../../assets/logowhite.png" alt="logo"/>
+  <img src="../../../assets/logowhite.png" alt="logo"/>
   <h3>&copy; irfanparic</h3>
 </footer>

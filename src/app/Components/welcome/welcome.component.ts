@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as AOS from 'aos';
+import {Project} from "../../Models/project";
+import {ActivatedRoute} from "@angular/router";
+import {ResolverResponse} from "../../Constants/resolver-response.constants";
 
 @Component({
   selector: 'app-welcome',
@@ -8,9 +11,14 @@ import * as AOS from 'aos';
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor() { }
+  public projects: Project[] = [];
+
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.activatedRoute.data.subscribe((response: any) => {
+      this.projects = response[ResolverResponse.projects];
+    });
     AOS.init();
   }
 

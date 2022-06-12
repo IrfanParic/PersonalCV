@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { WelcomeComponent } from './welcome/welcome.component';
+import { WelcomeComponent } from './Components/welcome/welcome.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatExpansionModule} from "@angular/material/expansion";
+import { AppRoutingModule } from './app-routing.module';
+import {ProjectService} from "./Services/project.service";
+import {ProjectResolver} from "./Resolvers/project.resolver";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -14,9 +18,13 @@ import {MatExpansionModule} from "@angular/material/expansion";
     BrowserModule,
     BrowserAnimationsModule,
     MatExpansionModule,
-
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    ProjectService,
+    ProjectResolver
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

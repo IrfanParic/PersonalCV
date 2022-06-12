@@ -66,7 +66,7 @@ main{
 }
 
 main .about-wrap .bgimage{
-  background:linear-gradient(transparent,black), url("../../assets/background4.jpg");
+  background:linear-gradient(transparent,black), url("src/assets/background4.jpg");
   background-size: cover;
   padding: 250px 0;
   display: flex;
@@ -117,7 +117,7 @@ main .information{
 }
 
 .projects-wrap{
-  background:linear-gradient(black,transparent,black), url("../../assets/background5.jpg");
+  background:linear-gradient(black,transparent,black), url("src/assets/background5.jpg");
   background-size: cover;
   display: flex;
   justify-content: center;
