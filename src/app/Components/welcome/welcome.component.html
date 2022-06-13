@@ -69,8 +69,8 @@
           <div>
             <p>View project on:</p>
             <div style="display: flex; justify-content: space-evenly">
-              <a *ngIf="project.pageLink!=null" href="{{project.pageLink}}" target="_blank"><i class="bi bi-house-fill"></i></a>
-                <a *ngIf="project.pageLink==null" routerLink="/page-unavailable" target="_blank"><i class="bi bi-house-fill"></i></a>
+              <a *ngIf="project.pageLink!=null" href="{{project.pageLink}}" target="_blank"><i class="bi bi-globe2"></i></a>
+                <a *ngIf="project.pageLink==null" routerLink="/page-unavailable" target="_blank"><i class="bi bi-globe2"></i></a>
               <a *ngIf="project.gitLink!=null" href="{{project.gitLink}}" target="_blank"><i class="bi bi-github"></i></a>
                 <a *ngIf="project.gitLink==null" routerLink="/page-unavailable" target="_blank"><i class="bi bi-github"></i></a>
             </div>
