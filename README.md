@@ -1,27 +1,39 @@
-# Irfanparic
+# IRFANPARIC - PersonalCV
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
+The Application is used to showcase Personal CV/Portfolio in a form of website.
+Personal CV/Portfolio is created to present key information about person, their work/projects and contact information.
+Frontend of this project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
 
-## Development server
+## Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+To install Angular on local system, following requirements are needed:
+Node.js - since Angular requires an active LTS or maintenance LTS version of Node.js.
+Download and install NodeJS from: https://nodejs.org/en/download/
+npm package manager - Angular, the Angular CLI, and Angular applications depend on npm packages for many features and functions. To download and install npm packages, npm package manager is required.
 
-## Code scaffolding
+### Installation of Angular CLI
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Angular CLI is tool which is used to create projects, generate application and maintain Angular application and perform several development tasks such as testing, or deployment.
+In order to install Angular CLI, run the following command: npm install -g @angular/cli
+
+### Enviroments
+
+There is enviroments folder in this application which can be replaced during build by using the fileReplacements array.
+Command ng build replaces "environment.ts" with "environment.prod.ts".
+The list of file replacements can be found in angular.json.
+For easier debugging in development mode, import the following file: import 'zone.js/plugins/zone-error'.
+This import should be commented out in production mode because it will have a negative impact on performance if an error is thrown.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Frontend of this application was built usigng:
+- Angular CLI 13.3.3
+- HTML 5
+- CSS 3
+- Bootstrap 5
 
-## Running unit tests
+## Deployment
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Find this application deployed on Netlify : https://irfanparic.netlify.app
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
