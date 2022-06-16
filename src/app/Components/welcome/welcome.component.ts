@@ -29,4 +29,18 @@ export class WelcomeComponent implements OnInit {
   scrolltop() {
     window.scroll(0,0);
   }
+
+  invert(){
+
+      document.getElementById('header')?.classList.toggle('headermode');
+      document.getElementById('headertitle')?.classList.toggle('colormode');
+      document.getElementById('headerimage')?.classList.toggle('colormode2');
+      document.getElementById('headerlist1')?.classList.toggle('colormode');
+      document.getElementById('headerlist2')?.classList.toggle('colormode');
+      document.getElementById('headerlist3')?.classList.toggle('colormode');
+      document.getElementById('main')?.classList.toggle('mode');
+      document.getElementById('profilepicture')?.classList.toggle('mode');
+      document.getElementById('drawing')?.classList.toggle('mode');
+      document.getElementById('contactspan')?.classList.toggle('colormode3');
+  }
 }

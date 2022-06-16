@@ -1,20 +1,20 @@
-<header>
+<header id="header">
   <div class="header-content">
     <div class="title">
-      <h1 style="text-transform: uppercase" (click)="scrolltop()">irfanparic</h1>
+      <h1 id="headertitle" style="text-transform: uppercase" (click)="scrolltop()">irfanparic</h1>
     </div>
     <div class="image">
-      <img src="../../../assets/logowhite.png" alt="logo"/>
+      <img id="headerimage" src="../../../assets/logowhite.png" alt="logo" type="button" (click)="invert()"/>
     </div>
     <div class="list">
-      <p (click)="scroll(about)">About</p>
-      <p (click)="scroll(projectsscr)">Projects</p>
-      <p (click)="scroll(contact)">Contact</p>
+      <p id="headerlist1" (click)="scroll(about)">About</p>
+      <p id="headerlist2" (click)="scroll(projectsscr)">Projects</p>
+      <p id="headerlist3" (click)="scroll(contact)">Contact</p>
     </div>
   </div>
 </header>
 
-<main>
+<main id="main">
   <div class="about-wrap">
     <div class="bgimage">
       <div class="introduction">
@@ -29,23 +29,23 @@
           <div class="information-text-1" style="text-align: justify">
             <h1>Who am I?</h1>
             <p >I am an undergraduate 3
-            rd year student of Computer Science at the university of Sarajevo
-            School of Science and Technology, with strong foundation in math, logic, and design,
-            seeking to acquire new high-level skills in web development and UI/UX Design.</p>
+              rd year student of Computer Science at the university of Sarajevo
+              School of Science and Technology, with strong foundation in math, logic, and design,
+              seeking to acquire new high-level skills in web development and UI/UX Design.</p>
           </div>
           <div style="display: flex; justify-content: center; width: 50%">
-            <img src="../../../assets/profile.png" alt="profilepicture">
+            <img id="profilepicture" src="../../../assets/profile.png" alt="profilepicture">
           </div>
         </div>
         <div class="info-part-2" data-aos="fade-in" data-aos-offset="300" data-aos-easing="ease-in-sine">
           <div style="display: flex; justify-content: center; width: 50%">
-            <img src="../../../assets/drawing.png" alt="drawing">
+            <img id="drawing" src="../../../assets/drawing.png" alt="drawing">
           </div>
           <div class="information-text-2" style="text-align: justify">
             <h1>What do I do?</h1>
             <p>I am well experienced at working in multiple developing environments and programming
-                languages such as Java and C++, Adobe Illustrator/Photoshop and Figma for graphical
-                design and UI/UX, as well as HTML, CSS, and JS for web development. </p>
+              languages such as Java and C++, Adobe Illustrator/Photoshop and Figma for graphical
+              design and UI/UX, as well as HTML, CSS, and JS for web development. </p>
           </div>
         </div>
       </div>
@@ -89,12 +89,13 @@
         <a href="https://www.linkedin.com/in/irfan-paric-b96b6a160/" target="_blank"><i class="bi bi-linkedin link"></i></a>
         <a href="https://www.instagram.com/irfanparic/" target="_blank"><i class="bi bi-instagram insta"></i></a>
       </div>
-      <p>... or send me an email at <span style="color: mediumpurple">irfanparic@hotmail.com</span></p>
+      <p>... or send me an email at <span id="contactspan" style="color: mediumpurple">irfanparic@hotmail.com</span></p>
     </div>
   </div>
 </main>
 
-<footer>
+<footer id="footer">
   <img src="../../../assets/logowhite.png" alt="logo"/>
+  <p style="color:mediumpurple;">click on the header logo to see a magic trick</p>
   <h3>&copy; irfanparic</h3>
 </footer>
