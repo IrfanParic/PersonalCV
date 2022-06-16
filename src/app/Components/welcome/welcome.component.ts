@@ -31,7 +31,6 @@ export class WelcomeComponent implements OnInit {
   }
 
   invert(){
-
       document.getElementById('header')?.classList.toggle('headermode');
       document.getElementById('headertitle')?.classList.toggle('colormode');
       document.getElementById('headerimage')?.classList.toggle('colormode2');

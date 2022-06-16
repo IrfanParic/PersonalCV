@@ -206,7 +206,6 @@ footer img{
   width: auto;
 }
 
-
 @media (min-width: 1280px){
   .projects{
     max-width: 80vw;
@@ -359,10 +358,6 @@ footer img{
 
 .colormode{
   color: mediumpurple !important;
-}
-
-.colormode2{
-  filter: invert(50%) sepia(40%) saturate(808%) hue-rotate(217deg) brightness(93%) contrast(84%);
 }
 
 
