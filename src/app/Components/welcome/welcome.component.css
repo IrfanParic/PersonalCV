@@ -42,6 +42,12 @@ header .title h1:hover{
 header img{
   height: 50px;
   width: auto;
+  transition: .2s ease-in;
+}
+
+header img:hover{
+  filter: invert(50%) sepia(40%) saturate(808%) hue-rotate(217deg) brightness(93%) contrast(84%);
+  cursor: pointer;
 }
 
 header .list{
@@ -200,7 +206,6 @@ footer img{
   width: auto;
 }
 
-
 @media (min-width: 1280px){
   .projects{
     max-width: 80vw;
@@ -341,6 +346,18 @@ footer img{
     align-items: center;
   }
 
+}
+
+.headermode{
+  background-color: rgba(255,255,255,0.6);
+}
+
+.mode{
+  filter: invert(1);
+}
+
+.colormode{
+  color: mediumpurple !important;
 }
 
 

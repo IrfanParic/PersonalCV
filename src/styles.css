@@ -21,6 +21,6 @@ body::-webkit-scrollbar-thumb {
   border-radius: 20px;       /* roundness of the scroll thumb */
 }
 
-body::selection{
+::selection{
   background-color: mediumpurple;
 }
