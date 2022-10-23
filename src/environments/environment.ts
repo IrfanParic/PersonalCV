@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backendUrl: "https://irfanparic.herokuapp.com",
+  backendUrl: "https://personalcv-backend-production.up.railway.app",
 };
 
 /*
