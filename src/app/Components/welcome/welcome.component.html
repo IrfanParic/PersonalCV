@@ -1,16 +1,15 @@
-<header id="header">
+<header id="header" class="controllable">
   <div class="header-content">
     <div class="title">
       <h1 id="headertitle" style="text-transform: uppercase" (click)="scrolltop()">irfanparic</h1>
     </div>
-    <div class="image">
-      <img id="headerimage" src="../../../assets/logowhite.png" alt="logo" type="button" (click)="invert()"/>
-    </div>
     <div class="list">
-      <p id="headerlist1" (click)="scroll(about)">About</p>
-      <p id="headerlist2" (click)="scroll(projectsscr)">Projects</p>
-      <p id="headerlist3" (click)="scroll(contact)">Contact</p>
+      <p (click)="scrolltop()">Home</p>
+      <p (click)="scroll(about)">About</p>
+      <p (click)="scroll(portfolio)">Portfolio</p>
+      <p (click)="scroll(contact)">Contact</p>
     </div>
+    <img src="../../../assets/logowhite.png" alt="logo" type="button"/>
   </div>
 </header>
 
@@ -18,43 +17,74 @@
   <div class="about-wrap">
     <div class="bgimage">
       <div class="introduction">
-        <h1 style="text-transform: uppercase" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="2000">welcome</h1>
-        <h1 data-aos="fade-in" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="2000">&</h1>
-        <h1 style="text-transform: uppercase" data-aos="fade-up" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="2000">enjoy</h1>
-      </div>
-    </div>
-    <div #about class="information-wrap">
-      <div class="information">
-        <div class="info-part-1" data-aos="fade-in" data-aos-offset="300" data-aos-easing="ease-in-sine">
-          <div class="information-text-1" style="text-align: justify">
-            <h1>Who am I?</h1>
-            <p >I am an undergraduate 4
-              th year student of Computer Science at the university of Sarajevo
-              School of Science and Technology, with strong foundation in math, logic, and design,
-              seeking to acquire new high-level skills in web development and UI/UX Design.</p>
+        <div class="introtext">
+          <h1 data-aos="fade-right" data-aos-duration="1000">Hello there</h1>
+          <div style="display: flex" data-aos="fade-left" data-aos-duration="2000">
+            <h1 style="margin-right: 5%">I am</h1>
+            <div class="stack" style="--stacks: 3;">
+              <span style="--index: 0;"><h1>IRFAN</h1></span>
+              <span style="--index: 1;"><h1>IRFAN</h1></span>
+              <span style="--index: 2;"><h1>IRFAN</h1></span>
+            </div>
           </div>
-          <div style="display: flex; justify-content: center; width: 50%">
-            <img id="profilepicture" src="../../../assets/profile.png" alt="profilepicture">
-          </div>
-        </div>
-        <div class="info-part-2" data-aos="fade-in" data-aos-offset="300" data-aos-easing="ease-in-sine">
-          <div style="display: flex; justify-content: center; width: 50%">
-            <img id="drawing" src="../../../assets/drawing.png" alt="drawing">
-          </div>
-          <div class="information-text-2" style="text-align: justify">
-            <h1>What do I do?</h1>
-            <p>I am well experienced at working in multiple developing environments and programming
-              languages such as Java and C++, Adobe Illustrator/Photoshop and Figma for graphical
-              design and UI/UX, as well as HTML, CSS, and JS for web development. </p>
-          </div>
+          <br>
+          <h2 data-aos="fade-in" data-aos-duration="3000">Frontend Developer</h2>
+          <a (click)="scroll(portfolio)" data-aos="fade-in" data-aos-duration="3000">Unveil my work</a>
         </div>
       </div>
     </div>
   </div>
 
-  <div #projectsscr class="projects-wrap">
+  <div #about class="information-wrap">
+    <div class="information">
+      <div class="picture">
+        <img src="../../../assets/profile.png" alt="irfanparic">
+      </div>
+
+      <div class="text1 flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <h2>Who am I?</h2>
+          </div>
+          <div class="flip-card-back">
+            <p>I am an undergraduate 4 th year student of Computer Science at the university of Sarajevo School of Science and Technology, with strong foundation in math, logic, and design, seeking to acquire new high-level skills in web development and UI/UX Design.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text2 flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <h2>What do I do?</h2>
+          </div>
+          <div class="flip-card-back">
+            <p>I am well experienced at working in multiple developing environments and programming languages such as Java and C++, Adobe Illustrator/Photoshop and Figma for graphical design and UI/UX, as well as HTML, CSS, and JS for web development.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="techno flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <h2>Technologies?</h2>
+          </div>
+          <div class="flip-card-back">
+            <p>in progress</p>
+          </div>
+        </div>
+      </div>
+      <div class="name">
+        <h2>Irfan Paric</h2>
+      </div>
+      <div class="cv">
+        <a href="../../../assets/Irfan%20Parić%20CV.pdf" download> <h2>DOWNLOAD CV</h2></a>
+      </div>
+    </div>
+  </div>
+
+  <div #portfolio class="projects-wrap">
     <div class="projects">
-      <h1>my projects</h1>
+      <h1 style="margin-bottom: 20px">Portfolio</h1>
       <div class="projects-content" *ngFor="let project of projects">
         <div class="projects-card shadow" data-aos="fade-up" data-aos-offset="300" data-aos-easing="ease-in-sine">
           <div style="width: 300px">
@@ -70,9 +100,9 @@
             <p>View project on:</p>
             <div style="display: flex; justify-content: space-evenly">
               <a *ngIf="project.pageLink!=null" href="{{project.pageLink}}" target="_blank"><i class="bi bi-globe2"></i></a>
-                <a *ngIf="project.pageLink==null" routerLink="/page-unavailable" target="_blank"><i class="bi bi-globe2"></i></a>
+              <a *ngIf="project.pageLink==null" routerLink="/page-unavailable" target="_blank"><i class="bi bi-globe2"></i></a>
               <a *ngIf="project.gitLink!=null" href="{{project.gitLink}}" target="_blank"><i class="bi bi-github"></i></a>
-                <a *ngIf="project.gitLink==null" routerLink="/page-unavailable" target="_blank"><i class="bi bi-github"></i></a>
+              <a *ngIf="project.gitLink==null" routerLink="/page-unavailable" target="_blank"><i class="bi bi-github"></i></a>
             </div>
           </div>
         </div>
@@ -89,13 +119,14 @@
         <a href="https://www.linkedin.com/in/irfan-paric-b96b6a160/" target="_blank"><i class="bi bi-linkedin link"></i></a>
         <a href="https://www.instagram.com/irfanparic/" target="_blank"><i class="bi bi-instagram insta"></i></a>
       </div>
-      <p>... or send me an email at <span id="contactspan" style="color: mediumpurple">irfanparic@hotmail.com</span></p>
+      <p>... or send me an email at <span id="contactspan" style="color: darkorange">irfanparic@hotmail.com</span></p>
     </div>
   </div>
 </main>
 
-<footer id="footer">
-  <img src="../../../assets/logowhite.png" alt="logo"/>
-  <p style="color:mediumpurple;">click on the header logo to see a magic trick</p>
-  <h3>&copy; irfanparic</h3>
-</footer>
+<div class="footwraper">
+  <footer id="footer">
+    <img src="../../../assets/logowhite.png" alt="logo"/>
+    <h3>&copy; irfanparic</h3>
+  </footer>
+</div>

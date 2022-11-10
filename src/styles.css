@@ -3,6 +3,11 @@
 *{
   margin: 0;
   font-family: 'Raleway', sans-serif;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 html, body { height: 100%; }
@@ -13,14 +18,14 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  background: black;        /* color of the tracking area */
+  background: #151618;        /* color of the tracking area */
 }
 
 body::-webkit-scrollbar-thumb {
-  background-image: linear-gradient(180deg, mediumpurple 0%, rebeccapurple 99%);    /* color of the scroll thumb */
+  background-image: linear-gradient(180deg, orange 0%, darkorange 99%);    /* color of the scroll thumb */
   border-radius: 20px;       /* roundness of the scroll thumb */
 }
 
 ::selection{
-  background-color: mediumpurple;
+  background-color: darkorange;
 }

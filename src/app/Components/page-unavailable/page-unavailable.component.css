@@ -3,7 +3,7 @@ p, a{
 }
 
 a{
-  background-color: rgba(147, 112, 219, 0.6);
+  background-color: rgba(255, 140, 0, 0.6);
   backdrop-filter: saturate(180%) blur(20px);
   text-decoration: none;
   color: white;
@@ -12,7 +12,7 @@ a{
 }
 
 a:hover{
-  background-color: mediumpurple;
+  background-color: darkorange;
   transform: scale(1.1);
 }
 
@@ -31,7 +31,7 @@ h2{
 }
 
 .page-unavailable-wrap{
-  background: linear-gradient(black,transparent,black), url("../../../assets/background4.jpg");
+  background: url("../../../assets/orangetexture.png");
   height: 100%;
   display: flex;
   justify-content: center;
