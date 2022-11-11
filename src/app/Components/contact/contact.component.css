@@ -1,0 +1,83 @@
+p, a{
+  margin-bottom: 0;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Bebas Neue', cursive;
+  margin-bottom: 0;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+}
+
+i{
+  font-size: 30px;
+  transition: .2s ease-in;
+}
+
+.contact-wrap{
+  display: flex;
+  justify-content: center;
+  padding: 200px 0 300px;
+}
+
+.contact{
+  width: 60%;
+}
+
+.contact-icons{
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.contact-icons i{
+  font-size: 40px;
+}
+
+.git:hover{
+  color: mediumpurple;
+}
+
+.link:hover{
+  color: #0072b1;
+}
+
+.insta:hover{
+  background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (min-width: 1900px) {
+  .contact{
+    width: 60%;
+  }
+}
+
+@media (min-width: 1280px){
+  .contact{
+    width: 80%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .contact{
+    width: 80%;
+  }
+}
+
+@media (max-width: 960px){
+  .contact{
+    width: 90%;
+  }
+}
+
+@media (max-width: 800px){
+  .contact{
+    width: 90%;
+  }
+}

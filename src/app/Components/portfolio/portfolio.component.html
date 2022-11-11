@@ -1,0 +1,27 @@
+<div class="projects-wrap">
+  <div class="projects">
+    <h1 style="margin-bottom: 20px">Portfolio</h1>
+    <div class="projects-content" *ngFor="let project of projects">
+      <div class="projects-card shadow" data-aos="fade-up" data-aos-offset="300" data-aos-easing="ease-in-sine">
+        <div style="width: 300px">
+          <h4>{{project.name}}</h4>
+          <p>{{project.description}}</p>
+        </div>
+        <div style="width: 300px">
+          <p>Purpose: {{project.purpose}}</p>
+          <p>Start: {{project.startDate}}</p>
+          <p>End: {{project.endDate}}</p>
+        </div>
+        <div>
+          <p>View project on:</p>
+          <div style="display: flex; justify-content: space-evenly">
+            <a *ngIf="project.pageLink!=null" href="{{project.pageLink}}" target="_blank"><i class="bi bi-globe2"></i></a>
+            <a *ngIf="project.pageLink==null" routerLink="/page-unavailable" target="_blank"><i class="bi bi-globe2"></i></a>
+            <a *ngIf="project.gitLink!=null" href="{{project.gitLink}}" target="_blank"><i class="bi bi-github"></i></a>
+            <a *ngIf="project.gitLink==null" routerLink="/page-unavailable" target="_blank"><i class="bi bi-github"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

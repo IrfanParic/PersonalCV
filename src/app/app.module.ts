@@ -10,13 +10,22 @@ import {ProjectResolver} from "./Resolvers/project.resolver";
 import {HttpClientModule} from "@angular/common/http";
 import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
 import { PageUnavailableComponent } from './Components/page-unavailable/page-unavailable.component';
+import {PortfolioComponent} from "./Components/portfolio/portfolio.component";
+import {AboutComponent} from "./Components/about/about.component";
+import {ContactComponent} from "./Components/contact/contact.component";
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
     PageNotFoundComponent,
-    PageUnavailableComponent
+    PageUnavailableComponent,
+    PortfolioComponent,
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

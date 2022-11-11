@@ -1,0 +1,88 @@
+p, a{
+  margin-bottom: 0;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Bebas Neue', cursive;
+  margin-bottom: 0;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+}
+
+i{
+  font-size: 30px;
+  transition: .2s ease-in;
+}
+
+.projects-wrap{
+  background:linear-gradient(#151618,transparent,#151618), url("src/assets/orangetexture.png");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  padding: 200px 0;
+}
+
+.projects{
+  width: 60%;
+}
+
+.projects-card{
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background-color: rgba(21, 22, 24, 0.8);
+  backdrop-filter: saturate(180%) blur(20px);
+  display: flex;
+  justify-content: space-between;
+}
+
+.projects-card i:hover{
+  color: darkorange;
+}
+
+@media (min-width: 1900px) {
+  .projects{
+    width: 60%;
+  }
+}
+
+@media (min-width: 1280px){
+  .projects{
+    width: 80%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .projects{
+    width: 80%;
+  }
+}
+
+@media (max-width: 960px){
+  .projects{
+    width: 90%;
+  }
+}
+
+@media (max-width: 800px){
+  .projects{
+    width: 90%;
+  }
+}
+
+@media (max-width: 500px){
+  .projects-card{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .projects-card div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

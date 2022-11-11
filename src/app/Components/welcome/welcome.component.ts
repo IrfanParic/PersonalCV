@@ -11,14 +11,9 @@ import {ResolverResponse} from "../../Constants/resolver-response.constants";
 })
 export class WelcomeComponent implements OnInit {
 
-  public projects: Project[] = [];
-
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe((response: any) => {
-      this.projects = response[ResolverResponse.projects];
-    });
     AOS.init();
   }
 
