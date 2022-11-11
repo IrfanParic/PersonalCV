@@ -204,20 +204,28 @@ footer img{
 }
 
 @media (max-width: 1200px) {
-  .introduction h1{
-    font-size: 3em;
+  main .introduction h1{
+    font-size: 4em;
   }
-}
 
-@media (max-width: 960px){
   header .list{
     width: 30em;
   }
 }
 
+@media (max-width: 960px){
+  header .list{
+    width: 25em;
+  }
+
+  header .list p{
+    font-size: 1em;
+  }
+}
+
 @media (max-width: 800px){
   header .list{
-    width: 20em;
+    width: 15em;
   }
 
   header .list p{
@@ -225,12 +233,18 @@ footer img{
   }
 }
 
-@media (max-width: 500px){
+@media (max-width: 700px){
   header .list{
     display: none;
   }
 
-  .introduction h1{
-    font-size: 2em;
+  main .introduction h1{
+    font-size: 4em;
+  }
+}
+
+@media (max-width: 420px){
+  main .introduction h1{
+    font-size: 3.5em;
   }
 }
