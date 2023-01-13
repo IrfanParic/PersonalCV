@@ -15,8 +15,6 @@ import {AboutComponent} from "./Components/about/about.component";
 import {ContactComponent} from "./Components/contact/contact.component";
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
