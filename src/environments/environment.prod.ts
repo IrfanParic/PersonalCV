@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  backendUrl: "https://personalcv-backend-production.up.railway.app",
+  backendUrl: "http://localhost:8080",
 };
