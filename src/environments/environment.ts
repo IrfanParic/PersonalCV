@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backendUrl: "https://personalcv-backend-production.up.railway.app/projects",
+  backendUrl: "http://personalcv-backend-production.up.railway.app",
 };
 
 /*
