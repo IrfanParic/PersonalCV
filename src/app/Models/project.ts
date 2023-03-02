@@ -1,4 +1,4 @@
-export interface Project{
+/*export interface Project{
   id: string;
   name: string;
   description: string;
@@ -7,4 +7,4 @@ export interface Project{
   endDate: string;
   pageLink: string;
   gitLink: string;
-}
+}*/
