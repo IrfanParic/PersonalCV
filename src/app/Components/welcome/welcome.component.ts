@@ -1,8 +1,8 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import * as AOS from 'aos';
-import {Project} from "../../Models/project";
+//import {Project} from "../../Models/project";
 import {ActivatedRoute} from "@angular/router";
-import {ResolverResponse} from "../../Constants/resolver-response.constants";
+//import {ResolverResponse} from "../../Constants/resolver-response.constants";
 
 @Component({
   selector: 'app-welcome',
