@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+/*import { Component, OnInit } from '@angular/core';
 import {ResolverResponse} from "../../Constants/resolver-response.constants";
 import {ActivatedRoute} from "@angular/router";
 import {Project} from "../../Models/project";
@@ -20,4 +20,4 @@ export class PortfolioComponent implements OnInit {
     });
   }
 
-}
+}*/
