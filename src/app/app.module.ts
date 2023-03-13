@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {HttpClientModule} from "@angular/common/http";
 import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
 import { PageUnavailableComponent } from './Components/page-unavailable/page-unavailable.component';
-//import {PortfolioComponent} from "./Components/portfolio/portfolio.component";
+import {PortfolioComponent} from "./Components/portfolio/portfolio.component";
 import {AboutComponent} from "./Components/about/about.component";
 import {ContactComponent} from "./Components/contact/contact.component";
 
@@ -21,7 +21,7 @@ import {ContactComponent} from "./Components/contact/contact.component";
     WelcomeComponent,
     PageNotFoundComponent,
     PageUnavailableComponent,
-    //PortfolioComponent,
+    PortfolioComponent,
     AboutComponent,
     ContactComponent
   ],

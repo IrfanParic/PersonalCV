@@ -6,7 +6,7 @@ a{
   background-color: rgba(255, 140, 0, 0.6);
   backdrop-filter: saturate(180%) blur(20px);
   text-decoration: none;
-  color: white;
+  color: whitesmoke;
   padding: 20px;
   transition: .2s ease-in;
 }
@@ -23,7 +23,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .page-not-found-wrap{
-  background: url("../../../assets/orangetexture.png");
+  background: url("../../../assets/orangetexture3.jpg");
   height: 100%;
   display: flex;
   justify-content: center;
@@ -31,6 +31,6 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .page-not-found{
-  color: white;
+  color: whitesmoke;
   text-align: center;
 }

@@ -1,7 +1,7 @@
-/*import { Component, OnInit } from '@angular/core';
-import {ResolverResponse} from "../../Constants/resolver-response.constants";
+import { Component, OnInit } from '@angular/core';
+//import {ResolverResponse} from "../../Constants/resolver-response.constants";
 import {ActivatedRoute} from "@angular/router";
-import {Project} from "../../Models/project";
+//import {Project} from "../../Models/project";
 
 @Component({
   selector: 'app-portfolio',
@@ -10,14 +10,14 @@ import {Project} from "../../Models/project";
 })
 export class PortfolioComponent implements OnInit {
 
-  public projects: Project[] = [];
+  //public projects: Project[] = [];
 
   constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe((response: any) => {
+    /*this.activatedRoute.data.subscribe((response: any) => {
       this.projects = response[ResolverResponse.projects];
-    });
+    });*/
   }
 
-}*/
+}

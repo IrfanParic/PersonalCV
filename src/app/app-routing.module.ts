@@ -6,7 +6,7 @@ import {WelcomeComponent} from "./Components/welcome/welcome.component";
 //import {ProjectResolver} from "./Resolvers/project.resolver";
 import {PageUnavailableComponent} from "./Components/page-unavailable/page-unavailable.component";
 import {PageNotFoundComponent} from "./Components/page-not-found/page-not-found.component";
-//import {PortfolioComponent} from "./Components/portfolio/portfolio.component";
+import {PortfolioComponent} from "./Components/portfolio/portfolio.component";
 import {AboutComponent} from "./Components/about/about.component";
 import {ContactComponent} from "./Components/contact/contact.component";
 
@@ -19,13 +19,13 @@ const routes: Routes = [
     }
   },
 
-  /* {
+   {
      path: Routex.EMPTY,
      component: PortfolioComponent,
-     resolve: {
+     /*resolve: {
        [ResolverResponse.projects]: ProjectResolver,
-     }
-   },*/
+     }*/
+   },
 
   {
     path: Routex.EMPTY,

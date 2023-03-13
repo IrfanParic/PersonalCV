@@ -9,7 +9,7 @@ h1,h2,h3,h4,h5,h6{
 
 a{
   text-decoration: none;
-  color: white;
+  color: whitesmoke;
 }
 
 i{
@@ -26,14 +26,14 @@ i{
 }
 
 .information{
-  width: 60%;
+  width: 80%;
   height: 30em;
   display: grid;
   grid-template-areas:
       "picture text1 text1"
       "picture text2 techno"
       "name text2 cv";
-  gap: .7em;
+  gap: .6em;
   grid-template-columns: 1fr 2fr 1fr;
   grid-template-rows: repeat(3, 1fr);
 }
@@ -92,14 +92,14 @@ i{
 }
 
 .flip-card-front {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: whitesmoke;
   letter-spacing: 1px;
 }
 
 .flip-card-back {
   text-align: justify;
-  background-color: white;
+  background-color: whitesmoke;
   color: #151618;
   transform: rotateX(180deg);
 }
@@ -118,11 +118,16 @@ i{
   width: auto;
 }
 
+.information-wrap .techno img{
+  height: 40%;
+  width: auto;
+}
+
 .information-wrap .cv a{
   background-color: rgba(255, 140, 0, 0.6);
   backdrop-filter: saturate(180%) blur(20px);
   text-decoration: none;
-  color: white;
+  color: whitesmoke;
   transition: .2s ease-in;
   cursor: pointer;
   width: 100%;
@@ -140,7 +145,7 @@ i{
 
 @media (min-width: 1900px) {
   .information{
-    width: 60%;
+    width: 80%;
   }
 }
 
@@ -152,11 +157,21 @@ i{
   .information h2{
     font-size: 1.5em;
   }
+
+  .information-wrap .techno img{
+    height: 30%;
+  }
 }
 
 @media (max-width: 1200px) {
   .information{
     width: 80%;
+  }
+}
+
+@media (max-width: 1160px) {
+  .information-wrap .techno img{
+    height: 25%;
   }
 }
 
@@ -167,6 +182,10 @@ i{
 
   .information{
     width: 90%;
+  }
+
+  .information-wrap .techno img{
+    height: 22%;
   }
 }
 
@@ -182,7 +201,18 @@ i{
   .information{
     width: 90%;
   }
+
+  .information-wrap .techno img{
+    height: 20%;
+  }
 }
+
+@media (max-width: 750px){
+  .information-wrap .techno img{
+    height: 17%;
+  }
+}
+
 
 @media (max-width: 700px){
   .information-wrap{
@@ -204,5 +234,27 @@ i{
 
   .information h2{
     font-size: 1.5em;
+  }
+
+  .information-wrap .techno img{
+    height: 60%;
+  }
+}
+
+@media (max-width: 600px){
+  .information-wrap .techno img{
+    height: 50%;
+  }
+}
+
+@media (max-width: 450px){
+  .information-wrap .techno img{
+    height: 40%;
+  }
+}
+
+@media (max-width: 370px){
+  .information-wrap .techno img{
+    height: 30%;
   }
 }

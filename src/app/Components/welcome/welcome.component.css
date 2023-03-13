@@ -9,7 +9,7 @@ h1,h2,h3,h4,h5,h6{
 
 a{
   text-decoration: none;
-  color: white;
+  color: whitesmoke;
 }
 
 i{
@@ -40,7 +40,7 @@ header .header-content{
 }
 
 header .title h1{
-  color: white;
+  color: whitesmoke;
   letter-spacing: 2px;
   cursor: pointer;
   transition: .2s ease-in;
@@ -62,7 +62,7 @@ header .list{
 }
 
 header .list p{
-  color: white;
+  color: whitesmoke;
   cursor: pointer;
   transition: .2s ease-in;
   font-size: 1.3em;
@@ -74,7 +74,7 @@ header .list p:hover{
 
 main{
   background-color: #151618;
-  color: white;
+  color: whitesmoke;
 }
 
 main .about-wrap .bgimage{
@@ -100,7 +100,7 @@ main .introduction .introtext a{
   background-color: rgba(255, 140, 0, 0.6);
   backdrop-filter: saturate(180%) blur(20px);
   text-decoration: none;
-  color: white;
+  color: whitesmoke;
   padding: 10px;
   transition: .2s ease-in;
   cursor: pointer;
@@ -117,11 +117,11 @@ main .introduction .introtext a:hover{
 }
 
 main .introduction .introtext button:hover{
-  background-color: white;
+  background-color: whitesmoke;
 }
 
 main .introduction h1{
-  color: white;
+  color: whitesmoke;
   font-size: 5em;
 }
 
@@ -184,7 +184,7 @@ footer{
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.1);
   display: flex;
-  color: white;
+  color: whitesmoke;
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
