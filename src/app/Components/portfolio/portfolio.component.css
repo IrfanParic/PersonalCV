@@ -66,11 +66,9 @@ i{
  }
 
  .projects-img-5{
-   background: url("../../../assets/sportnet-logo.png");
+   background: url("../../../assets/sportnet-img.png");
    background-size: cover;
  }
-
-
 
  .projects-info{
    display: grid;
@@ -112,6 +110,7 @@ i{
    letter-spacing: 1px;
    flex-direction: column;
    justify-content: space-around;
+   align-items: center;
  }
  .web{
    grid-area: web;
