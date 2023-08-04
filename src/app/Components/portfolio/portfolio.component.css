@@ -60,6 +60,16 @@ i{
    background-size: cover;
  }
 
+ .projects-img-4{
+   background: url("../../../assets/rubicon_internship.png");
+   background-size: cover;
+ }
+
+ .projects-img-5{
+   background: url("../../../assets/sportnet-logo.png");
+   background-size: cover;
+ }
+
 
 
  .projects-info{
