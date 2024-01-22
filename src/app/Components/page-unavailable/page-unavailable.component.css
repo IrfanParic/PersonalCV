@@ -3,17 +3,23 @@ p, a{
 }
 
 a{
-  background-color: rgba(255, 140, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: saturate(180%) blur(20px);
   text-decoration: none;
   color: whitesmoke;
-  padding: 20px;
+  padding: 15px 40px;
   transition: .2s ease-in;
+  cursor: pointer;
+  width: 260px;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+  letter-spacing: 2px;
+  font-weight: bold;
 }
 
 a:hover{
-  background-color: darkorange;
-  transform: scale(1.1);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -31,7 +37,7 @@ h2{
 }
 
 .page-unavailable-wrap{
-  background: url("../../../assets/orangetexture3.jpg");
+  background: url("../../../assets/bgblue3.png");
   height: 100%;
   display: flex;
   justify-content: center;
@@ -41,4 +47,7 @@ h2{
 .page-unavailable{
   color: whitesmoke;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
