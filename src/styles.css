@@ -22,7 +22,7 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-image: linear-gradient(180deg, orange 0%, darkorange 99%);    /* color of the scroll thumb */
+  background-image: linear-gradient(180deg, #5cb7ff 0%, #0072b1 99%);    /* color of the scroll thumb */
   border-radius: 20px;       /* roundness of the scroll thumb */
 }
 

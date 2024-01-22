@@ -124,7 +124,7 @@ i{
 }
 
 .information-wrap .cv a{
-  background-color: rgba(255, 140, 0, 0.6);
+  background-color: rgba(24, 142, 242, 0.8);
   backdrop-filter: saturate(180%) blur(20px);
   text-decoration: none;
   color: whitesmoke;
@@ -140,7 +140,7 @@ i{
 }
 
 .information-wrap .cv a:hover{
-  background-color: darkorange;
+  background-color: rgba(24, 142, 242, 0.6);
 }
 
 @media (min-width: 1900px) {

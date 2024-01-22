@@ -18,7 +18,7 @@ i{
 }
 
 .projects-wrap{
-  background:linear-gradient(#151618,transparent,#151618), url("src/assets/orangetexture3.jpg");
+  background:linear-gradient(#151618,transparent,#151618), url("src/assets/bgblue2.png");
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -46,28 +46,27 @@ i{
 }
 
  .projects-img-1{
-   background: url("../../../assets/dokumenta_project.jpeg");
-   background-size: cover;
+   background: url("../../../assets/dokumenta_project.png");
+   background-size: contain;
+   background-position: center;
  }
 
  .projects-img-2{
-   background: url("../../../assets/ress_project.jpg");
-   background-size: cover;
- }
-
- .projects-img-3{
-   background: url("../../../assets/imitravel_project.jpg");
-   background-size: cover;
+   background: url("../../../assets/atlatnt-img.png");
+   background-size: contain;
+   background-position: center;
  }
 
  .projects-img-4{
    background: url("../../../assets/rubicon_internship.png");
-   background-size: cover;
+   background-size: contain;
+   background-position: center;
  }
 
  .projects-img-5{
    background: url("../../../assets/sportnet-img.png");
-   background-size: cover;
+   background-size: contain;
+   background-position: center;
  }
 
  .projects-info{
@@ -116,23 +115,23 @@ i{
    grid-area: web;
    flex-direction: column;
    justify-content: space-around;
-   background-color: rgba(255, 140, 0, 0.6);
+   background-color: rgba(24, 142, 242, 0.8);
    transition: .2s ease-in;
  }
  .git{
    grid-area: git;
    flex-direction: column;
    justify-content: space-around;
-   background-color: rgba(147, 112, 219, 0.6);
+   background-color: rgba(143, 94, 238, 0.8);
    transition: .2s ease-in;
  }
 
  .web:hover{
-   background-color: darkorange;
+   background-color: rgba(24, 142, 242, 0.6);
  }
 
  .git:hover{
-   background-color: mediumpurple;
+   background-color: rgba(143, 94, 238, 0.6);
  }
 
 
