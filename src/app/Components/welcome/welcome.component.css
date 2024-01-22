@@ -80,7 +80,7 @@ main{
 main .about-wrap .bgimage{
   background:linear-gradient(transparent,transparent,#151618), url("src/assets/bgblue.png");
   background-size: cover;
-  padding: 230px 0;
+  padding: 215px 0;
   display: flex;
   justify-content: center;
 }
@@ -205,7 +205,7 @@ footer img{
 
 @media (min-width: 1900px) {
   main .about-wrap .bgimage{
-    padding: 330px 0;
+    padding: 315px 0;
   }
   main .introduction h1{
     font-size: 7em;
