@@ -9,6 +9,7 @@ import {PageNotFoundComponent} from "./Components/page-not-found/page-not-found.
 import {PortfolioComponent} from "./Components/portfolio/portfolio.component";
 import {AboutComponent} from "./Components/about/about.component";
 import {ContactComponent} from "./Components/contact/contact.component";
+import {ProjectPageComponent} from "./Components/project-page/project-page.component";
 
 const routes: Routes = [
   {
@@ -35,6 +36,14 @@ const routes: Routes = [
   {
     path: Routex.EMPTY,
     component: ContactComponent,
+  },
+
+  {
+    path: Routex.EMPTY,
+    children:[{
+      path: Routex.PROJECTPAGE,
+      component: ProjectPageComponent,
+    }]
   },
 
   {

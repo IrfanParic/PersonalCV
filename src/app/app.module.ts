@@ -13,6 +13,7 @@ import { PageUnavailableComponent } from './Components/page-unavailable/page-una
 import {PortfolioComponent} from "./Components/portfolio/portfolio.component";
 import {AboutComponent} from "./Components/about/about.component";
 import {ContactComponent} from "./Components/contact/contact.component";
+import { ProjectPageComponent } from './Components/project-page/project-page.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {ContactComponent} from "./Components/contact/contact.component";
     PageUnavailableComponent,
     PortfolioComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    ProjectPageComponent
   ],
   imports: [
     BrowserModule,
