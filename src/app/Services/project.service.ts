@@ -1,18 +1,20 @@
-/* import {Injectable} from "@angular/core";
-import {environment} from "../../environments/environment";
+import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
 import {Project} from "../Models/project";
 
-@Injectable()
+import * as projectData from '../Data/projects.json'
+
+@Injectable({
+  providedIn: 'root'
+})
+
 export class ProjectService {
- private readonly baseUrl: string = environment.backendUrl + '/projects';
+  data = projectData;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) {}
+
+  public getProjects(): Project[] {
+    return this.data.projects
   }
 
-  public getProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>(this.baseUrl);
-  }
-
-} */
+}

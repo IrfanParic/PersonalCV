@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-//import {ResolverResponse} from "../../Constants/resolver-response.constants";
-import { Router} from "@angular/router";
-//import {Project} from "../../Models/project";
+import {ResolverResponse} from "../../Constants/resolver-response.constants";
+import { ActivatedRoute } from "@angular/router";
+import {Observable} from 'rxjs';
+import {Project} from "../../Models/project";
+import {ProjectService} from "../../Services/project.service";
 
 @Component({
   selector: 'app-portfolio',
@@ -10,22 +12,13 @@ import { Router} from "@angular/router";
 })
 export class PortfolioComponent implements OnInit {
 
-  //public projects: Project[] = [];
+  public projects: Project[] = [];
 
-  constructor(private router: Router) { }
-
-  navigateToProjectPage() {
-    // Your data to pass to the project-page component
-    const dataToSend = { key: 'value', data: 'irfan' };
-
-    // Navigating to the project-page component with data
-    this.router.navigate(['/project-page'], { state: { data: dataToSend } });
-  }
+  constructor(private projectService:ProjectService) {}
 
   ngOnInit(): void {
-    /*this.activatedRoute.data.subscribe((response: any) => {
-      this.projects = response[ResolverResponse.projects];
-    });*/
+
+      this.projects = this.projectService.getProjects();
 
   }
 
