@@ -1,5 +1,6 @@
 export interface Project{
   id: string;
+  img: string;
   name: string;
   description: string;
   role: string;

@@ -2,6 +2,29 @@
   "projects": [
     {
       "id": "1",
+      "img": "atlatnt-img.png",
+      "name": "AtlantBH Internship 23-24",
+      "description": "I was able to participate in AtlantBH internship as a UX & UI Designer and learn about design process, where I was mentored by amazing individuals who helped me improve my design skills. I was able to work on two different designs, mobile transport application and auction application for web platform.",
+      "role": "UX&UI Designer",
+      "startDate": "09.10.2023",
+      "endDate": "26.01.2024",
+      "pageLink": "",
+      "gitLink": ""
+    },
+    {
+      "id": "2",
+      "img": "rubicon_internship.png",
+      "name": "RUBICON Summer Internship 2023",
+      "description": "Summer after graduation, I was accepted to the RUBICON Summer Internship 2023 Program, to work on a \"real\" project (more information soon). I was able to work on a, soon to be live, project with a group of an amazing individuals with some of the top-line mentors helping me improve my skills.",
+      "role": "Frontend Developer",
+      "startDate": "12.06.2023",
+      "endDate": "31.07.2023",
+      "pageLink": "",
+      "gitLink": ""
+    },
+    {
+      "id": "3",
+      "img": "atlatnt-img.png",
       "name": "AtlantBh Internship",
       "description": "I was able to participate in AtlantBH internship as a UX & UI Designer and learn about design process, where I was mentored by amazing individuals who helped me improve my design skills.",
       "role": "UX&UI Designer",
@@ -11,27 +34,8 @@
       "gitLink": ""
     },
     {
-      "id": "1",
-      "name": "AtlantBh Internship",
-      "description": "I was able to participate in AtlantBH internship as a UX & UI Designer and learn about design process, where I was mentored by amazing individuals who helped me improve my design skills.",
-      "role": "UX&UI Designer",
-      "startDate": "09.10.2023",
-      "endDate": "26.01.2024",
-      "pageLink": "",
-      "gitLink": ""
-    },
-    {
-      "id": "1",
-      "name": "AtlantBh Internship",
-      "description": "I was able to participate in AtlantBH internship as a UX & UI Designer and learn about design process, where I was mentored by amazing individuals who helped me improve my design skills.",
-      "role": "UX&UI Designer",
-      "startDate": "09.10.2023",
-      "endDate": "26.01.2024",
-      "pageLink": "",
-      "gitLink": ""
-    },
-    {
-      "id": "1",
+      "id": "4",
+      "img": "atlatnt-img.png",
       "name": "AtlantBh Internship",
       "description": "I was able to participate in AtlantBH internship as a UX & UI Designer and learn about design process, where I was mentored by amazing individuals who helped me improve my design skills.",
       "role": "UX&UI Designer",

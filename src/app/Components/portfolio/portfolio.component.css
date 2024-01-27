@@ -3,7 +3,7 @@
 }
 
 h1,h2,h3,h4,h5,h6{
-  font-family: 'Bebas Neue', cursive;
+  font-family: 'Montserrat', cursive;
   margin-bottom: 0;
 }
 
@@ -25,135 +25,98 @@ i{
   padding: 200px 0;
 }
 
-.projects{
-  width: 80%;
-}
-
 .projects-card{
-  margin-bottom: 20px;
-  border-radius: 10px;
-  background-color: rgba(21, 22, 24, 0.6);
-  backdrop-filter: saturate(180%) blur(20px);
+  margin-bottom: 24px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(50px);
   display: flex;
   justify-content: space-between;
 }
 
-.projects-img{
-  width: 40%;
-  height: auto;
-  border-bottom-left-radius: 10px;
-  border-top-left-radius: 10px;
+.projects-card img{
+  border-radius: 8px 0 0 8px;
+  margin-right: 40px;
+  width: 400px;
 }
 
- .projects-img-1{
-   background: url("../../../assets/dokumenta_project.png");
-   background-size: contain;
-   background-position: center;
+.project-info{
+  width: 80%;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-intro, .project-role{
+  margin-bottom: 40px;
+}
+
+.project-intro h3{
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+}
+
+ .project-intro p{
+   color: #B5B5B5;
  }
 
- .projects-img-2{
-   background: url("../../../assets/atlatnt-img.png");
-   background-size: contain;
-   background-position: center;
+ .project-role p, .project-description p{
+   font-family: 'Montserrat', cursive;
+   font-weight: 500;
+   margin-bottom: 4px;
  }
 
- .projects-img-4{
-   background: url("../../../assets/rubicon_internship.png");
-   background-size: contain;
-   background-position: center;
+ .project-role span{
+   padding: 4px 20px;
+   border-radius: 4px;
+   border: 1px solid #EE7014;
+   background: rgba(238, 112, 20, 0.25);
+   font-weight: 500;
+   letter-spacing: 1px;
  }
 
- .projects-img-5{
-   background: url("../../../assets/sportnet-img.png");
-   background-size: contain;
-   background-position: center;
- }
-
- .projects-info{
-   display: grid;
-   grid-template-areas:
-      "name name name name"
-      "description info web git"
-      "description info more more";
-   gap: .6em;
-   grid-template-columns: 3fr 3fr 1fr 1fr;
-   grid-template-rows: 1fr 2fr 1.5fr;
-   margin: .6em;
-   width: 60%;
- }
-
- .name, .description, .info, .web, .git, .more{
-   background-color: rgba(255, 255, 255, 0.05);
-   color: whitesmoke;
+ .project-links{
+   width: 20%;
    display: flex;
-   align-items: center;
-   padding: 20px;
-   border-radius: 10px;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: end;
+   padding: 20px 20px 20px 0;
  }
 
- .name, .description, .info{
-   background-color: rgba(255, 255, 255, 0.05);
+ .project-links button{
+   border: none;
+   padding: 12px 20px;
+   border-radius: 4px;
+   background: #0077d2;
    color: whitesmoke;
- }
-
- .name{
-   grid-area: name;
-   letter-spacing: 1px;
-
- }
- .description{
-   grid-area: description;
-   flex-direction: column;
- }
- .info{
-   grid-area: info;
-   letter-spacing: 1px;
-   flex-direction: column;
-   justify-content: space-around;
-   align-items: center;
- }
- .web{
-   grid-area: web;
-   flex-direction: column;
-   justify-content: space-around;
-   transition: .2s ease-in;
-   border: 2px solid rgba(242, 155, 24, 0.8);
- }
- .git{
-   grid-area: git;
-   flex-direction: column;
-   justify-content: space-around;
-   transition: .2s ease-in;
-   border: 2px solid rgba(143, 94, 238, 0.8);
- }
-
- .more{
-   grid-area: more;
-   justify-content: center;
-   background-color: rgba(24, 142, 242, 0.8);
-   transition: .2s ease-in;
-   letter-spacing: 2px;
-   font-weight: bold;
+   font-weight: 500;
    font-size: 16px;
+   letter-spacing: 1px;
+   transition: .2s ease-in;
  }
 
- .web:hover{
-   background-color: rgba(242, 155, 24, 0.8);
+ .project-links button:hover{
+   background: #0069b9;
+   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.10);
  }
 
- .git:hover{
-   background-color: rgba(143, 94, 238, 0.8);
+ .project-links .social-media a{
+   margin-left: 20px;
  }
 
- .more:hover{
-   background-color: rgba(24, 142, 242, 0.6);
+ .project-links .social-media i{
+   font-size: 24px;
+   color: #B5B5B5;
+ }
+
+ .project-links .social-media i:hover{
+   color: white;
  }
 
 
 @media (min-width: 1900px) {
-  .projects{
-    width: 60%;
-  }
+
 }
 
 @media (min-width: 1280px){
