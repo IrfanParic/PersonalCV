@@ -3,29 +3,31 @@
     <h1 style="margin-bottom: 20px">Featured Projects</h1>
     <div class="projects-content" *ngFor="let project of projects">
       <div class="projects-card" data-aos="fade-up" data-aos-offset="300" data-aos-easing="ease-in-sine">
-        <img src="../../../assets/{{project.img}}"/>
-        <div class="project-info">
-          <div class="project-intro">
-            <h3>{{project.name}}</h3>
-            <p>{{project.startDate}}  -  {{project.endDate}}</p>
-          </div>
-          <div class="project-role">
-            <p>Role:</p>
-            <span>{{project.role}}</span>
-          </div>
-          <div class="project-description">
-            <p>Description:</p>
-            <span>{{project.description}}</span>
-          </div>
+        <div class="projects-img">
+          <img src="../../../assets/{{project.img}}"/>
         </div>
-        <div class="project-links">
-          <div class="social-media">
-            <a *ngIf="project.pageLink!=''" href="{{project.pageLink}}" target="_blank"><i class="bi bi-globe2"></i></a>
-            <a *ngIf="project.pageLink==''" routerLink="/page-unavailable" target="_blank"><i class="bi bi-globe2"></i></a>
-            <a *ngIf="project.gitLink!=''" href="{{project.gitLink}}" target="_blank"><i class="bi bi-github"></i></a>
-            <a *ngIf="project.gitLink==''" routerLink="/page-unavailable" target="_blank"><i class="bi bi-github"></i></a>
+        <div class="project-card-text" style="display: flex">
+          <div class="project-info">
+            <div class="project-intro">
+              <div style="display: flex; align-items: center">
+                <h3>{{project.name}}</h3>
+                <div class="social-media">
+                  <a *ngIf="project.pageLink!=''" href="{{project.pageLink}}" target="_blank"><i class="bi bi-globe2"></i></a>
+                  <a *ngIf="project.gitLink!=''" href="{{project.gitLink}}" target="_blank"><i class="bi bi-github"></i></a>
+                </div>
+              </div>
+              <p>{{project.startDate}}  -  {{project.endDate}}</p>
+            </div>
+            <div class="project-role">
+              <span style="border: 2px solid {{project.color}}">{{project.role}}</span>
+            </div>
+            <div class="project-description">
+              <span>{{project.description}}</span>
+            </div>
           </div>
-          <button>Read more</button>
+          <div class="project-links">
+            <button>Read more</button>
+          </div>
         </div>
       </div>
     </div>

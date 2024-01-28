@@ -8,4 +8,5 @@ export interface Project{
   endDate: string;
   pageLink: string;
   gitLink: string;
+  color: string;
 }

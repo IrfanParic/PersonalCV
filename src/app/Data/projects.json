@@ -9,7 +9,8 @@
       "startDate": "09.10.2023",
       "endDate": "26.01.2024",
       "pageLink": "",
-      "gitLink": ""
+      "gitLink": "",
+      "color": "orange"
     },
     {
       "id": "2",
@@ -20,29 +21,32 @@
       "startDate": "12.06.2023",
       "endDate": "31.07.2023",
       "pageLink": "",
-      "gitLink": ""
+      "gitLink": "",
+      "color": "greenyellow"
     },
     {
       "id": "3",
-      "img": "atlatnt-img.png",
-      "name": "AtlantBh Internship",
-      "description": "I was able to participate in AtlantBH internship as a UX & UI Designer and learn about design process, where I was mentored by amazing individuals who helped me improve my design skills.",
-      "role": "UX&UI Designer",
-      "startDate": "09.10.2023",
-      "endDate": "26.01.2024",
+      "img": "dokumenta_project.png",
+      "name": "Dokumenta",
+      "description": "This project was done for the purpose of Good Hackathon that was organised by telemach foundation. My team and I were able to create fully functional application using NextJS, NodeJS and PostgreSQL. The main purpose of our application was to make easier and more convenient way of acquiring documents from municipality without having to wait in lines for several hours.",
+      "role": "Full Stack Developer",
+      "startDate": "15.10.2022",
+      "endDate": "16.10.2022",
       "pageLink": "",
-      "gitLink": ""
+      "gitLink": "https://github.com/farisbegic/dokumenta",
+      "color": "purple"
     },
     {
       "id": "4",
-      "img": "atlatnt-img.png",
-      "name": "AtlantBh Internship",
-      "description": "I was able to participate in AtlantBH internship as a UX & UI Designer and learn about design process, where I was mentored by amazing individuals who helped me improve my design skills.",
-      "role": "UX&UI Designer",
-      "startDate": "09.10.2023",
-      "endDate": "26.01.2024",
+      "img": "sportnet-img.png",
+      "name": "Sportnet",
+      "description": "This project is showcasing my undergraduate thesis work on Progressive Web Applications. This project currently in development, more info soon! I was able to create a fully working prototype of a social-media platform for sport enthusiasts using ReactJS for frontend, NodeJS with Express for backend and PostgreeSQL for database.",
+      "role": "Full Stack Developer",
+      "startDate": "01.02.2023",
+      "endDate": "Ongoing",
       "pageLink": "",
-      "gitLink": ""
+      "gitLink": "",
+      "color": "purple"
     }
   ]
 }
