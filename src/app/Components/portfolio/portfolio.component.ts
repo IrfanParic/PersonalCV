@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ResolverResponse} from "../../Constants/resolver-response.constants";
-import { ActivatedRoute } from "@angular/router";
-import {Observable} from 'rxjs';
+import { Router } from '@angular/router';
 import {Project} from "../../Models/project";
 import {ProjectService} from "../../Services/project.service";
 
@@ -14,7 +12,7 @@ export class PortfolioComponent implements OnInit {
 
   public projects: Project[] = [];
 
-  constructor(private projectService:ProjectService) {}
+  constructor(private projectService:ProjectService, private router:Router) {}
 
   ngOnInit(): void {
 
@@ -22,4 +20,7 @@ export class PortfolioComponent implements OnInit {
 
   }
 
+  openProjectPage(projectId: string) {
+    this.router.navigate([`/project-page/${projectId}`])
+  }
 }

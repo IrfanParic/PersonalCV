@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import {ProjectService} from "../../Services/project.service";
 
 @Component({
   selector: 'app-project-page',
@@ -7,16 +8,22 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./project-page.component.css']
 })
 export class ProjectPageComponent implements OnInit {
-  recievedData: any;
+  project: any;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private projectService: ProjectService
+  ) {}
 
   ngOnInit() {
-    // Accessing data from the route
-    this.recievedData = this.route.snapshot.data;
-    console.log(this.recievedData)
-
-    // Use receivedData as needed
+    this.route.paramMap.subscribe((params) => {
+      const projectId = params.get('projectId');
+      if (projectId) {
+        this.projectService.getProjectById(projectId).subscribe((project) => {
+          this.project = project;
+        });
+      }
+    });
   }
 
 }
