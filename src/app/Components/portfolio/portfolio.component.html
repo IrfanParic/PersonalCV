@@ -4,7 +4,7 @@
     <div class="projects-content" *ngFor="let project of projects">
       <div class="projects-card" data-aos="fade-up" data-aos-offset="300" data-aos-easing="ease-in-sine">
         <div class="projects-img">
-          <img src="../../../assets/{{project.img}}"/>
+          <img src="../../../assets/{{project.img}}" alt=""/>
         </div>
         <div class="project-card-text" style="display: flex">
           <div class="project-info">
@@ -14,6 +14,7 @@
                 <div class="social-media">
                   <a *ngIf="project.pageLink!=''" href="{{project.pageLink}}" target="_blank"><i class="bi bi-globe2"></i></a>
                   <a *ngIf="project.gitLink!=''" href="{{project.gitLink}}" target="_blank"><i class="bi bi-github"></i></a>
+                  <a *ngIf="project.behLink!=''" href="{{project.behLink}}" target="_blank"><i class="bi bi-behance"></i></a>
                 </div>
               </div>
               <p>{{project.startDate}}  -  {{project.endDate}}</p>

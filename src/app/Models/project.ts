@@ -4,9 +4,13 @@ export interface Project{
   name: string;
   description: string;
   role: string;
+  purpose: string;
+  organization: string;
+  technologies: string[];
   startDate: string;
   endDate: string;
   pageLink: string;
   gitLink: string;
+  behLink: string;
   color: string;
 }

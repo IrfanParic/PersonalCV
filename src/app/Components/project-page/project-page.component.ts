@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {Component, HostListener, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ProjectService} from "../../Services/project.service";
 
 @Component({
@@ -12,7 +12,8 @@ export class ProjectPageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -24,6 +25,25 @@ export class ProjectPageComponent implements OnInit {
         });
       }
     });
+  }
+
+  goBack() {
+    this.router.navigate(['']);
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const scrollOffset = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+
+    if (scrollOffset >= 110) {
+      document.querySelectorAll('.controllable').forEach((c) => {
+        c.classList.add('bgcolor');
+      });
+    } else {
+      document.querySelectorAll('.controllable').forEach((c) => {
+        c.classList.remove('bgcolor');
+      });
+    }
   }
 
 }

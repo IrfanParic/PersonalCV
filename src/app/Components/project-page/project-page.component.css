@@ -1,0 +1,255 @@
+p, a{
+  margin-bottom: 0;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Bebas Neue', cursive;
+  margin-bottom: 0;
+}
+
+h2{
+  letter-spacing: 1px;
+}
+
+a{
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+i{
+  font-size: 30px;
+  transition: .2s ease-in;
+}
+
+header{
+  padding: 15px 30px;
+  position: fixed;
+  z-index: 1;
+  width: 90%;
+  left: 5%;
+  top: 2%;
+  border-radius: 10px;
+}
+
+.controllable.bgcolor{
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(100px);
+  transition: .3s ease-in;
+}
+
+header .header-content{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .title i{
+  font-size: 20px;
+  margin-right: 4px;
+}
+
+
+header .title h1{
+  color: #B5B5B5;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: .2s ease-in;
+  display: flex;
+  align-items: center;
+}
+
+header .title h1:hover{
+  color: whitesmoke;
+}
+
+img{
+  height: 50px;
+  width: auto;
+}
+
+main{
+  background-color: #151618;
+  color: whitesmoke;
+  padding-top: 100px;
+}
+
+/*main .bg-wrapper{
+  background:linear-gradient(#151618,transparent,#151618), url("src/assets/bgblue2.png");
+  background-size: cover;
+}*/
+
+main .project-title-wrapper{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+main .project-title{
+  width: 60%;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(100px);
+  border-radius: 8px;
+}
+
+main .project-title h2{
+  padding: 15px 30px;
+}
+
+main .project-page-card-wrapper{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+main .project-page-card{
+  width: 60%;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(100px);
+  border-radius: 8px;
+}
+
+.project-page-img{
+  display: flex;
+  justify-content: center;
+  background: black;
+  border-radius: 8px 8px 0 0;
+}
+
+.project-page-img img{
+  width: 400px;
+  height: auto;
+}
+
+.project-page-info{
+  padding: 15px 30px;
+  display: grid;
+  grid-template-areas:
+      "role date social";
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.project-role{
+  grid-area: role;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.project-date{
+  grid-area: date;
+  display: flex;
+  justify-content: center;
+  color: #B5B5B5;
+  align-items: center;
+}
+
+.social-media{
+  grid-area: social;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.project-role span{
+  padding: 4px 20px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.2);
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.social-media a{
+  background: rgba(0, 0, 0, 0.2);
+  padding: 5px 20px;
+  border-radius: 4px;
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+  transition: .2s ease-in;
+}
+
+.social-media .web:hover{
+  background-color: darkorange;
+}
+
+.social-media .git:hover{
+  background-color: mediumpurple;
+}
+
+.social-media .beh:hover{
+  background-color: #1769ff;
+}
+
+.social-media i{
+  font-size: 20px;
+  margin-right: 8px;
+}
+
+.project-details-wrapper, .project-gallery-wrapper{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+.project-details, .project-gallery{
+  width: 60%;
+}
+
+.project-details h3, .project-gallery-wrapper h3{
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  margin-left: 30px;
+}
+
+.project-details .project-info{
+  display: flex;
+  padding: 15px 30px;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(100px);
+  border-radius: 8px;
+}
+
+.project-details .project-info .left{
+  width: 40%;
+}
+
+.project-details .project-info .right{
+  width: 60%;
+}
+
+.project-details .project-info span{
+  margin-right: 8px;
+  color: #B5B5B5;
+}
+
+.project-details .project-info .technologies{
+  display: flex;
+}
+
+.project-details .project-info .technologies img{
+  margin-right: 15px;
+  margin-top: 10px;
+  height: 50px;
+}
+
+
+.footwraper{
+  background-color: #151618;
+}
+
+footer{
+  width: 90%;
+  padding: 15px 30px;
+  background-color: rgba(255, 255, 255, 0.05);
+  display: flex;
+  color: whitesmoke;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+footer img{
+  height: 50px;
+  width: auto;
+}

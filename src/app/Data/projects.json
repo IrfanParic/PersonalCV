@@ -6,10 +6,14 @@
       "name": "AtlantBH Internship 23-24",
       "description": "I was able to participate in AtlantBH internship as a UX & UI Designer and learn about design process, where I was mentored by amazing individuals who helped me improve my design skills. I was able to work on two different designs, mobile transport application and auction application for web platform.",
       "role": "UX&UI Designer",
+      "purpose": "Internship",
+      "organization": "AtlantBH",
+      "technologies": ["figma_icon.png"],
       "startDate": "09.10.2023",
       "endDate": "26.01.2024",
       "pageLink": "",
       "gitLink": "",
+      "behLink": "",
       "color": "orange"
     },
     {
@@ -18,10 +22,14 @@
       "name": "RUBICON Summer Internship 2023",
       "description": "Summer after graduation, I was accepted to the RUBICON Summer Internship 2023 Program, to work on a \"real\" project (more information soon). I was able to work on a, soon to be live, project with a group of an amazing individuals with some of the top-line mentors helping me improve my skills.",
       "role": "Frontend Developer",
+      "purpose": "Internship",
+      "organization": "Rubicon",
+      "technologies": ["react_icon.png"],
       "startDate": "12.06.2023",
       "endDate": "31.07.2023",
       "pageLink": "",
       "gitLink": "",
+      "behLink": "",
       "color": "greenyellow"
     },
     {
@@ -30,10 +38,14 @@
       "name": "Dokumenta",
       "description": "This project was done for the purpose of Good Hackathon that was organised by telemach foundation. My team and I were able to create fully functional application using NextJS, NodeJS and PostgreSQL. The main purpose of our application was to make easier and more convenient way of acquiring documents from municipality without having to wait in lines for several hours.",
       "role": "Full Stack Developer",
+      "purpose": "Hackathon",
+      "organization": "Good Hackathon",
+      "technologies": ["react_icon.png","nodejs_icon.png","postgree_icon.png"],
       "startDate": "15.10.2022",
       "endDate": "16.10.2022",
       "pageLink": "",
       "gitLink": "https://github.com/farisbegic/dokumenta",
+      "behLink": "",
       "color": "purple"
     },
     {
@@ -42,10 +54,14 @@
       "name": "Sportnet",
       "description": "This project is showcasing my undergraduate thesis work on Progressive Web Applications. This project currently in development, more info soon! I was able to create a fully working prototype of a social-media platform for sport enthusiasts using ReactJS for frontend, NodeJS with Express for backend and PostgreeSQL for database.",
       "role": "Full Stack Developer",
+      "purpose": "Bachelor's degree work",
+      "organization": "University",
+      "technologies": ["react_icon.png","nodejs_icon.png","postgree_icon.png"],
       "startDate": "01.02.2023",
       "endDate": "Ongoing",
       "pageLink": "",
       "gitLink": "",
+      "behLink": "",
       "color": "purple"
     }
   ]
