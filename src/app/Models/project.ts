@@ -7,6 +7,7 @@ export interface Project{
   purpose: string;
   organization: string;
   technologies: string[];
+  gallery: string[];
   startDate: string;
   endDate: string;
   pageLink: string;

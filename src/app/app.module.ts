@@ -14,6 +14,7 @@ import {PortfolioComponent} from "./Components/portfolio/portfolio.component";
 import {AboutComponent} from "./Components/about/about.component";
 import {ContactComponent} from "./Components/contact/contact.component";
 import { ProjectPageComponent } from './Components/project-page/project-page.component';
+import {LightgalleryModule} from "lightgallery/angular/13";
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ProjectPageComponent } from './Components/project-page/project-page.com
     BrowserAnimationsModule,
     MatExpansionModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    LightgalleryModule
   ],
   providers: [
     //ProjectService,

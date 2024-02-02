@@ -24,6 +24,7 @@
     "bootstrap": "^5.2.0-beta1",
     "bootstrap-icons": "^1.8.3",
     "jquery": "^3.6.0",
+    "lightgallery": "^2.7.2",
     "ngx-bootstrap": "^8.0.0",
     "react-icons": "^4.8.0",
     "rxjs": "~7.5.0",

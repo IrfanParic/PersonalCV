@@ -1,6 +1,7 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit, Input } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProjectService} from "../../Services/project.service";
+import {BeforeSlideDetail} from "lightgallery/lg-events";
 
 @Component({
   selector: 'app-project-page',
@@ -45,5 +46,4 @@ export class ProjectPageComponent implements OnInit {
       });
     }
   }
-
 }

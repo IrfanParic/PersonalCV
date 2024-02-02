@@ -58,7 +58,11 @@
   <div class="project-gallery-wrapper">
     <div class="project-gallery">
       <h3>Gallery</h3>
-
+      <div class="images-wrapper">
+        <div class="images">
+          <img *ngFor="let image of project.gallery" src="../../../assets/{{image}}" id="myImg" alt="">
+        </div>
+      </div>
     </div>
   </div>
 </main>

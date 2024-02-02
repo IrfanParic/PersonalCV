@@ -68,15 +68,11 @@ img{
 }
 
 main{
-  background-color: #151618;
+  background:linear-gradient(#151618,transparent,transparent), url("src/assets/bgblue3.png");
+  background-size: cover;
   color: whitesmoke;
   padding-top: 100px;
 }
-
-/*main .bg-wrapper{
-  background:linear-gradient(#151618,transparent,#151618), url("src/assets/bgblue2.png");
-  background-size: cover;
-}*/
 
 main .project-title-wrapper{
   display: flex;
@@ -138,7 +134,6 @@ main .project-page-card{
   grid-area: date;
   display: flex;
   justify-content: center;
-  color: #B5B5B5;
   align-items: center;
 }
 
@@ -231,6 +226,28 @@ main .project-page-card{
   height: 50px;
 }
 
+.project-gallery-wrapper{
+  padding-bottom: 150px;
+}
+
+.images-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.images-wrapper .images img{
+  height: 200px;
+  margin: 5px;
+  transition: .2s ease-in;
+  cursor: pointer;
+  border-radius: 8px;
+  border: #151618 1px solid;
+}
+
+.images-wrapper .images img:hover{
+  border: #5cb7ff 1px solid;
+}
 
 .footwraper{
   background-color: #151618;
