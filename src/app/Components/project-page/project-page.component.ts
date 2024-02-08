@@ -46,4 +46,12 @@ export class ProjectPageComponent implements OnInit {
       });
     }
   }
+
+  settings = {
+    counter: false,
+  };
+  onBeforeSlide = (detail: BeforeSlideDetail): void => {
+    const { index, prevIndex } = detail;
+    console.log(index, prevIndex);
+  };
 }
