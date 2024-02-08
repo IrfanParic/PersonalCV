@@ -239,7 +239,7 @@ main .project-page-card{
   justify-content: center;
 }
 
-.images-wrapper .images img{
+.images-wrapper img{
   height: 200px;
   margin: 5px;
   transition: .2s ease-in;
@@ -248,7 +248,7 @@ main .project-page-card{
   border: #151618 1px solid;
 }
 
-.images-wrapper .images img:hover{
+.images-wrapper img:hover{
   border: #5cb7ff 1px solid;
 }
 
