@@ -55,14 +55,14 @@
     </div>
   </div>
 
-  <div class="project-gallery-wrapper">
+  <div *ngIf="project.gallery.length !=0" class="project-gallery-wrapper">
     <div class="project-gallery">
       <h3>Gallery</h3>
       <div class="images-wrapper">
         <lightgallery [settings]="settings" [onBeforeSlide]="onBeforeSlide">
-          <img class="img-responsive"
+          <img class="img-responsive, gallery-item"
                *ngFor="let image of project.gallery"
-               data-lg-size="480-475-480, 800-791-800, 1406-1390" class="gallery-item"
+               data-lg-size="480-475-480, 800-791-800, 1406-1390"
                src="../../../assets/{{image}}" id="myImg" alt="" />
         </lightgallery>
       </div>
