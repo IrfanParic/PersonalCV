@@ -77,12 +77,12 @@ main{
   padding-top: 100px;
 }
 
-main .project-title-wrapper{
+main .project-title-wrapper, main .project-page-card-wrapper, .project-details-wrapper, .project-gallery-wrapper{
   display: flex;
   justify-content: center;
   padding-bottom: 20px;
 }
-main .project-title{
+main .project-title, main .project-page-card{
   width: 60%;
   background-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(100px);
@@ -91,19 +91,6 @@ main .project-title{
 
 main .project-title h2{
   padding: 15px 30px;
-}
-
-main .project-page-card-wrapper{
-  display: flex;
-  justify-content: center;
-  padding-bottom: 20px;
-}
-
-main .project-page-card{
-  width: 60%;
-  background-color: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(100px);
-  border-radius: 8px;
 }
 
 .project-page-img{
@@ -126,39 +113,38 @@ main .project-page-card{
   grid-template-columns: 1fr 1fr 1fr;
 }
 
+.project-role, .project-date, .social-media{
+  display: flex;
+  align-items: center;
+}
+
 .project-role{
   grid-area: role;
-  display: flex;
   justify-content: flex-start;
-  align-items: center;
 }
 
 .project-date{
   grid-area: date;
-  display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .social-media{
   grid-area: social;
-  display: flex;
   justify-content: flex-end;
-  align-items: center;
 }
 
-.project-role span{
+.project-role span, .social-media a{
   padding: 4px 20px;
   border-radius: 4px;
   background: rgba(0, 0, 0, 0.2);
+}
+
+.project-role span{
   font-weight: 500;
   letter-spacing: 1px;
 }
 
 .social-media a{
-  background: rgba(0, 0, 0, 0.2);
-  padding: 5px 20px;
-  border-radius: 4px;
   margin-left: 8px;
   display: flex;
   align-items: center;
@@ -180,12 +166,6 @@ main .project-page-card{
 .social-media i{
   font-size: 20px;
   margin-right: 8px;
-}
-
-.project-details-wrapper, .project-gallery-wrapper{
-  display: flex;
-  justify-content: center;
-  padding-bottom: 20px;
 }
 
 .project-details, .project-gallery{
