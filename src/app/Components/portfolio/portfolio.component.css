@@ -25,233 +25,161 @@ i{
   padding: 200px 0;
 }
 
-.projects{
-  width: 80%;
-}
+ .projects{
+   width: 80%;
+ }
 
 .projects-card{
-  margin-bottom: 20px;
-  border-radius: 10px;
-  background-color: rgba(21, 22, 24, 0.6);
-  backdrop-filter: saturate(180%) blur(20px);
+  margin-bottom: 40px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(50px);
   display: flex;
   justify-content: space-between;
 }
 
 .projects-img{
-  width: 40%;
-  height: auto;
-  border-bottom-left-radius: 10px;
-  border-top-left-radius: 10px;
+  display: flex;
+  align-items: center;
+  background: black;
+  margin-right: 40px;
+  border-radius: 8px 0 0 8px;
 }
 
- .projects-img-1{
-   background: url("../../../assets/dokumenta_project.png");
-   background-size: contain;
-   background-position: center;
+.projects-card img{
+  width: 400px;
+  border-radius: 8px 0 0 8px;
+}
+
+.project-info{
+  width: 80%;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-intro, .project-role{
+  margin-bottom: 32px;
+}
+
+.project-intro h3{
+  font-family: 'Lato', sans-serif;
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+  margin-right: 32px;
+}
+
+ .project-intro p{
+   color: #B5B5B5;
  }
 
- .projects-img-2{
-   background: url("../../../assets/atlatnt-img.png");
-   background-size: contain;
-   background-position: center;
+ .project-role p, .project-description p{
+   font-family: 'Lato', sans-serif;
+   font-weight: 500;
+   margin-bottom: 4px;
  }
 
- .projects-img-4{
-   background: url("../../../assets/rubicon_internship.png");
-   background-size: contain;
-   background-position: center;
+ .project-role span{
+   padding: 4px 20px;
+   border-radius: 4px;
+   background: rgba(0, 0, 0, 0.2);
+   font-weight: 500;
+   letter-spacing: 1px;
  }
 
- .projects-img-5{
-   background: url("../../../assets/sportnet-img.png");
-   background-size: contain;
-   background-position: center;
- }
-
- .projects-info{
-   display: grid;
-   grid-template-areas:
-      "name name name name"
-      "description info web git";
-   gap: .6em;
-   grid-template-columns: 3fr 2fr 1fr 1fr;
-   grid-template-rows: 1fr 3fr;
-   margin: .6em;
-   width: 60%;
- }
-
- .name, .description, .info, .web, .git{
-   background-color: rgba(255, 255, 255, 0.05);
-   color: whitesmoke;
+ .project-links{
+   width: 20%;
    display: flex;
-   align-items: center;
-   padding: 20px;
-   border-radius: 10px;
+   justify-content: right;
+   align-items: flex-end;
+   padding: 20px 20px 20px 0;
  }
 
- .name, .description, .info{
-   background-color: rgba(255, 255, 255, 0.05);
+ .project-links button{
+   border: none;
+   padding: 12px 20px;
+   border-radius: 4px;
+   background: #0077d2;
    color: whitesmoke;
- }
-
- .name{
-   grid-area: name;
+   font-weight: 500;
+   font-size: 16px;
    letter-spacing: 1px;
-
- }
- .description{
-   grid-area: description;
-   flex-direction: column;
- }
- .info{
-   grid-area: info;
-   letter-spacing: 1px;
-   flex-direction: column;
-   justify-content: space-around;
-   align-items: center;
- }
- .web{
-   grid-area: web;
-   flex-direction: column;
-   justify-content: space-around;
-   background-color: rgba(24, 142, 242, 0.8);
-   transition: .2s ease-in;
- }
- .git{
-   grid-area: git;
-   flex-direction: column;
-   justify-content: space-around;
-   background-color: rgba(143, 94, 238, 0.8);
    transition: .2s ease-in;
  }
 
- .web:hover{
-   background-color: rgba(24, 142, 242, 0.6);
+ .project-links button:hover{
+   background: #0069b9;
+   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.10);
  }
 
- .git:hover{
-   background-color: rgba(143, 94, 238, 0.6);
+.social-media i{
+   font-size: 20px;
+   color: #B5B5B5;
  }
 
-
-@media (min-width: 1900px) {
-  .projects{
-    width: 60%;
-  }
-}
-
-@media (min-width: 1280px){
-  .projects{
-    width: 80%;
-  }
-  .projects-card{
-    height: 400px;
-  }
-  .projects-info{
-    font-size: 12px;
-  }
-}
+.social-media i:hover{
+   color: white;
+ }
 
 @media (max-width: 1200px) {
-  .projects{
-    width: 80%;
+  .project-card-text{
+    flex-direction: column;
   }
-  .projects-card{
-    height: 400px;
-  }
-  .projects-info{
-    font-size: 12px;
+  .project-links{
+    width: 100%;
   }
 }
-
- @media (max-width: 1130px) {
-   .projects{
-     width: 80%;
-   }
-   .projects-card{
-     height: 400px;
-   }
-   .projects-info{
-     font-size: 11px;
-   }
- }
 
  @media (max-width: 995px){
    .projects{
      width: 90%;
    }
-   .projects-card{
-     height: 350px;
-   }
-   .projects-info{
-     font-size: 10px;
-   }
  }
 
-@media (max-width: 885px){
-  .projects{
-    width: 90%;
-  }
-  .projects-card{
-    height: 350px;
-  }
-  .projects-info{
-    font-size: 9px;
-  }
-}
-
-@media (max-width: 795px){
+@media (max-width: 800px){
   .projects-card{
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 500px;
   }
-
   .projects-img{
     width: 100%;
-    height: 40%;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 0;
+    background: black;
+    display: flex;
+    justify-content: center;
+    margin-right: 0;
+    border-radius: 8px 8px 0 0  ;
   }
-  .projects-info{
-    width: 99%;
-    height: 60%;
-    font-size: 11px;
+  .project-info{
+    width: 100%;
+    padding: 20px;
   }
 }
 
- @media (max-width: 650px){
-   .projects-info{
-     font-size: 10px;
-   }
- }
-
- @media (max-width: 590px){
-   .projects-card{
-     height: 600px;
-   }
-   .projects-info{
-     grid-template-areas:
-      "name name name "
-      "description description description"
-      "info web git";
-     grid-template-columns: 2fr 1fr 1fr;
-     grid-template-rows: 1fr 2fr 1fr;
-   }
- }
-
  @media (max-width: 490px){
-   .projects-card{
-     height: 650px;
+   .project-intro h3{
+     margin-right: 24px;
+   }
+   .projects-card img{
+     width: 300px;
+   }
+   .social-media i{
+     font-size: 16px;
+     color: #B5B5B5;
    }
  }
 
- @media (max-width: 360px){
-   .projects-card{
-     height: 700px;
+ @media (max-width: 380px){
+   .projects-card img{
+     width: 250px;
    }
  }
+
+ @media (max-width: 310px){
+   .projects-card img{
+     width: 150px;
+   }
+ }
+
 
 

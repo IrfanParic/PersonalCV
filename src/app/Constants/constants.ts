@@ -1,6 +1,6 @@
 export class Routex {
   public static EMPTY = '';
-  public static PAGENOTFOUND = 'page-not-found'
+  public static PROJECTPAGE = 'project-page/:projectId'
   public static PAGEUNAVAILABLE = 'page-unavailable'
 }
 

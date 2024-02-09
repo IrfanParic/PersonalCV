@@ -2,9 +2,14 @@ p, a{
   margin-bottom: 0;
 }
 
-h1,h2,h3,h4,h5,h6{
+h1,h2,h3,h5,h6{
   font-family: 'Bebas Neue', cursive;
   margin-bottom: 0;
+}
+
+h4{
+  font-family: 'Lato', sans-serif;
+  margin-bottom: 40px;
 }
 
 a{
@@ -62,14 +67,14 @@ header .list{
 }
 
 header .list p{
-  color: whitesmoke;
+  color: #B5B5B5;
   cursor: pointer;
   transition: .2s ease-in;
   font-size: 1.3em;
 }
 
 header .list p:hover{
-  color: #5cb7ff;
+  color: whitesmoke;
 }
 
 main{
@@ -78,9 +83,9 @@ main{
 }
 
 main .about-wrap .bgimage{
-  background:linear-gradient(transparent,transparent,#151618), url("src/assets/bgblue.png");
+  background:linear-gradient(#151618,transparent,#151618), url("src/assets/bgblue.png");
   background-size: cover;
-  padding: 215px 0;
+  padding: 250px 0;
   display: flex;
   justify-content: center;
 }
@@ -97,20 +102,20 @@ main .introduction .introtext{
 }
 
 main .introduction .introtext a{
-  background-color: rgba(24, 142, 242, 0.8);
-  backdrop-filter: saturate(180%) blur(20px);
-  text-decoration: none;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+  background: #0077d2;
   color: whitesmoke;
-  padding: 15px 40px;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
   transition: .2s ease-in;
-  cursor: pointer;
   width: 260px;
+  cursor: pointer;
+  text-decoration: none;
   display: flex;
   justify-content: space-between;
-  margin-top: 50px;
-  border-radius: 5px;
-  letter-spacing: 2px;
-  font-weight: bold;
 }
 
 main .introduction .introtext a svg{
@@ -118,7 +123,8 @@ main .introduction .introtext a svg{
 }
 
 main .introduction .introtext a:hover{
-  background-color: rgba(24, 142, 242, 0.6);
+  background: #0069b9;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.10);
 
 }
 
@@ -181,31 +187,9 @@ main .introduction h1{
   4%, 100% {  text-shadow: none; transform: none; }
 }
 
-.footwraper{
-  background-color: #151618;
-}
-
-footer{
-  width: 90%;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.05);
-  display: flex;
-  color: whitesmoke;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
-footer img{
-  height: 50px;
-  width: auto;
-}
-
 @media (min-width: 1900px) {
   main .about-wrap .bgimage{
-    padding: 315px 0;
+    padding: 350px 0;
   }
   main .introduction h1{
     font-size: 7em;

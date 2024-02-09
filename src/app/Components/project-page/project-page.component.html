@@ -1,0 +1,73 @@
+<header id="header" class="controllable">
+  <div class="header-content">
+    <div class="title">
+      <h1 id="headertitle" style="text-transform: uppercase" (click)="goBack()"><i class="bi bi-chevron-left"></i>Back</h1>
+    </div>
+    <img src="../../../assets/logowhite.png" alt="logo" type="button"/>
+  </div>
+</header>
+
+<main id="main">
+  <div class="bg-wrapper">
+    <div class="project-title-wrapper">
+      <div class="project-title">
+        <h2>{{project.name}}</h2>
+      </div>
+    </div>
+
+    <div class="project-page-card-wrapper">
+      <div class="project-page-card">
+        <div class="project-page-img">
+          <img src="../../../assets/{{project.img}}" alt=""/>
+        </div>
+        <div class="project-page-info">
+          <div class="project-role">
+            <span style="border: 2px solid {{project.color}}">{{project.role}}</span>
+          </div>
+          <p class="project-date">{{project.startDate}}  -  {{project.endDate}}</p>
+          <div class="social-media">
+            <a *ngIf="project.pageLink!=''" href="{{project.pageLink}}" target="_blank" class="web"><i class="bi bi-globe2"></i>Web</a>
+            <a *ngIf="project.gitLink!=''" href="{{project.gitLink}}" target="_blank" class="git"><i class="bi bi-github"></i>Git</a>
+            <a *ngIf="project.behLink!=''" href="{{project.behLink}}" target="_blank" class="beh"><i class="bi bi-behance"></i>hance</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-details-wrapper">
+    <div class="project-details">
+      <h3>Details</h3>
+      <div class="project-info">
+        <div class="left">
+          <p><span>Purpose:</span>{{project.purpose}}</p>
+          <p><span>Organization:</span>{{project.organization}}</p>
+          <p><span>Technologies:</span></p>
+          <div class="technologies" >
+            <img *ngFor="let technology of project.technologies" src="../../../assets/icons/{{technology}}" alt="">
+          </div>
+        </div>
+        <div class="right">
+          <span>Description:</span>
+          <p>{{project.description}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="project.gallery.length !=0" class="project-gallery-wrapper">
+    <div class="project-gallery">
+      <h3>Gallery</h3>
+      <div class="images-wrapper">
+        <lightgallery [settings]="settings" [onBeforeSlide]="onBeforeSlide">
+          <img class="img-responsive, gallery-item"
+               *ngFor="let image of project.gallery"
+               data-lg-size="480-475-480, 800-791-800, 1406-1390"
+               src="../../../assets/mockups/{{image}}" id="myImg" alt="" />
+        </lightgallery>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-footer></app-footer>
