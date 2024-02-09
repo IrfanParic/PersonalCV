@@ -15,6 +15,7 @@ import {AboutComponent} from "./Components/about/about.component";
 import {ContactComponent} from "./Components/contact/contact.component";
 import { ProjectPageComponent } from './Components/project-page/project-page.component';
 import {LightgalleryModule} from "lightgallery/angular/13";
+import { FooterComponent } from './Components/footer/footer.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {LightgalleryModule} from "lightgallery/angular/13";
     PortfolioComponent,
     AboutComponent,
     ContactComponent,
-    ProjectPageComponent
+    ProjectPageComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

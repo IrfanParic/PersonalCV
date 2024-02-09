@@ -187,28 +187,6 @@ main .introduction h1{
   4%, 100% {  text-shadow: none; transform: none; }
 }
 
-.footwraper{
-  background-color: #151618;
-}
-
-footer{
-  width: 90%;
-  padding: 15px 30px;
-  background-color: rgba(255, 255, 255, 0.05);
-  display: flex;
-  color: whitesmoke;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
-footer img{
-  height: 50px;
-  width: auto;
-}
-
 @media (min-width: 1900px) {
   main .about-wrap .bgimage{
     padding: 350px 0;
