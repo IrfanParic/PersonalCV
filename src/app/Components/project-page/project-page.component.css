@@ -245,6 +245,7 @@ main .project-page-card{
 
 .images-wrapper img:hover{
   border: #5cb7ff 1px solid;
+  opacity: .7;
 }
 
 .footwraper{

@@ -83,7 +83,7 @@ main{
 }
 
 main .about-wrap .bgimage{
-  background:linear-gradient(transparent,transparent,#151618), url("src/assets/bgblue.png");
+  background:linear-gradient(#151618,transparent,#151618), url("src/assets/bgblue.png");
   background-size: cover;
   padding: 250px 0;
   display: flex;
