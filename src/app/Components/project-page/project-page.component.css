@@ -72,7 +72,9 @@ img{
 
 main{
   background:linear-gradient(#151618,transparent,transparent), url("src/assets/bgblue3.png");
-  background-size: cover;
+  background-color: #151618;
+  background-repeat: no-repeat;
+  background-size: contain;
   color: whitesmoke;
   padding-top: 100px;
 }
@@ -258,6 +260,20 @@ main .project-title h2{
 
   .project-details .project-info .right{
     width: 100%;
+  }
+}
+
+@media (max-width: 995px){
+  main{
+    padding-top: 130px;
+  }
+
+  main .project-title, main .project-page-card {
+    width: 90%;
+  }
+
+  .project-details, .project-gallery{
+    width: 90%;
   }
 }
 
