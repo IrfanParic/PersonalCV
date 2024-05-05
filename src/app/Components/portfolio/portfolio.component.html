@@ -1,3 +1,40 @@
+<div class="projects-wrap active-projects-wrap">
+  <div class="projects">
+    <h1 style="margin-bottom: 20px">Current occupation</h1>
+    <div class="projects-content" *ngFor="let project of projects" >
+      <div *ngIf="project.active == true" class="projects-card" data-aos="fade-up" data-aos-offset="300" data-aos-easing="ease-in-sine">
+        <div class="projects-img">
+          <img src="../../../assets/{{project.img}}" alt=""/>
+        </div>
+        <div class="project-card-text" style="display: flex">
+          <div class="project-info">
+            <div class="project-intro">
+              <div style="display: flex; align-items: center">
+                <h3>{{project.name}}</h3>
+                <div class="social-media">
+                  <a *ngIf="project.pageLink!=''" href="{{project.pageLink}}" target="_blank"><i class="bi bi-globe2"></i></a>
+                  <a *ngIf="project.gitLink!=''" href="{{project.gitLink}}" target="_blank"><i class="bi bi-github"></i></a>
+                  <a *ngIf="project.behLink!=''" href="{{project.behLink}}" target="_blank"><i class="bi bi-behance"></i></a>
+                </div>
+              </div>
+              <p>{{project.startDate}}  -  {{project.endDate}}</p>
+            </div>
+            <div class="project-role">
+              <span style="border: 2px solid {{project.color}}">{{project.role}}</span>
+            </div>
+            <div class="project-description">
+              <span>{{project.description}}</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <button (click)="openProjectPage(project.id)">Read more</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="projects-wrap">
   <div class="projects">
     <h1 style="margin-bottom: 20px">Featured Projects</h1>

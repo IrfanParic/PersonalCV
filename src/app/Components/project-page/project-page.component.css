@@ -138,7 +138,8 @@ main .project-title h2{
 .project-role span, .social-media a{
   padding: 4px 20px;
   border-radius: 4px;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid transparent;
 }
 
 .project-role span{
@@ -154,15 +155,18 @@ main .project-title h2{
 }
 
 .social-media .web:hover{
-  background-color: darkorange;
+  border: 2px solid darkorange;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .social-media .git:hover{
-  background-color: mediumpurple;
+  border: 2px solid mediumpurple;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .social-media .beh:hover{
-  background-color: #1769ff;
+  border: 2px solid #1769ff;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .social-media i{

@@ -14,4 +14,5 @@ export interface Project{
   gitLink: string;
   behLink: string;
   color: string;
+  active: boolean;
 }

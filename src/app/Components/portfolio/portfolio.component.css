@@ -17,6 +17,10 @@ i{
   transition: .2s ease-in;
 }
 
+.active-projects-wrap{
+  background: #151618 !important;
+}
+
 .projects-wrap{
   background:linear-gradient(#151618,transparent,#151618), url("src/assets/bgblue2.png");
   background-size: cover;
@@ -25,9 +29,9 @@ i{
   padding: 200px 0;
 }
 
- .projects{
-   width: 80%;
- }
+.projects{
+  width: 80%;
+}
 
 .projects-card{
   margin-bottom: 40px;
@@ -82,7 +86,7 @@ i{
  .project-role span{
    padding: 4px 20px;
    border-radius: 4px;
-   background: rgba(0, 0, 0, 0.2);
+   background: rgba(0, 0, 0, 0.3);
    font-weight: 500;
    letter-spacing: 1px;
  }
@@ -102,7 +106,7 @@ i{
    background: #0077d2;
    color: whitesmoke;
    font-weight: 500;
-   font-size: 16px;
+   font-size: 14px;
    letter-spacing: 1px;
    transition: .2s ease-in;
  }

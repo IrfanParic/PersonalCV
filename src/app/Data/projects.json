@@ -1,6 +1,24 @@
 {
   "projects": [
     {
+      "id": "5",
+      "img": "mangoandlola-img.png",
+      "name": "Mango & Lola Wedding",
+      "description": "I managed to land a job and be currently employed as a full stack software developer at Mango & Lola. I am a part of an amazing team where I have the ability to learn new technologies and further improve my development skills. Together we are building amazing platform for weddings that you can check out on a website link provided with this project.",
+      "role": "Full Stack Developer",
+      "purpose": "Job",
+      "organization": "Mango & Lola",
+      "technologies": ["vue_icon.png","laravel_icon.png","postgree_icon.png"],
+      "gallery": [],
+      "startDate": "22.11.2023",
+      "endDate": "Ongoing",
+      "pageLink": "https://mangolola.com",
+      "gitLink": "",
+      "behLink": "",
+      "color": "mediumpurple",
+      "active": true
+    },
+    {
       "id": "1",
       "img": "atlatnt-img.png",
       "name": "AtlantBH Internship 23-24",
@@ -15,7 +33,8 @@
       "pageLink": "",
       "gitLink": "",
       "behLink": "",
-      "color": "orange"
+      "color": "orange",
+      "active": false
     },
     {
       "id": "2",
@@ -32,7 +51,8 @@
       "pageLink": "",
       "gitLink": "",
       "behLink": "",
-      "color": "greenyellow"
+      "color": "greenyellow",
+      "active": false
     },
     {
       "id": "3",
@@ -49,7 +69,8 @@
       "pageLink": "",
       "gitLink": "https://github.com/farisbegic/dokumenta",
       "behLink": "",
-      "color": "purple"
+      "color": "mediumpurple",
+      "active": false
     },
     {
       "id": "4",
@@ -66,7 +87,8 @@
       "pageLink": "",
       "gitLink": "",
       "behLink": "",
-      "color": "purple"
+      "color": "mediumpurple",
+      "active": false
     }
   ]
 }

@@ -68,6 +68,11 @@
       </div>
     </div>
   </div>
+  <div *ngIf="project.gallery.length == 0" class="project-gallery-wrapper">
+    <div class="project-gallery">
+      <div class="images-wrapper"></div>
+    </div>
+  </div>
 </main>
 
 <app-footer></app-footer>
