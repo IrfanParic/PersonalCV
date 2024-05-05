@@ -139,7 +139,6 @@ main .project-title h2{
   padding: 4px 20px;
   border-radius: 4px;
   background: rgba(0, 0, 0, 0.3);
-  border: 2px solid transparent;
 }
 
 .project-role span{
@@ -155,15 +154,15 @@ main .project-title h2{
 }
 
 .social-media .web:hover{
-  border: 2px solid darkorange;
+  background: darkorange;
 }
 
 .social-media .git:hover{
-  border: 2px solid mediumpurple;
+  background: mediumpurple;
 }
 
 .social-media .beh:hover{
-  border: 2px solid #1769ff;
+  background: #1769ff;
 }
 
 .social-media i{
