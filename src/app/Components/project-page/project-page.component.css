@@ -156,17 +156,14 @@ main .project-title h2{
 
 .social-media .web:hover{
   border: 2px solid darkorange;
-  background: rgba(0, 0, 0, 0.5);
 }
 
 .social-media .git:hover{
   border: 2px solid mediumpurple;
-  background: rgba(0, 0, 0, 0.5);
 }
 
 .social-media .beh:hover{
   border: 2px solid #1769ff;
-  background: rgba(0, 0, 0, 0.5);
 }
 
 .social-media i{
