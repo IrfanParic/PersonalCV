@@ -1,5 +1,23 @@
 {
   "projects": [
+     {
+      "id": "6",
+      "img": "googlecloud-img.png",
+      "name": "Google Cloud AI Startup Factory",
+      "description": "I was able to collaborate with innovative minds, explore AI-powered solutions, and learn more about how Google Cloud is shaping the future of startups through AI and cloud technologies.",
+      "role": "Full Stack Developer",
+      "purpose": "Hackathon",
+      "organization": "Google",
+      "technologies": ["next_icon.png","gemini_icon.png","googlecloud_icon.png","supabase_icon.png"],
+      "gallery": [],
+      "startDate": "10.10.2025",
+      "endDate": "14.10.2025",
+      "pageLink": "",
+      "gitLink": "",
+      "behLink": "",
+      "color": "mediumpurple",
+      "active": false
+    },
     {
       "id": "5",
       "img": "mangoandlola-img.png",
@@ -40,7 +58,7 @@
       "id": "2",
       "img": "rubicon_internship.png",
       "name": "RUBICON Summer Internship 2023",
-      "description": "Summer after graduation, I was accepted to the RUBICON Summer Internship 2023 Program, to work on a \"real\" project (more information soon). I was able to work on a, soon to be live, project with a group of an amazing individuals with some of the top-line mentors helping me improve my skills.",
+      "description": "Summer after graduation, I was accepted to the RUBICON Summer Internship 2023 Program, to work on a \"real\" project called 'Parking Papak'. I was able to work on this project with a group of an amazing individuals with some of the top-line mentors helping me improve my skills.",
       "role": "Frontend Developer",
       "purpose": "Internship",
       "organization": "Rubicon",
@@ -48,7 +66,7 @@
       "gallery": [],
       "startDate": "12.06.2023",
       "endDate": "31.07.2023",
-      "pageLink": "",
+      "pageLink": "https://www.parkingpapak.ba",
       "gitLink": "",
       "behLink": "",
       "color": "greenyellow",
