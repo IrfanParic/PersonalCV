@@ -1,57 +1,60 @@
-import {Component, HostListener, OnInit, Input } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {ProjectService} from "../../Services/project.service";
-import {BeforeSlideDetail} from "lightgallery/lg-events";
+import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, ViewChild, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs';
+import { Project } from '../../Models/project';
+import { ProjectService } from '../../Services/project.service';
 
 @Component({
   selector: 'app-project-page',
   templateUrl: './project-page.component.html',
-  styleUrls: ['./project-page.component.css']
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
-export class ProjectPageComponent implements OnInit {
-  project: any;
+export class ProjectPageComponent {
+  readonly project = signal<Project | undefined>(undefined);
+  imageIndex = 0;
+  @ViewChild('galleryDialog') galleryDialog?: ElementRef<HTMLDialogElement>;
+  private galleryTrigger?: HTMLElement;
+  private readonly destroyRef = inject(DestroyRef);
 
-  constructor(
-    private route: ActivatedRoute,
-    private projectService: ProjectService,
-    private router: Router
-  ) {}
-
-  ngOnInit() {
-    this.route.paramMap.subscribe((params) => {
-      const projectId = params.get('projectId');
-      if (projectId) {
-        this.projectService.getProjectById(projectId).subscribe((project) => {
-          this.project = project;
-        });
-      }
+  constructor(route: ActivatedRoute, projectService: ProjectService) {
+    route.paramMap.pipe(
+      switchMap(params => projectService.getProjectById(params.get('projectId') ?? '')),
+      takeUntilDestroyed(this.destroyRef),
+    ).subscribe(project => {
+      this.closeGallery();
+      this.project.set(project);
+      this.imageIndex = 0;
     });
   }
 
-  goBack() {
-    this.router.navigate(['']);
+  openGallery(index: number, trigger: HTMLElement): void {
+    this.imageIndex = index;
+    this.galleryTrigger = trigger;
+    this.galleryDialog?.nativeElement.showModal();
   }
 
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    const scrollOffset = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+  closeGallery(): void {
+    this.galleryDialog?.nativeElement.close();
+  }
 
-    if (scrollOffset >= 110) {
-      document.querySelectorAll('.controllable').forEach((c) => {
-        c.classList.add('bgcolor');
-      });
-    } else {
-      document.querySelectorAll('.controllable').forEach((c) => {
-        c.classList.remove('bgcolor');
-      });
+  restoreFocus(): void {
+    this.galleryTrigger?.focus();
+    this.galleryTrigger = undefined;
+  }
+
+  changeImage(offset: number): void {
+    const next = this.imageIndex + offset;
+    const project = this.project();
+    if (project && next >= 0 && next < project.gallery.length) {
+      this.imageIndex = next;
     }
   }
 
-  settings = {
-    counter: false,
-  };
-  onBeforeSlide = (detail: BeforeSlideDetail): void => {
-    const { index, prevIndex } = detail;
-    console.log(index, prevIndex);
-  };
+  technologyName(filename: string): string {
+    const names: Record<string, string> = { postgree: 'PostgreSQL', googlecloud: 'Google Cloud', next: 'Next.js', nodejs: 'Node.js' };
+    const name = filename.replace('_icon.png', '');
+    return names[name] ?? name.charAt(0).toUpperCase() + name.slice(1);
+  }
 }

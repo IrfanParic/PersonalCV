@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
-  styleUrls: ['./about.component.css']
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
-export class AboutComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class AboutComponent {
+  readonly technologies = [
+    { name: 'Figma', icon: 'figma' },
+    { name: 'React', icon: 'react' },
+    { name: 'Angular', icon: 'angular' },
+    { name: 'Vue', icon: 'vue' },
+    { name: 'Node.js', icon: 'nodejs' },
+    { name: 'Spring Boot', icon: 'spring' },
+    { name: 'MySQL', icon: 'mysql' },
+    { name: 'PostgreSQL', icon: 'postgree' }
+  ];
 }

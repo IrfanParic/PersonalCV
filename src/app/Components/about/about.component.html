@@ -1,61 +1,32 @@
-<div class="information-wrap">
-  <div class="information">
-    <div class="picture">
-      <img src="../../../assets/profile2.png" alt="irfanparic">
-    </div>
-
-    <div class="text1 flip-card">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <h2>Who am I?</h2>
+<section aria-labelledby="about-title" class="border-y border-white/10 bg-surface/40">
+  <div class="mx-auto max-w-[1200px] px-5 py-20 sm:px-8 sm:py-24">
+    <p class="mb-3 text-sm tracking-[0.2em] text-accent uppercase">About</p>
+    <h2 id="about-title" class="mb-12 text-3xl font-bold tracking-tight sm:text-4xl">Who am I?</h2>
+    <div class="grid items-start gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16">
+      <div class="min-w-0">
+        <div class="overflow-hidden rounded-2xl border border-white/10 bg-surface">
+          <img src="assets/profile2.png" alt="Portrait of Irfan Paric" class="aspect-square w-full object-contain" loading="lazy" />
         </div>
-        <div class="flip-card-back">
-          <p>I hold a Bachelor of Computer Science degree from the University of Sarajevo School of Science and Technology, with strong understanding of mathematics, logic, and design principles. Currently, I am eager to further enhance my expertise in Software Development and UI/UX Design by acquiring advanced-level skills.</p>
+        <h3 class="mt-6 text-2xl font-semibold">Irfan Paric</h3>
+        <a href="assets/Irfan%20Parić%20CV.pdf" download class="mt-5 inline-flex items-center gap-4 rounded-lg border border-accent px-5 py-3 text-sm font-bold text-accent hover:bg-accent hover:text-canvas">DOWNLOAD CV <i class="bi bi-download" aria-hidden="true"></i></a>
+      </div>
+      <div class="space-y-9">
+        <p class="text-lg leading-relaxed text-muted">I hold a Bachelor of Computer Science degree from the University of Sarajevo School of Science and Technology, with strong understanding of mathematics, logic, and design principles. Currently, I am eager to further enhance my expertise in Software Development and UI/UX Design by acquiring advanced-level skills.</p>
+        <div class="border-t border-white/10 pt-8">
+          <h3 class="mb-4 text-xl font-semibold">What do I do?</h3>
+          <p class="leading-relaxed text-muted">I possess extensive expertise in navigating diverse development environments and mastering various programming languages. Proficient in Adobe Illustrator, Photoshop, and Figma for graphical design and UI/UX, I excel in frontend technologies such as Angular, React, and Vue, while also commanding backend frameworks including Node.js, Spring, and Laravel for comprehensive software development</p>
+        </div>
+        <div class="border-t border-white/10 pt-8">
+          <h3 class="mb-5 text-xl font-semibold">Technologies?</h3>
+          <ul class="flex flex-wrap gap-3" aria-label="Technologies I work with">
+            @for (technology of technologies; track technology.icon) {
+              <li class="flex h-16 w-16 items-center justify-center rounded-xl border border-white/10 bg-surface p-3" [attr.title]="technology.name">
+                <img [src]="'assets/icons/' + technology.icon + '_icon.png'" [alt]="technology.name" class="h-full w-full object-contain" loading="lazy" />
+              </li>
+            }
+          </ul>
         </div>
       </div>
-    </div>
-
-    <div class="text2 flip-card">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <h2>What do I do?</h2>
-        </div>
-        <div class="flip-card-back">
-          <p>I possess extensive expertise in navigating diverse development environments and mastering various programming languages. Proficient in Adobe Illustrator, Photoshop, and Figma for graphical design and UI/UX, I excel in frontend technologies such as Angular, React, and Vue, while also commanding backend frameworks including Node.js, Spring, and Laravel for comprehensive software development</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="techno flip-card">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <h2>Technologies?</h2>
-        </div>
-        <div class="flip-card-back">
-          <div class="icons">
-            <div>
-              <img src="../../../assets/icons/figma_icon.png" alt="figmalogo">
-            </div>
-            <div>
-              <img src="../../../assets/icons/react_icon.png" alt="reactlogo">
-              <img src="../../../assets/icons/angular_icon.png" alt="angularlogo">
-              <img src="../../../assets/icons/vue_icon.png" alt="vuelogo">
-            </div>
-            <div>
-              <img src="../../../assets/icons/nodejs_icon.png" alt="nodelogo">
-              <img src="../../../assets/icons/spring_icon.png" alt="springbootlogo">
-              <img src="../../../assets/icons/mysql_icon.png" alt="mysqllogo">
-              <img src="../../../assets/icons/postgree_icon.png" alt="postgreelogo">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="name">
-      <h2>Irfan Paric</h2>
-    </div>
-    <div class="cv">
-      <a href="../../../assets/Irfan%20Parić%20CV.pdf" download> <h2>DOWNLOAD CV</h2></a>
     </div>
   </div>
-</div>
+</section>

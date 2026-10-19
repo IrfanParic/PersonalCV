@@ -1,42 +1,51 @@
-import {Component, HostListener, OnInit} from '@angular/core';
-import * as AOS from 'aos';
-//import {Project} from "../../Models/project";
-import {ActivatedRoute} from "@angular/router";
-//import {ResolverResponse} from "../../Constants/resolver-response.constants";
+import { AfterViewInit, ChangeDetectionStrategy, Component, HostListener, OnDestroy } from '@angular/core';
+import { scrollToSection, stickyHeaderHeight } from '../../platform/visual-tools';
 
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
-  styleUrls: ['./welcome.component.css']
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
-export class WelcomeComponent implements OnInit {
+export class WelcomeComponent implements AfterViewInit, OnDestroy {
+  headerScrolled = false;
+  activeSection = 'home';
+  private readonly scrollLifetime = new AbortController();
+  private resizeObserver?: ResizeObserver;
 
-  constructor() { }
-
-  ngOnInit(): void {
-    AOS.init();
-  }
-
-  scroll(div: HTMLDivElement) {
-    div.scrollIntoView();
-  }
-
-  scrolltop() {
-    window.scroll(0,0);
-  }
-
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    const scrollOffset = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-
-    if (scrollOffset >= 110) {
-      document.querySelectorAll('.controllable').forEach((c) => {
-        c.classList.add('bgcolor');
-      });
-    } else {
-      document.querySelectorAll('.controllable').forEach((c) => {
-        c.classList.remove('bgcolor');
-      });
+  ngAfterViewInit(): void {
+    this.resizeObserver = new ResizeObserver(() => this.updateActiveSection());
+    for (const id of ['header', 'main']) {
+      const element = document.getElementById(id);
+      if (element) this.resizeObserver.observe(element);
     }
+  }
+
+  scroll(section: HTMLElement): void {
+    void scrollToSection(section, this.scrollLifetime.signal);
+  }
+
+  scrolltop(): void {
+    void scrollToSection(0, this.scrollLifetime.signal);
+  }
+
+  @HostListener('window:scroll')
+  @HostListener('window:resize')
+  updateActiveSection(): void {
+    this.headerScrolled = window.scrollY > 8;
+    const threshold = stickyHeaderHeight() + 2;
+    let active = 'home';
+    for (const id of ['about', 'portfolio', 'contact']) {
+      if ((document.getElementById(id)?.getBoundingClientRect().top ?? Infinity) <= threshold) active = id;
+    }
+    if (window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+      active = 'contact';
+    }
+    this.activeSection = active;
+  }
+
+  ngOnDestroy(): void {
+    this.scrollLifetime.abort();
+    this.resizeObserver?.disconnect();
   }
 }

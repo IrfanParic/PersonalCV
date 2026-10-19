@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import { scrollToSection } from '../../platform/visual-tools';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.css']
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent implements OnDestroy {
+  readonly year = new Date().getFullYear();
+  private readonly scrollLifetime = new AbortController();
 
-  constructor() { }
-
-  ngOnInit(): void {
+  scrolltop(): void {
+    void scrollToSection(0, this.scrollLifetime.signal);
   }
 
+  ngOnDestroy(): void {
+    this.scrollLifetime.abort();
+  }
 }

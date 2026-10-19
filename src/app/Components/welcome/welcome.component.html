@@ -1,54 +1,33 @@
-<header id="header" class="controllable">
-  <div class="header-content">
-    <div class="title">
-      <h1 id="headertitle" style="text-transform: uppercase" (click)="scrolltop()">irfanparic</h1>
-    </div>
-    <div class="list">
-      <p (click)="scrolltop()">Home</p>
-      <p (click)="scroll(about)">About</p>
-      <p (click)="scroll(portfolio)">Portfolio</p>
-      <p (click)="scroll(contact)">Contact</p>
-    </div>
-    <img src="../../../assets/logowhite.png" alt="logo" type="button"/>
+<header id="header" class="site-header sticky top-0 z-30" [class.header-scrolled]="headerScrolled">
+  <div class="mx-auto flex max-w-[1200px] items-center justify-between gap-2 px-3 py-3 sm:px-8 sm:py-4">
+    <button type="button" (click)="scrolltop()" aria-label="Irfan Paric, back to top" class="header-glass header-logo flex shrink-0 items-center justify-center">
+      <img src="assets/logo.svg" alt="" class="h-7 w-7 object-contain sm:h-8 sm:w-8" fetchpriority="high" />
+    </button>
+    <nav aria-label="Main navigation" class="header-glass header-nav flex items-center text-xs font-medium sm:gap-2 sm:text-sm">
+      <button type="button" (click)="scrolltop()" class="nav-link" [class.nav-active]="activeSection === 'home'" [attr.aria-current]="activeSection === 'home' ? 'location' : null">Home</button>
+      <button type="button" (click)="scroll(about)" class="nav-link" [class.nav-active]="activeSection === 'about'" [attr.aria-current]="activeSection === 'about' ? 'location' : null">About</button>
+      <button type="button" (click)="scroll(portfolio)" class="nav-link" [class.nav-active]="activeSection === 'portfolio'" [attr.aria-current]="activeSection === 'portfolio' ? 'location' : null">Projects</button>
+      <button type="button" (click)="scroll(contact)" class="nav-link" [class.nav-active]="activeSection === 'contact'" [attr.aria-current]="activeSection === 'contact' ? 'location' : null">Contact</button>
+    </nav>
   </div>
 </header>
 
 <main id="main">
-  <div class="about-wrap">
-    <div class="bgimage">
-      <div class="introduction">
-        <div class="introtext">
-          <h1 data-aos="fade-right" data-aos-duration="1000">Hello there</h1>
-          <div style="display: flex" data-aos="fade-left" data-aos-duration="2000">
-            <h1 style="margin-right: 5%">I am</h1>
-            <div class="stack" style="--stacks: 3;">
-              <span style="--index: 0;"><h1>IRFAN</h1></span>
-              <span style="--index: 1;"><h1>IRFAN</h1></span>
-              <span style="--index: 2;"><h1>IRFAN</h1></span>
-            </div>
-          </div>
-          <br>
-          <h4 data-aos="fade-in" data-aos-duration="3000">Software Developer / UX & UI Designer</h4>
-          <a (click)="scroll(portfolio)" data-aos="fade-in" data-aos-duration="3000" class="shadow">
-            Unveil my work
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="#F5F5F5FF" d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg>
-          </a>
-        </div>
-      </div>
+  <section aria-labelledby="hero-title" class="mx-auto grid max-w-[1200px] items-center gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:min-h-[680px] lg:grid-cols-[1.1fr_1fr] lg:py-32">
+    <div class="min-w-0">
+      <p class="mb-6 text-sm tracking-[0.2em] text-accent uppercase">Hello there</p>
+      <h1 id="hero-title" class="text-5xl leading-[1.08] font-extrabold tracking-tight sm:text-7xl lg:text-8xl">I am<br /><span class="text-accent">IRFAN</span></h1>
+      <p class="mt-7 max-w-md text-lg leading-relaxed text-muted">Software Developer / UX &amp; UI Designer</p>
+      <button type="button" (click)="scroll(portfolio)" class="mt-9 inline-flex items-center gap-6 rounded-lg bg-accent px-6 py-3.5 font-bold text-canvas hover:bg-blue-300">
+        Unveil my work <i class="bi bi-arrow-down" aria-hidden="true"></i>
+      </button>
     </div>
-  </div>
-
-  <div #about>
-    <app-about></app-about>
-  </div>
-
-  <div #portfolio>
-    <app-portfolio></app-portfolio>
-  </div>
-
-  <div #contact>
-    <app-contact></app-contact>
-  </div>
+    <div data-scene-host="hero" class="min-w-0 overflow-hidden rounded-2xl border border-white/10 bg-surface">
+      <img src="assets/bgblue.png" alt="Abstract blue artwork" class="aspect-square w-full object-cover" fetchpriority="high" />
+    </div>
+  </section>
+  <div #about id="about" class="scroll-mt-36 sm:scroll-mt-24"><app-about></app-about></div>
+  <div #portfolio id="portfolio" class="scroll-mt-36 sm:scroll-mt-24"><app-portfolio></app-portfolio></div>
+  <div #contact id="contact" class="scroll-mt-36 sm:scroll-mt-24"><app-contact></app-contact></div>
 </main>
-
 <app-footer></app-footer>
