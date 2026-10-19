@@ -15,6 +15,14 @@
 <main id="main">
   <div #heroScene class="hero-scene">
   <section aria-labelledby="hero-title" class="hero">
+    <a class="hero-accent-square" href="https://irfan-photography.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="Turn to Dark Side — Irfan Photography (opens in a new tab)"
+      (mouseenter)="setAccentHovered(true)" (mouseleave)="setAccentHovered(false)"
+      (focus)="setAccentHovered(true)" (blur)="setAccentHovered(false)">
+      <span class="hero-accent-shape" aria-hidden="true"></span>
+      <span class="hero-accent-label" aria-hidden="true">
+        <span class="hero-accent-text">Go, Click!</span>
+      </span>
+    </a>
     <div class="hero-copy">
       <p class="hero-intro">I am</p>
       <h1 id="hero-title" class="hero-title">IRFAN PARIC</h1>

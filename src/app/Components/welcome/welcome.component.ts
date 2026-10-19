@@ -20,13 +20,68 @@ export class WelcomeComponent implements AfterViewInit, OnDestroy {
   private animationReady?: Promise<void>;
   private animationMedia?: gsap.MatchMedia;
   private quoteTrigger?: ScrollTrigger;
+  private accentAnimation?: gsap.core.Timeline;
+  private accentHovered = false;
 
   ngAfterViewInit(): void {
     this.animationReady = this.initializeQuoteAnimation();
-    this.resizeObserver = new ResizeObserver(() => this.updateActiveSection());
-    for (const id of ['header', 'main']) {
+    this.resizeObserver = new ResizeObserver(() => {
+      this.updateHeroAccent();
+      this.updateActiveSection();
+    });
+    for (const id of ['header', 'main', 'hero-title']) {
       const element = document.getElementById(id);
       if (element) this.resizeObserver.observe(element);
+    }
+    void document.fonts.ready.then(() => {
+      if (!this.scrollLifetime.signal.aborted) this.updateHeroAccent();
+    });
+  }
+
+  private updateHeroAccent(): void {
+    const scene = this.heroScene.nativeElement;
+    const title = scene.querySelector<HTMLElement>('.hero-title')!;
+    const square = scene.querySelector<HTMLElement>('.hero-accent-square')!;
+    const navigationBounds = document.querySelector<HTMLElement>('.header-nav')!.getBoundingClientRect();
+    const sceneBounds = scene.getBoundingClientRect();
+    const titleBounds = title.getBoundingClientRect();
+    const font = getComputedStyle(title);
+    const context = document.createElement('canvas').getContext('2d')!;
+    context.font = `${font.fontWeight} ${font.fontSize} ${font.fontFamily}`;
+    const metrics = context.measureText(title.textContent!.trim());
+    const baseline = (titleBounds.height - metrics.fontBoundingBoxAscent - metrics.fontBoundingBoxDescent) / 2 + metrics.fontBoundingBoxAscent;
+    const squareOffset = new DOMMatrix(getComputedStyle(square).transform).m42;
+    scene.style.setProperty('--hero-name-top', `${titleBounds.top - sceneBounds.top - squareOffset + baseline - metrics.actualBoundingBoxAscent}px`);
+    scene.style.setProperty('--hero-name-height', `${metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent}px`);
+    scene.style.setProperty('--hero-accent-right', `${sceneBounds.right - navigationBounds.right}px`);
+  }
+
+  async setAccentHovered(hovered: boolean): Promise<void> {
+    this.accentHovered = hovered;
+    try {
+      const gsap = await loadGsap();
+      if (this.scrollLifetime.signal.aborted || this.accentHovered !== hovered) return;
+      const scene = this.heroScene.nativeElement;
+      const accent = scene.querySelector<HTMLElement>('.hero-accent-square')!;
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      this.accentAnimation?.kill();
+      this.accentAnimation = gsap.timeline()
+        .to(scene.querySelector('.hero-accent-shape'), {
+          backgroundColor: hovered ? '#e63946' : '#60a5fa',
+          height: hovered ? accent.offsetWidth : accent.offsetHeight,
+          borderRadius: hovered ? '50%' : '4px',
+          duration: reducedMotion ? 0 : 0.45,
+          ease: 'power2.inOut'
+        }, 0)
+        .to(scene.querySelector('.hero-accent-text'), {
+          x: 0,
+          xPercent: hovered ? 0 : -100,
+          opacity: hovered ? 1 : 0,
+          duration: reducedMotion ? 0 : 0.45,
+          ease: 'power2.inOut'
+        }, 0);
+    } catch {
+      // Leave the photography link usable if the animation library cannot load.
     }
   }
 
@@ -55,7 +110,7 @@ export class WelcomeComponent implements AfterViewInit, OnDestroy {
           }
         });
         timeline
-          .to('.hero-copy, .hero-portrait, .hero-scroll', { autoAlpha: 0, y: '-=80', duration: 0.25 }, 0)
+          .to('.hero-copy, .hero-portrait, .hero-scroll, .hero-accent-square', { autoAlpha: 0, y: '-=80', duration: 0.25 }, 0)
           .to(this.quote.nativeElement, { autoAlpha: 1, duration: 0.12 }, 0.3)
           .to(words, { opacity: 1, duration: 0.06, stagger: { amount: 0.27 } }, 0.42)
           .to('.quote-mark', { opacity: 1, duration: 0.1 }, 0.75)
@@ -106,6 +161,7 @@ export class WelcomeComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.scrollLifetime.abort();
+    this.accentAnimation?.kill();
     this.animationMedia?.revert();
     this.resizeObserver?.disconnect();
   }
