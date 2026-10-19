@@ -12,7 +12,7 @@
 }
 
 @layer base {
-  html { color-scheme: dark; }
+  html { color-scheme: dark; overflow-x: clip; }
   body { @apply min-h-screen bg-canvas font-body text-ink antialiased; }
   h1, h2, h3, h4, h5, h6 { @apply font-heading font-bold; }
   button, a { -webkit-tap-highlight-color: transparent; }
@@ -23,6 +23,156 @@
 }
 
 :is(h1, h2, h3, h4, h5, h6).font-semibold { font-weight: 700; }
+
+.hero-scene {
+  position: relative;
+  background: var(--color-canvas);
+}
+.quote-section {
+  display: grid;
+  place-items: center;
+  min-height: calc(100dvh - 72px);
+  padding: 64px 24px;
+  color: #fff;
+}
+.hero-quote {
+  max-width: 1100px;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(28px, 4.5vw, 64px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  text-align: center;
+  text-wrap: balance;
+  transform: translateY(-4svh);
+}
+.quote-line { display: block; }
+.quote-word { display: inline-block; }
+.quote-mark {
+  display: inline-block;
+  width: 0;
+  color: var(--color-accent);
+  font-size: 1.2em;
+  line-height: 0;
+}
+.hero-scene-animated .quote-section {
+  position: absolute;
+  inset: 0;
+  min-height: 0;
+  pointer-events: none;
+}
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  height: calc(100dvh - 72px);
+  gap: 24px;
+  padding-top: 24px;
+  padding-bottom: calc(56px + env(safe-area-inset-bottom));
+  color: #fff;
+}
+.hero-copy {
+  container-type: inline-size;
+  min-width: 0;
+  padding-inline: 20px;
+}
+.hero-intro, .hero-role {
+  color: rgb(255 255 255 / 70%);
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  line-height: 1.5;
+}
+.hero-intro { line-height: 1.25; }
+.hero-title {
+  margin-block: 0 12px;
+  font-size: 23cqw;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  white-space: nowrap;
+}
+.hero-scroll {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  padding-block: 8px;
+  color: rgb(255 255 255 / 35%);
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+.hero-scroll:hover, .hero-scroll:focus-visible { color: rgb(255 255 255 / 70%); }
+.hero-scroll-arrows { flex-shrink: 0; color: var(--color-accent); }
+.hero-scroll-arrows polyline { animation: explore-chevron 1.6s ease-in-out infinite; }
+.hero-scroll-arrows polyline + polyline { animation-delay: 0.2s; }
+@keyframes explore-chevron {
+  0%, 100% { opacity: 0.3; transform: translateY(-2px); }
+  50% { opacity: 1; transform: translateY(2px); }
+}
+.hero-portrait {
+  width: min(100%, 640px);
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  margin-inline: auto;
+  mask-image: linear-gradient(to bottom, #000 50%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 50%, transparent 100%);
+}
+.hero-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+}
+@media (max-width: 639px) {
+  .hero-copy, .hero-portrait {
+    position: relative;
+    top: 40px;
+  }
+}
+@media (max-width: 1023px) {
+  .hero-portrait {
+    align-self: start;
+    height: auto;
+    max-height: 100%;
+    aspect-ratio: 1162 / 1354;
+  }
+  .hero-scroll { bottom: calc(28px + env(safe-area-inset-bottom)); }
+}
+@media (min-width: 640px) {
+  .quote-section { min-height: calc(100dvh - 88px); }
+  .hero {
+    height: calc(100dvh - 88px);
+    padding-top: 32px;
+  }
+  .hero-copy { padding-inline: 32px; }
+}
+@media (min-width: 1024px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    align-items: center;
+    gap: 8px;
+    padding-left: max(32px, calc((100% - 1136px) / 2));
+  }
+  .hero-copy {
+    padding: 0;
+    transform: translateY(-32px);
+  }
+  .hero-portrait {
+    width: 100%;
+  }
+  .hero-portrait img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+}
 
 .site-header { pointer-events: none; }
 .header-glass {
@@ -60,5 +210,6 @@
   .header-nav .nav-link { padding: 0 12px; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .hero-scroll-arrows polyline { animation: none; }
   .header-glass, .nav-link { transition: none; }
 }
