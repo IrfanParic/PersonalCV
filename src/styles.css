@@ -28,7 +28,6 @@
   position: relative;
   background: var(--color-canvas);
 }
-.hero-accent-square { display: none; }
 .quote-section {
   display: grid;
   place-items: center;
@@ -79,7 +78,7 @@
   min-width: 0;
   padding-inline: 20px;
 }
-.hero-intro, .hero-role, .hero-accent-text {
+.hero-intro, .hero-role {
   color: rgb(255 255 255 / 70%);
   font-size: clamp(1rem, 1.4vw, 1.25rem);
   line-height: 1.5;
@@ -154,45 +153,6 @@
   .hero-copy { padding-inline: 32px; }
 }
 @media (min-width: 1024px) {
-  .hero-accent-square {
-    display: block;
-    position: absolute;
-    top: var(--hero-name-top);
-    right: max(var(--hero-accent-right), 128px);
-    width: clamp(32px, 3vw, 48px);
-    height: var(--hero-name-height);
-    z-index: 2;
-  }
-  .hero-accent-shape {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform: translateY(-50%);
-    border-radius: 4px;
-    background: var(--color-accent);
-    pointer-events: none;
-  }
-  .hero-accent-label {
-    position: absolute;
-    top: 0;
-    left: 100%;
-    display: flex;
-    align-items: center;
-    width: 120px;
-    height: 100%;
-    overflow: hidden;
-    pointer-events: none;
-  }
-  .hero-accent-text {
-    display: block;
-    width: 100%;
-    padding-left: 12px;
-    text-align: left;
-    transform: translateX(-100%);
-    opacity: 0;
-  }
   .hero {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-rows: minmax(0, 1fr);
@@ -206,9 +166,12 @@
     transform: translateY(-32px);
   }
   .hero-portrait {
-    position: relative;
-    left: -24%;
-    width: 100%;
+    position: absolute;
+    top: -64px;
+    right: 0;
+    bottom: 0;
+    width: 50%;
+    height: auto;
   }
   .hero-portrait img {
     height: 100%;
@@ -229,7 +192,19 @@
   pointer-events: auto;
   transition: box-shadow 180ms ease;
 }
-.header-logo { width: 48px; }
+.header-logo {
+  width: 48px;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(calc(-100% - 32px));
+  transition: transform 400ms ease, visibility 0s linear 400ms, box-shadow 180ms ease;
+}
+.header-logo.header-logo-visible {
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
 .site-header.header-scrolled .header-glass {
   box-shadow: 0 8px 30px rgb(0 0 0 / 22%);
 }
