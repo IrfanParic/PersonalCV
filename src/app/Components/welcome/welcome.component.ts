@@ -2,6 +2,7 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostList
 import type { gsap } from 'gsap';
 import type { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { loadGsap, scrollToSection, stickyHeaderHeight } from '../../platform/visual-tools';
+import { AboutComponent } from '../about/about.component';
 
 @Component({
   selector: 'app-welcome',
@@ -16,11 +17,13 @@ export class WelcomeComponent implements AfterViewInit, OnDestroy {
   readonly quoteLines = ['Small steps today.', 'Extraordinary things tomorrow.'].map(line => line.split(' '));
   @ViewChild('heroScene', { static: true }) private heroScene!: ElementRef<HTMLElement>;
   @ViewChild('quote', { static: true }) private quote!: ElementRef<HTMLElement>;
+  @ViewChild(AboutComponent) private aboutComponent!: AboutComponent;
   private readonly scrollLifetime = new AbortController();
   private resizeObserver?: ResizeObserver;
   private animationReady?: Promise<void>;
   private animationMedia?: gsap.MatchMedia;
   private quoteTrigger?: ScrollTrigger;
+  private sceneTimeline?: gsap.core.Timeline;
 
   ngAfterViewInit(): void {
     this.animationReady = this.initializeQuoteAnimation();
@@ -41,39 +44,146 @@ export class WelcomeComponent implements AfterViewInit, OnDestroy {
       const scene = this.heroScene.nativeElement;
       this.animationMedia = gsap.matchMedia(scene);
       this.animationMedia.add('(prefers-reduced-motion: no-preference)', () => {
-        scene.classList.add('hero-scene-animated');
+        scene.classList.add('hero-scene-animated', 'about-scene-animated');
+        const about = scene.querySelector<HTMLElement>('#about')!;
+        const stage = about.querySelector<HTMLElement>('.about-stage')!;
+        const composition = about.querySelector<HTMLElement>('.about-composition')!;
+        const card = about.querySelector<HTMLElement>('.about-card')!;
+        const download = about.querySelector<HTMLElement>('.about-download')!;
+        const hero = scene.querySelector<HTMLElement>('.hero')!;
         const words = scene.querySelectorAll('.quote-word');
+        let settledY = 0;
+        let overflow = 0;
+        let scrollUnit = window.innerHeight * 1.5;
+        const measure = () => {
+          // offset measurements ignore the current scroll and pointer transforms.
+          settledY = Math.max(0, 8 - composition.offsetTop);
+          overflow = Math.max(0, composition.offsetTop + settledY + composition.offsetHeight - stage.clientHeight + 8);
+          scrollUnit = window.innerHeight * 1.5;
+        };
+        measure();
         gsap.set(this.quote.nativeElement, { autoAlpha: 0 });
         gsap.set(words, { opacity: 0.25 });
         gsap.set('.quote-mark', { opacity: 0 });
+        gsap.set(about, { autoAlpha: 0 });
+        gsap.set('.about-glow, .about-particles', { autoAlpha: 0 });
+        this.aboutComponent.setParallaxReady(false);
+        about.inert = true;
+        about.setAttribute('aria-hidden', 'true');
         const timeline = gsap.timeline({
           defaults: { ease: 'none' },
-          scrollTrigger: {
-            trigger: scene,
-            pin: true,
-            start: () => `top top+=${stickyHeaderHeight()}`,
-            end: () => `+=${window.innerHeight * 1.5}`,
-            scrub: true,
-            invalidateOnRefresh: true,
-            onUpdate: () => this.updateActiveSection()
+          onUpdate: () => {
+            const visible = timeline.time() >= timeline.labels['aboutCentered'];
+            about.inert = !visible;
+            about.setAttribute('aria-hidden', String(!visible));
+            download.inert = timeline.time() < timeline.labels['headersComplete'];
+            hero.inert = timeline.time() >= timeline.labels['logoVisible'];
+            this.aboutComponent.setParallaxReady(timeline.time() >= timeline.labels['aboutReady']);
+            this.updateActiveSection();
           }
         });
         timeline
+          .set(composition, { y: () => settledY }, 0)
           .to('.hero-copy, .hero-portrait, .hero-scroll', { autoAlpha: 0, y: '-=80', duration: 0.25 }, 0)
           .to(this.quote.nativeElement, { autoAlpha: 1, duration: 0.12 }, 0.3)
           .to(words, { opacity: 1, duration: 0.06, stagger: { amount: 0.27 } }, 0.42)
           .to('.quote-mark', { opacity: 1, duration: 0.1 }, 0.75)
-          .to({}, { duration: 0.15 }, 0.85);
-        this.quoteTrigger = timeline.scrollTrigger;
+          .addLabel('logoVisible', 0.25)
+          .addLabel('quoteExplore', 0.48)
+          .addLabel('quoteComplete', 0.85)
+          .to({}, { duration: 0.25 }, 0.85)
+          .addLabel('aboutEnter', 1.1)
+          .to(this.quote.nativeElement, { autoAlpha: 0, duration: 0.4 }, 'aboutEnter')
+          .addLabel('quoteGone', 1.5)
+          .addLabel('cardEnter', 'quoteGone+=0.08')
+          .set(about, { autoAlpha: 1 }, 'cardEnter')
+          .fromTo(card, { autoAlpha: 0, scale: 0.78, z: -420, filter: 'blur(18px)' }, {
+            autoAlpha: 1, scale: 1, z: 0, filter: 'blur(0px)', duration: 0.8, ease: 'power2.out'
+          }, 'cardEnter')
+          .addLabel('aboutCentered', 'cardEnter+=0.8')
+          .addLabel('cardCentered', 'aboutCentered')
+          .set(card, { filter: 'none' }, 'aboutCentered')
+          .addLabel('surroundingsEnter', 'aboutCentered+=0.1')
+          .fromTo('.about-heading', {
+            autoAlpha: 0, y: (_: number, element: HTMLElement) => element.offsetHeight + 32
+          }, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 'surroundingsEnter')
+          .fromTo(download, {
+            autoAlpha: 0, y: () => download.offsetHeight + 32
+          }, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 'surroundingsEnter+=0.06')
+          .addLabel('headersComplete', 'surroundingsEnter+=0.56')
+          .fromTo('.about-tech', {
+            autoAlpha: 0,
+            x: (index: number, element: HTMLElement) => window.matchMedia('(max-width: 639px)').matches ? 0
+              : (index < 4 ? 1 : -1) * ((element.parentElement?.clientWidth ?? 0) + element.offsetWidth),
+            y: () => window.matchMedia('(max-width: 639px)').matches ? -48 : 0
+          }, { autoAlpha: 1, x: 0, y: 0, duration: 0.55, stagger: 0.04, ease: 'power2.out' }, 'surroundingsEnter+=0.02')
+          .addLabel('techComplete', 'surroundingsEnter+=0.85')
+          .addLabel('surroundingsComplete', 'techComplete')
+          .addLabel('lightEnter', 'surroundingsComplete+=0.08')
+          .to('.about-glow, .about-particles', { autoAlpha: 1, duration: 0.5, ease: 'sine.inOut' }, 'lightEnter')
+          .addLabel('aboutReady', 'lightEnter+=0.5');
+        // The first settled frame is the navigation destination. Short screens then
+        // traverse the rest of the composition before the scene releases its pin.
+        const travel = gsap.fromTo(composition, { y: () => settledY }, {
+          y: () => settledY - overflow,
+          duration: Math.max(0.0001, overflow / scrollUnit),
+          ease: 'none', immediateRender: false
+        });
+        timeline.add(travel, 'aboutReady+=0.25');
+        const hold = gsap.to({}, { duration: 0.45 });
+        timeline.add(hold, travel.endTime());
+        timeline.addLabel('overflowEnd', travel.endTime());
+        this.sceneTimeline = timeline;
+        this.quoteTrigger = ScrollTrigger.create({
+          animation: timeline,
+          trigger: scene,
+          pin: true,
+          start: () => `top top+=${stickyHeaderHeight()}`,
+          end: () => `+=${scrollUnit * timeline.duration()}`,
+          scrub: true,
+          invalidateOnRefresh: true,
+          onRefreshInit: () => {
+            measure();
+            travel.duration(Math.max(0.0001, overflow / scrollUnit));
+            hold.startTime(travel.endTime());
+            timeline.addLabel('overflowEnd', travel.endTime());
+          },
+          onUpdate: () => this.updateActiveSection()
+        });
+        let active = true;
+        let refreshFrame = 0;
+        const refresh = () => {
+          if (!active || refreshFrame) return;
+          refreshFrame = requestAnimationFrame(() => {
+            refreshFrame = 0;
+            if (active) ScrollTrigger.refresh();
+          });
+        };
+        // Observe only intrinsic content/header sizing, never the pin spacer.
+        const layoutObserver = new ResizeObserver(refresh);
+        layoutObserver.observe(composition);
+        const header = document.getElementById('header');
+        if (header) layoutObserver.observe(header);
+        void document.fonts.ready.then(refresh);
         this.updateActiveSection();
         return () => {
+          active = false;
+          cancelAnimationFrame(refreshFrame);
+          layoutObserver.disconnect();
           this.quoteTrigger = undefined;
-          scene.classList.remove('hero-scene-animated');
+          this.sceneTimeline = undefined;
+          about.inert = false;
+          download.inert = false;
+          hero.inert = false;
+          about.removeAttribute('aria-hidden');
+          this.aboutComponent.setParallaxReady(true);
+          scene.classList.remove('hero-scene-animated', 'about-scene-animated');
           this.updateActiveSection();
         };
       });
     } catch {
       this.animationMedia?.revert();
+      this.aboutComponent.setParallaxReady(true);
       // Keep both sections readable in normal flow if animation cannot load.
     }
     if (!this.scrollLifetime.signal.aborted) this.updateActiveSection();
@@ -82,13 +192,20 @@ export class WelcomeComponent implements AfterViewInit, OnDestroy {
   async explore(): Promise<void> {
     await this.animationReady;
     if (this.scrollLifetime.signal.aborted) return;
-    const trigger = this.quoteTrigger;
-    const target = trigger ? trigger.start + (trigger.end - trigger.start) * 0.48 : this.quote.nativeElement;
+    const target = this.scenePosition('quoteExplore') ?? this.quote.nativeElement;
     await scrollToSection(target, this.scrollLifetime.signal);
   }
 
-  scroll(section: HTMLElement): void {
-    void scrollToSection(section, this.scrollLifetime.signal);
+  async scroll(section: HTMLElement): Promise<void> {
+    await this.animationReady;
+    const target = section.id === 'about' ? this.scenePosition('aboutReady') ?? section : section;
+    void scrollToSection(target, this.scrollLifetime.signal);
+  }
+
+  private scenePosition(label: string): number | undefined {
+    if (!this.quoteTrigger || !this.sceneTimeline) return undefined;
+    return Math.ceil(this.quoteTrigger.start + (this.quoteTrigger.end - this.quoteTrigger.start)
+      * this.sceneTimeline.labels[label] / this.sceneTimeline.duration());
   }
 
   scrolltop(): void {
@@ -101,11 +218,14 @@ export class WelcomeComponent implements AfterViewInit, OnDestroy {
     this.headerScrolled = window.scrollY > 8;
     const threshold = stickyHeaderHeight() + 2;
     this.logoVisible = window.matchMedia('(max-width: 1023px)').matches || (this.quoteTrigger
-      ? this.quoteTrigger.progress >= 0.25
+      ? window.scrollY >= (this.scenePosition('logoVisible') ?? Infinity)
       : (this.heroScene.nativeElement.querySelector('.hero')?.getBoundingClientRect().bottom ?? Infinity) <= threshold);
     let active = 'home';
     for (const id of ['about', 'portfolio', 'contact']) {
-      if ((document.getElementById(id)?.getBoundingClientRect().top ?? Infinity) <= threshold) active = id;
+      const reached = id === 'about' && this.sceneTimeline
+        ? this.sceneTimeline.time() >= this.sceneTimeline.labels['aboutEnter']
+        : (document.getElementById(id)?.getBoundingClientRect().top ?? Infinity) <= threshold;
+      if (reached) active = id;
     }
     if (window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
       active = 'contact';

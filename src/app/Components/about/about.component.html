@@ -1,32 +1,41 @@
-<section aria-labelledby="about-title" class="border-y border-white/10 bg-surface/40">
-  <div class="mx-auto max-w-[1200px] px-5 py-20 sm:px-8 sm:py-24">
-    <p class="mb-3 text-sm tracking-[0.2em] text-accent uppercase">About</p>
-    <h2 id="about-title" class="mb-12 text-3xl font-bold tracking-tight sm:text-4xl">Who am I?</h2>
-    <div class="grid items-start gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16">
-      <div class="min-w-0">
-        <div class="overflow-hidden rounded-2xl border border-white/10 bg-surface">
-          <img src="assets/profile2.png" alt="Portrait of Irfan Paric" class="aspect-square w-full object-contain" loading="lazy" />
+<section aria-labelledby="about-title" class="about-stage">
+  <div class="about-glow" aria-hidden="true"></div>
+  <div class="about-particles" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="about-composition mx-auto w-full max-w-[1120px]">
+    <div class="about-parallax">
+      <div class="about-top-reveal">
+        <div class="about-heading">
+          <h2 id="about-title" class="about-depth">Who am I?</h2>
         </div>
-        <h3 class="mt-6 text-2xl font-semibold">Irfan Paric</h3>
-        <a href="assets/Irfan%20Parić%20CV.pdf" download class="mt-5 inline-flex items-center gap-4 rounded-lg border border-accent px-5 py-3 text-sm font-bold text-accent hover:bg-accent hover:text-canvas">DOWNLOAD CV <i class="bi bi-download" aria-hidden="true"></i></a>
-      </div>
-      <div class="space-y-9">
-        <p class="text-lg leading-relaxed text-muted">I hold a Bachelor of Computer Science degree from the University of Sarajevo School of Science and Technology, with strong understanding of mathematics, logic, and design principles. Currently, I am eager to further enhance my expertise in Software Development and UI/UX Design by acquiring advanced-level skills.</p>
-        <div class="border-t border-white/10 pt-8">
-          <h3 class="mb-4 text-xl font-semibold">What do I do?</h3>
-          <p class="leading-relaxed text-muted">I possess extensive expertise in navigating diverse development environments and mastering various programming languages. Proficient in Adobe Illustrator, Photoshop, and Figma for graphical design and UI/UX, I excel in frontend technologies such as Angular, React, and Vue, while also commanding backend frameworks including Node.js, Spring, and Laravel for comprehensive software development</p>
-        </div>
-        <div class="border-t border-white/10 pt-8">
-          <h3 class="mb-5 text-xl font-semibold">Technologies?</h3>
-          <ul class="flex flex-wrap gap-3" aria-label="Technologies I work with">
-            @for (technology of technologies; track technology.icon) {
-              <li class="flex h-16 w-16 items-center justify-center rounded-xl border border-white/10 bg-surface p-3" [attr.title]="technology.name">
-                <img [src]="'assets/icons/' + technology.icon + '_icon.png'" [alt]="technology.name" class="h-full w-full object-contain" loading="lazy" />
-              </li>
-            }
-          </ul>
+        <div class="about-download">
+          <div class="about-depth">
+            <a href="assets/Irfan%20Parić%20CV.pdf" download class="about-download-link inline-flex items-center justify-center gap-3 font-bold">
+              Download CV <i class="bi bi-download" aria-hidden="true"></i>
+            </a>
+          </div>
         </div>
       </div>
+      <div class="about-card">
+        <p>I’m Irfan, a software developer and UI/UX designer with a Computer Science degree from SSST. I combine thoughtful design and full-stack development to build intuitive web experiences.</p>
+        <a class="about-note" href="https://irfan-photography.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="I am a photographer as well — visit my photography portfolio (opens in a new tab)">
+          <span>I am a photographer as well</span>
+          <svg aria-hidden="true" viewBox="0 0 44 28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8c9 15 20 16 33 4M25 10l13-1-2 13" /></svg>
+        </a>
+      </div>
+      <ul class="about-technologies" aria-label="Technologies I work with">
+        @for (technology of technologies; track technology.icon) {
+          <li class="about-tech-reveal" [attr.title]="technology.name">
+            <div class="about-tech">
+              <div class="about-tech-depth">
+                <img [src]="'assets/icons/' + technology.icon + '_icon.png'" [alt]="technology.name" width="48" height="48" loading="lazy" />
+              </div>
+            </div>
+          </li>
+        }
+      </ul>
     </div>
   </div>
 </section>
