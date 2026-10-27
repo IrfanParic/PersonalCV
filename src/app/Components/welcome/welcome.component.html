@@ -1,54 +1,81 @@
-<header id="header" class="controllable">
-  <div class="header-content">
-    <div class="title">
-      <h1 id="headertitle" style="text-transform: uppercase" (click)="scrolltop()">irfanparic</h1>
+@if (loading) {
+  <div class="home-loader" [class.home-loader-leaving]="loaderLeaving" (transitionend)="loaderTransitionEnd($event)">
+    <div class="home-loader-glow" aria-hidden="true"></div>
+    <div class="home-loader-particles" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
     </div>
-    <div class="list">
-      <p (click)="scrolltop()">Home</p>
-      <p (click)="scroll(about)">About</p>
-      <p (click)="scroll(portfolio)">Portfolio</p>
-      <p (click)="scroll(contact)">Contact</p>
+    <div class="home-loader-detail">
+      <svg class="home-loader-cube" viewBox="0 0 200 200" width="160" height="160" fill="none" aria-hidden="true">
+        <ellipse class="home-loader-orbit" cx="100" cy="100" rx="86" ry="34" stroke="#60a5fa" stroke-opacity=".45" stroke-dasharray="4 8" />
+        <g stroke="#b7d7ff" stroke-width="1.5" stroke-linejoin="round">
+          <path d="M100 48 145 74 100 100 55 74Z" fill="#8ebfff" fill-opacity=".25" />
+          <path d="M55 74 100 100 100 152 55 126Z" fill="#397acc" fill-opacity=".25" />
+          <path d="M100 100 145 74 145 126 100 152Z" fill="#60a5fa" fill-opacity=".13" />
+        </g>
+      </svg>
+      <p role="status">Loading portfolio</p>
+      <div class="home-loader-track" aria-hidden="true"><span></span></div>
     </div>
-    <img src="../../../assets/logowhite.png" alt="logo" type="button"/>
+  </div>
+}
+<header [attr.inert]="loading ? '' : null" id="header" class="site-header sticky top-0 z-30" [class.header-scrolled]="headerScrolled">
+  <div class="mx-auto flex max-w-[1200px] items-center justify-between gap-2 px-3 py-3 sm:px-8 sm:py-4">
+    <nav aria-label="Main navigation" class="header-glass header-nav flex items-center text-xs font-medium sm:gap-2 sm:text-sm">
+      <button type="button" (click)="scrolltop()" class="nav-link" [class.nav-active]="activeSection === 'home'" [attr.aria-current]="activeSection === 'home' ? 'location' : null">Home</button>
+      <button type="button" (click)="scroll(about)" class="nav-link" [class.nav-active]="activeSection === 'about'" [attr.aria-current]="activeSection === 'about' ? 'location' : null">About</button>
+      <button type="button" (click)="scroll(portfolio)" class="nav-link" [class.nav-active]="activeSection === 'portfolio'" [attr.aria-current]="activeSection === 'portfolio' ? 'location' : null">Projects</button>
+      <button type="button" (click)="scroll(contact)" class="nav-link" [class.nav-active]="activeSection === 'contact'" [attr.aria-current]="activeSection === 'contact' ? 'location' : null">Contact</button>
+    </nav>
+    <button type="button" (click)="scrolltop()" aria-label="Irfan Paric, back to top" class="header-glass header-logo flex shrink-0 items-center justify-center"
+      [class.header-logo-visible]="logoVisible" [attr.inert]="logoVisible ? null : ''" [attr.aria-hidden]="logoVisible ? null : 'true'">
+      <img src="assets/logo.svg" alt="" class="h-7 w-7 object-contain sm:h-8 sm:w-8" loading="lazy" />
+    </button>
   </div>
 </header>
 
-<main id="main">
-  <div class="about-wrap">
-    <div class="bgimage">
-      <div class="introduction">
-        <div class="introtext">
-          <h1 data-aos="fade-right" data-aos-duration="1000">Hello there</h1>
-          <div style="display: flex" data-aos="fade-left" data-aos-duration="2000">
-            <h1 style="margin-right: 5%">I am</h1>
-            <div class="stack" style="--stacks: 3;">
-              <span style="--index: 0;"><h1>IRFAN</h1></span>
-              <span style="--index: 1;"><h1>IRFAN</h1></span>
-              <span style="--index: 2;"><h1>IRFAN</h1></span>
-            </div>
-          </div>
-          <br>
-          <h4 data-aos="fade-in" data-aos-duration="3000">Software Developer / UX & UI Designer</h4>
-          <a (click)="scroll(portfolio)" data-aos="fade-in" data-aos-duration="3000" class="shadow">
-            Unveil my work
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="#F5F5F5FF" d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg>
-          </a>
-        </div>
+<main id="main" [attr.inert]="loading ? '' : null">
+  <div #heroScene class="hero-scene">
+  <section aria-labelledby="hero-title" class="hero">
+    <div class="hero-atmosphere" aria-hidden="true">
+      <div class="hero-glow"></div>
+      <div class="hero-particles">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
       </div>
     </div>
+    <div class="hero-copy">
+      <p class="hero-intro">I am</p>
+      <h1 id="hero-title" class="hero-title">IRFAN PARIC</h1>
+      <p class="hero-role">Software Developer and Designer</p>
+    </div>
+    <div class="hero-portrait">
+      <img src="assets/irfan-hero-duotone.png" alt="Portrait of Irfan Paric" width="1162" height="1354" loading="eager" fetchpriority="high" />
+    </div>
+    <button type="button" (click)="explore()" class="hero-scroll">
+      Scroll to explore
+      <svg class="hero-scroll-arrows" viewBox="0 0 20 24" width="16" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="4,5 10,11 16,5" />
+        <polyline points="4,12 10,18 16,12" />
+      </svg>
+    </button>
+  </section>
+  <section #quote id="quote" class="quote-section" aria-label="Inspiration">
+    <blockquote class="hero-quote">
+      @for (line of quoteLines; track $index; let finalLine = $last) {
+        <span class="quote-line">
+          @for (word of line; track $index; let finalWord = $last) {
+            <span class="quote-word">{{ word }}</span>{{ finalWord ? '' : ' ' }}
+          }
+          @if (finalLine) {
+            <span class="quote-mark" aria-hidden="true">”</span>
+          }
+        </span>
+      }
+    </blockquote>
+  </section>
+  <div #about id="about" class="scroll-mt-36 sm:scroll-mt-24"><app-about></app-about></div>
   </div>
-
-  <div #about>
-    <app-about></app-about>
-  </div>
-
-  <div #portfolio>
-    <app-portfolio></app-portfolio>
-  </div>
-
-  <div #contact>
-    <app-contact></app-contact>
-  </div>
+  <div #portfolio id="portfolio" class="scroll-mt-36 sm:scroll-mt-24"><app-portfolio></app-portfolio></div>
+  <div #contact id="contact" class="scroll-mt-36 sm:scroll-mt-24"><app-contact></app-contact></div>
 </main>
-
-<app-footer></app-footer>
+<app-footer [attr.inert]="loading ? '' : null"></app-footer>

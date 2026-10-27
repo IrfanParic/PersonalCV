@@ -1,61 +1,41 @@
-<div class="information-wrap">
-  <div class="information">
-    <div class="picture">
-      <img src="../../../assets/profile2.png" alt="irfanparic">
-    </div>
-
-    <div class="text1 flip-card">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <h2>Who am I?</h2>
+<section aria-labelledby="about-title" class="about-stage">
+  <div class="about-glow" aria-hidden="true"></div>
+  <div class="about-particles" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="about-composition mx-auto w-full max-w-[1120px]">
+    <div class="about-parallax">
+      <div class="about-top-reveal">
+        <div class="about-heading">
+          <h2 id="about-title" class="about-depth">Who am I?</h2>
         </div>
-        <div class="flip-card-back">
-          <p>I hold a Bachelor of Computer Science degree from the University of Sarajevo School of Science and Technology, with strong understanding of mathematics, logic, and design principles. Currently, I am eager to further enhance my expertise in Software Development and UI/UX Design by acquiring advanced-level skills.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="text2 flip-card">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <h2>What do I do?</h2>
-        </div>
-        <div class="flip-card-back">
-          <p>I possess extensive expertise in navigating diverse development environments and mastering various programming languages. Proficient in Adobe Illustrator, Photoshop, and Figma for graphical design and UI/UX, I excel in frontend technologies such as Angular, React, and Vue, while also commanding backend frameworks including Node.js, Spring, and Laravel for comprehensive software development</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="techno flip-card">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <h2>Technologies?</h2>
-        </div>
-        <div class="flip-card-back">
-          <div class="icons">
-            <div>
-              <img src="../../../assets/icons/figma_icon.png" alt="figmalogo">
-            </div>
-            <div>
-              <img src="../../../assets/icons/react_icon.png" alt="reactlogo">
-              <img src="../../../assets/icons/angular_icon.png" alt="angularlogo">
-              <img src="../../../assets/icons/vue_icon.png" alt="vuelogo">
-            </div>
-            <div>
-              <img src="../../../assets/icons/nodejs_icon.png" alt="nodelogo">
-              <img src="../../../assets/icons/spring_icon.png" alt="springbootlogo">
-              <img src="../../../assets/icons/mysql_icon.png" alt="mysqllogo">
-              <img src="../../../assets/icons/postgree_icon.png" alt="postgreelogo">
-            </div>
+        <div class="about-download">
+          <div class="about-depth">
+            <a href="assets/Irfan%20Parić%20CV.pdf" download class="about-download-link inline-flex items-center justify-center gap-3 font-bold">
+              Download CV <i class="bi bi-download" aria-hidden="true"></i>
+            </a>
           </div>
         </div>
       </div>
-    </div>
-    <div class="name">
-      <h2>Irfan Paric</h2>
-    </div>
-    <div class="cv">
-      <a href="../../../assets/Irfan%20Parić%20CV.pdf" download> <h2>DOWNLOAD CV</h2></a>
+      <div class="about-card">
+        <p>I’m Irfan, a software developer and UI/UX designer with a Computer Science degree from SSST. I combine thoughtful design and full-stack development to build intuitive web experiences.</p>
+        <a class="about-note" href="https://irfan-photography.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="I am a photographer as well — visit my photography portfolio (opens in a new tab)">
+          <span>I am a photographer as well</span>
+          <svg aria-hidden="true" viewBox="0 0 44 28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8c9 15 20 16 33 4M25 10l13-1-2 13" /></svg>
+        </a>
+      </div>
+      <ul class="about-technologies" aria-label="Technologies I work with">
+        @for (technology of technologies; track technology.icon) {
+          <li class="about-tech-reveal" [attr.title]="technology.name">
+            <div class="about-tech">
+              <div class="about-tech-depth">
+                <img [src]="'assets/icons/' + technology.icon + '_icon.png'" [alt]="technology.name" width="48" height="48" loading="lazy" />
+              </div>
+            </div>
+          </li>
+        }
+      </ul>
     </div>
   </div>
-</div>
+</section>

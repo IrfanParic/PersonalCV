@@ -1,6 +1,9 @@
-<div class="footwraper">
-  <footer id="footer">
-    <img src="../../../assets/logowhite.png" alt="logo"/>
-    <h3>&copy; irfanparic</h3>
-  </footer>
-</div>
+<footer id="footer" class="border-t border-white/10 bg-[#0d0f13]">
+  <div class="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-3 px-5 py-4 sm:px-8">
+    <img src="assets/logo.svg" alt="Irfan Paric" class="h-8 w-8 object-contain" loading="lazy" />
+    <p class="text-sm text-muted">&copy; {{ year }} Irfan Paric</p>
+    <button type="button" (click)="scrolltop()" class="inline-flex min-h-11 items-center rounded-md px-2 py-2 text-sm text-muted transition-colors hover:text-accent">
+      Back to top
+    </button>
+  </div>
+</footer>
