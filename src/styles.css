@@ -276,7 +276,7 @@
   text-shadow: 1px 2px 0 #88a8d0, 2px 4px 0 #527ba9, 3px 6px 0 #2a4b76, 5px 12px 18px rgb(0 0 0 / 30%);
 }
 .about-download { bottom: 30px; right: 38px; }
-.about-download-link {
+.about-download-link, .contact-email-link {
   min-height: 52px;
   padding: 14px 21px;
   border: 1px solid rgb(174 211 255 / 55%);
@@ -286,13 +286,13 @@
   box-shadow: inset 0 1px 0 rgb(255 255 255 / 30%), 0 5px 0 #173e72, 0 12px 20px rgb(0 0 0 / 25%);
   font-size: 13px;
   white-space: nowrap;
-  transform: rotate(7deg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   transition: translate 170ms ease, box-shadow 170ms ease, filter 170ms ease;
 }
-.about-download-link:hover { filter: brightness(1.13); translate: 0 -2px; }
-.about-download-link:active { translate: 0 4px; box-shadow: inset 0 1px 0 rgb(255 255 255 / 25%), 0 1px 0 #173e72, 0 4px 9px rgb(0 0 0 / 22%); }
+.about-download-link { transform: rotate(7deg); }
+.about-download-link:hover, .contact-email-link:hover { filter: brightness(1.13); translate: 0 -2px; }
+.about-download-link:active, .contact-email-link:active { translate: 0 4px; box-shadow: inset 0 1px 0 rgb(255 255 255 / 25%), 0 1px 0 #173e72, 0 4px 9px rgb(0 0 0 / 22%); }
 .about-note {
   position: absolute;
   right: 24px;
@@ -393,7 +393,8 @@
   .about-tech img { width: 22px; height: 22px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .about-download-link, .about-note { transition: none; }
+  .about-download-link, .about-note, .contact-email-link { transition: none; }
+  .contact-email-link:hover, .contact-email-link:active { translate: none; }
 }
 
 .project-card {
