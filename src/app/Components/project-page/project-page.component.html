@@ -1,64 +1,73 @@
 @if (project(); as current) {
-  <header class="border-b border-white/10 bg-canvas">
-    <nav class="mx-auto flex max-w-[1200px] items-center justify-between gap-6 px-6 py-5" aria-label="Project navigation">
-      <a routerLink="/" class="inline-flex items-center gap-2 text-sm font-bold text-ink hover:text-accent"><i class="bi bi-arrow-left" aria-hidden="true"></i> Back to projects</a>
-      <a routerLink="/" aria-label="Irfan Parić home"><img src="assets/logo.svg" alt="" class="h-9 w-9 object-contain"></a>
+  <header id="header" class="site-header sticky top-0 z-30">
+    <nav class="project-nav mx-auto max-w-[1200px] gap-3 px-3 py-3 sm:px-8 sm:py-4" aria-label="Project navigation">
+      <h1 id="project-title" class="project-header-title header-glass px-5 py-2 font-heading text-2xl leading-tight font-bold text-ink sm:text-3xl">{{ current.name }}</h1>
+      <button type="button" (click)="scrolltop()" aria-label="Irfan Parić, back to top" class="header-glass header-logo header-logo-visible flex shrink-0 items-center justify-center justify-self-end"><img src="assets/logo.svg" alt="" class="h-7 w-7 object-contain sm:h-8 sm:w-8" loading="lazy"></button>
     </nav>
   </header>
-  <main class="mx-auto max-w-[1200px] px-6 py-16 md:py-24">
-    <p class="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-accent">Project / {{ current.purpose }}</p>
-    <h1 class="max-w-4xl font-heading text-4xl leading-tight font-bold text-ink sm:text-5xl md:text-6xl">{{ current.name }}</h1>
-    <div class="mt-12 grid items-center gap-10 lg:grid-cols-[1.4fr_1fr]">
-      <img [src]="'assets/' + current.img" [alt]="current.name + ' project preview'" class="w-full rounded-2xl border border-white/10 bg-surface object-contain">
-      <div class="space-y-6">
-        <span class="inline-block rounded-full border-2 px-4 py-2 text-sm text-ink" [style.border-color]="current.color">{{ current.role }}</span>
+  <main class="project-page px-6 pt-14 pb-10 sm:px-8 md:pt-16 md:pb-16">
+      <div class="about-glow" aria-hidden="true"></div>
+      <div class="about-particles" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+    <div class="mx-auto max-w-[1200px]">
+    <section class="project-overview" aria-labelledby="project-title">
+    <div class="grid items-stretch gap-8 lg:grid-cols-2 lg:gap-14">
+      <div class="project-preview mx-auto w-full max-w-[480px]">
+        <img [src]="'assets/' + current.img" [alt]="current.name + ' project preview'" loading="lazy" class="w-full rounded-2xl border border-white/10 bg-surface object-cover lg:absolute lg:inset-0 lg:h-full">
+      </div>
+      <div class="project-details">
+      <div class="project-details-content" role="region" aria-label="Project details">
+        <span class="project-role inline-block rounded-full px-3 py-1 text-xs font-bold" [style.--project-color]="current.color">{{ current.role }}</span>
         <p class="text-muted">{{ current.startDate }} — {{ current.endDate }}</p>
-        <p class="text-lg text-ink">{{ current.organization }}</p>
-        <div class="flex flex-wrap gap-3">
-          @if (current.pageLink) { <a [href]="current.pageLink" target="_blank" rel="noopener noreferrer" class="rounded-full bg-accent px-5 py-3 text-sm font-bold text-canvas">Visit website <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a> }
-          @if (current.gitLink) { <a [href]="current.gitLink" target="_blank" rel="noopener noreferrer" class="rounded-full border border-white/20 px-5 py-3 text-sm text-ink">GitHub <i class="bi bi-github" aria-hidden="true"></i></a> }
-          @if (current.behLink) { <a [href]="current.behLink" target="_blank" rel="noopener noreferrer" class="rounded-full border border-white/20 px-5 py-3 text-sm text-ink">Behance <i class="bi bi-behance" aria-hidden="true"></i></a> }
+        <div class="space-y-2 text-sm text-muted">
+          <p>Purpose: <span class="text-ink">{{ current.purpose }}</span></p>
+          <p>Organization: <span class="text-ink">{{ current.organization }}</span></p>
         </div>
+        <hr class="border-white/10">
+        <p class="text-base leading-relaxed text-muted">{{ current.description }}</p>
+        <div class="flex flex-wrap gap-3">
+          @if (current.pageLink) { <a [href]="current.pageLink" target="_blank" rel="noopener noreferrer" class="project-external-link inline-flex items-center gap-2 px-4 text-sm font-bold">Website <i class="bi bi-globe2" aria-hidden="true"></i></a> }
+          @if (current.gitLink) { <a [href]="current.gitLink" target="_blank" rel="noopener noreferrer" class="project-external-link inline-flex items-center gap-2 px-4 text-sm font-bold">GitHub <i class="bi bi-github" aria-hidden="true"></i></a> }
+          @if (current.behLink) { <a [href]="current.behLink" target="_blank" rel="noopener noreferrer" class="project-external-link inline-flex items-center gap-2 px-4 text-sm font-bold">Behance <i class="bi bi-behance" aria-hidden="true"></i></a> }
+        </div>
+      </div>
       </div>
     </div>
-    <section class="mt-20 grid gap-10 border-t border-white/10 pt-12 md:grid-cols-[1fr_2fr]" aria-labelledby="details-title">
-      <div>
-        <h2 id="details-title" class="font-heading text-2xl font-bold text-ink">Project details</h2>
-        <p class="mt-6 text-sm text-muted">Purpose: <span class="text-ink">{{ current.purpose }}</span></p>
-        <p class="mt-2 text-sm text-muted">Organization: <span class="text-ink">{{ current.organization }}</span></p>
-        <h3 class="mt-8 text-sm font-bold text-ink">Technologies</h3>
-        <div class="mt-4 flex flex-wrap gap-3">
+      <ul class="project-technologies" aria-label="Project technologies">
           @for (technology of current.technologies; track technology) {
-            <img [src]="'assets/icons/' + technology" [alt]="technologyName(technology)" [title]="technologyName(technology)" class="h-12 w-12 rounded-lg bg-surface p-2 object-contain">
+            <li [attr.title]="technologyName(technology)">
+              <div class="about-tech-depth"><img [src]="'assets/icons/' + technology" [alt]="technologyName(technology)" width="46" height="46" loading="lazy"></div>
+            </li>
           }
-        </div>
-      </div>
-      <div><h3 class="mb-4 text-sm font-bold text-accent">Description</h3><p class="text-lg leading-relaxed text-muted">{{ current.description }}</p></div>
+      </ul>
     </section>
     @if (current.gallery.length) {
-      <section class="mt-20 border-t border-white/10 pt-12" aria-labelledby="gallery-title">
-        <h2 id="gallery-title" class="mb-8 font-heading text-2xl font-bold text-ink">Gallery</h2>
+      <section class="mt-10" aria-labelledby="gallery-title">
+        <h2 id="gallery-title" class="mb-8 font-heading text-3xl font-bold tracking-tight text-ink sm:text-4xl">Gallery</h2>
         <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           @for (image of current.gallery; track image; let index = $index) {
-            <button #thumbnail type="button" (click)="openGallery(index, thumbnail)" [attr.aria-label]="'Open ' + current.name + ' image ' + (index + 1)" class="cursor-pointer overflow-hidden rounded-xl border border-white/10 bg-surface hover:border-accent">
-              <img [src]="'assets/mockups/' + image" [alt]="current.name + ' design ' + (index + 1)" loading="lazy" class="aspect-[4/3] w-full object-cover">
-            </button>
+            <figure>
+              <button #thumbnail type="button" (click)="openGallery(index, thumbnail)" [attr.aria-label]="'Open ' + current.name + ' image ' + (index + 1)" class="gallery-thumbnail project-external-link block w-full overflow-hidden rounded-xl">
+                <img [src]="'assets/mockups/' + image" [alt]="current.name + ' design ' + (index + 1)" loading="lazy" class="aspect-[4/3] w-full object-cover">
+              </button>
+              <figcaption class="mt-3 text-center text-sm text-muted">{{ index + 1 }}</figcaption>
+            </figure>
           }
         </div>
       </section>
-      <dialog #galleryDialog (close)="restoreFocus()" (keydown.arrowleft)="changeImage(-1)" (keydown.arrowright)="changeImage(1)" aria-labelledby="dialog-title" class="fixed inset-0 m-auto max-h-[95dvh] w-[calc(100%-2rem)] max-w-5xl overflow-y-auto rounded-2xl border border-white/20 bg-canvas p-4 text-ink backdrop:bg-black/85 sm:p-6">
-        <div class="mb-4 flex items-center justify-between gap-4">
-          <h2 id="dialog-title" class="font-heading font-bold">{{ current.name }}</h2>
-          <button type="button" autofocus (click)="closeGallery()" class="shrink-0 rounded-lg border border-white/20 px-4 py-2 hover:border-accent">Close</button>
-        </div>
-        <img [src]="'assets/mockups/' + current.gallery[imageIndex]" [alt]="current.name + ' design ' + (imageIndex + 1)" class="max-h-[65dvh] w-full object-contain">
-        <div class="mt-4 flex items-center justify-between gap-3">
-          <button type="button" (click)="changeImage(-1)" [disabled]="imageIndex === 0" class="rounded-lg border border-white/20 px-3 py-2 disabled:cursor-not-allowed disabled:opacity-40">Previous</button>
-          <p aria-live="polite" class="text-sm text-muted">{{ imageIndex + 1 }} / {{ current.gallery.length }}</p>
-          <button type="button" (click)="changeImage(1)" [disabled]="imageIndex === current.gallery.length - 1" class="rounded-lg border border-white/20 px-3 py-2 disabled:cursor-not-allowed disabled:opacity-40">Next</button>
-        </div>
+      <dialog #galleryDialog (close)="onGalleryClose()" (keydown.arrowleft)="$event.preventDefault(); changeImage(-1)" (keydown.arrowright)="$event.preventDefault(); changeImage(1)" [attr.aria-label]="current.name + ' gallery'" class="gallery-viewer text-ink">
+        <button type="button" autofocus (click)="closeGallery()" aria-label="Close gallery" class="gallery-control gallery-close project-external-link"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
+        <button type="button" (click)="changeImage(-1)" [disabled]="imageIndex === 0" aria-label="Previous image" class="gallery-control gallery-previous project-external-link"><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
+        @if (galleryOpen()) {
+          <img [src]="'assets/mockups/' + current.gallery[imageIndex]" [alt]="current.name + ' design ' + (imageIndex + 1)" loading="lazy" draggable="false" (touchstart)="startSwipe($event)" (touchend)="endSwipe($event)" (touchcancel)="cancelSwipe()" class="gallery-viewer-image">
+        }
+        <button type="button" (click)="changeImage(1)" [disabled]="imageIndex === current.gallery.length - 1" aria-label="Next image" class="gallery-control gallery-next project-external-link"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+        <p aria-live="polite" aria-atomic="true" class="gallery-counter text-sm text-muted">{{ imageIndex + 1 }} / {{ current.gallery.length }}</p>
       </dialog>
     }
+    </div>
   </main>
   <app-footer></app-footer>
 } @else {

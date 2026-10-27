@@ -1,4 +1,24 @@
-<header id="header" class="site-header sticky top-0 z-30" [class.header-scrolled]="headerScrolled">
+@if (loading) {
+  <div class="home-loader" [class.home-loader-leaving]="loaderLeaving" (transitionend)="loaderTransitionEnd($event)">
+    <div class="home-loader-glow" aria-hidden="true"></div>
+    <div class="home-loader-particles" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="home-loader-detail">
+      <svg class="home-loader-cube" viewBox="0 0 200 200" width="160" height="160" fill="none" aria-hidden="true">
+        <ellipse class="home-loader-orbit" cx="100" cy="100" rx="86" ry="34" stroke="#60a5fa" stroke-opacity=".45" stroke-dasharray="4 8" />
+        <g stroke="#b7d7ff" stroke-width="1.5" stroke-linejoin="round">
+          <path d="M100 48 145 74 100 100 55 74Z" fill="#8ebfff" fill-opacity=".25" />
+          <path d="M55 74 100 100 100 152 55 126Z" fill="#397acc" fill-opacity=".25" />
+          <path d="M100 100 145 74 145 126 100 152Z" fill="#60a5fa" fill-opacity=".13" />
+        </g>
+      </svg>
+      <p role="status">Loading portfolio</p>
+      <div class="home-loader-track" aria-hidden="true"><span></span></div>
+    </div>
+  </div>
+}
+<header [attr.inert]="loading ? '' : null" id="header" class="site-header sticky top-0 z-30" [class.header-scrolled]="headerScrolled">
   <div class="mx-auto flex max-w-[1200px] items-center justify-between gap-2 px-3 py-3 sm:px-8 sm:py-4">
     <nav aria-label="Main navigation" class="header-glass header-nav flex items-center text-xs font-medium sm:gap-2 sm:text-sm">
       <button type="button" (click)="scrolltop()" class="nav-link" [class.nav-active]="activeSection === 'home'" [attr.aria-current]="activeSection === 'home' ? 'location' : null">Home</button>
@@ -8,21 +28,28 @@
     </nav>
     <button type="button" (click)="scrolltop()" aria-label="Irfan Paric, back to top" class="header-glass header-logo flex shrink-0 items-center justify-center"
       [class.header-logo-visible]="logoVisible" [attr.inert]="logoVisible ? null : ''" [attr.aria-hidden]="logoVisible ? null : 'true'">
-      <img src="assets/logo.svg" alt="" class="h-7 w-7 object-contain sm:h-8 sm:w-8" fetchpriority="high" />
+      <img src="assets/logo.svg" alt="" class="h-7 w-7 object-contain sm:h-8 sm:w-8" loading="lazy" />
     </button>
   </div>
 </header>
 
-<main id="main">
+<main id="main" [attr.inert]="loading ? '' : null">
   <div #heroScene class="hero-scene">
   <section aria-labelledby="hero-title" class="hero">
+    <div class="hero-atmosphere" aria-hidden="true">
+      <div class="hero-glow"></div>
+      <div class="hero-particles">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </div>
     <div class="hero-copy">
       <p class="hero-intro">I am</p>
       <h1 id="hero-title" class="hero-title">IRFAN PARIC</h1>
       <p class="hero-role">Software Developer and Designer</p>
     </div>
     <div class="hero-portrait">
-      <img src="assets/irfan-hero-duotone.png" alt="Portrait of Irfan Paric" width="1162" height="1354" fetchpriority="high" />
+      <img src="assets/irfan-hero-duotone.png" alt="Portrait of Irfan Paric" width="1162" height="1354" loading="eager" fetchpriority="high" />
     </div>
     <button type="button" (click)="explore()" class="hero-scroll">
       Scroll to explore
@@ -51,4 +78,4 @@
   <div #portfolio id="portfolio" class="scroll-mt-36 sm:scroll-mt-24"><app-portfolio></app-portfolio></div>
   <div #contact id="contact" class="scroll-mt-36 sm:scroll-mt-24"><app-contact></app-contact></div>
 </main>
-<app-footer></app-footer>
+<app-footer [attr.inert]="loading ? '' : null"></app-footer>

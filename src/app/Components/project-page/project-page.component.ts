@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { Project } from '../../Models/project';
 import { ProjectService } from '../../Services/project.service';
+import { scrollToSection } from '../../platform/visual-tools';
 
 @Component({
   selector: 'app-project-page',
@@ -14,11 +15,18 @@ import { ProjectService } from '../../Services/project.service';
 export class ProjectPageComponent {
   readonly project = signal<Project | undefined>(undefined);
   imageIndex = 0;
+  readonly galleryOpen = signal(false);
   @ViewChild('galleryDialog') galleryDialog?: ElementRef<HTMLDialogElement>;
   private galleryTrigger?: HTMLElement;
+  private swipeStart?: { id: number; x: number; y: number };
   private readonly destroyRef = inject(DestroyRef);
+  private readonly scrollLifetime = new AbortController();
 
   constructor(route: ActivatedRoute, projectService: ProjectService) {
+    this.destroyRef.onDestroy(() => {
+      this.scrollLifetime.abort();
+      this.closeGallery();
+    });
     route.paramMap.pipe(
       switchMap(params => projectService.getProjectById(params.get('projectId') ?? '')),
       takeUntilDestroyed(this.destroyRef),
@@ -29,17 +37,28 @@ export class ProjectPageComponent {
     });
   }
 
+  scrolltop(): void {
+    void scrollToSection(0, this.scrollLifetime.signal);
+  }
+
   openGallery(index: number, trigger: HTMLElement): void {
+    const dialog = this.galleryDialog?.nativeElement;
+    if (!dialog) return;
     this.imageIndex = index;
     this.galleryTrigger = trigger;
-    this.galleryDialog?.nativeElement.showModal();
+    this.galleryOpen.set(true);
+    dialog.showModal();
   }
 
   closeGallery(): void {
+    this.swipeStart = undefined;
+    this.galleryOpen.set(false);
     this.galleryDialog?.nativeElement.close();
   }
 
-  restoreFocus(): void {
+  onGalleryClose(): void {
+    this.swipeStart = undefined;
+    this.galleryOpen.set(false);
     this.galleryTrigger?.focus();
     this.galleryTrigger = undefined;
   }
@@ -50,6 +69,29 @@ export class ProjectPageComponent {
     if (project && next >= 0 && next < project.gallery.length) {
       this.imageIndex = next;
     }
+  }
+
+  startSwipe(event: TouchEvent): void {
+    const touch = event.touches[0];
+    this.swipeStart = event.touches.length === 1
+      ? { id: touch.identifier, x: touch.clientX, y: touch.clientY } : undefined;
+  }
+
+  endSwipe(event: TouchEvent): void {
+    const start = this.swipeStart;
+    this.swipeStart = undefined;
+    if (!start || event.touches.length) return;
+    const touch = Array.from(event.changedTouches).find(touch => touch.identifier === start.id);
+    if (!touch) return;
+    const horizontal = touch.clientX - start.x;
+    const vertical = touch.clientY - start.y;
+    if (Math.abs(horizontal) >= 40 && Math.abs(horizontal) > Math.abs(vertical) * 1.2) {
+      this.changeImage(horizontal < 0 ? 1 : -1);
+    }
+  }
+
+  cancelSwipe(): void {
+    this.swipeStart = undefined;
   }
 
   technologyName(filename: string): string {

@@ -28,6 +28,7 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               { "glob": "favicon*", "input": "src", "output": "/" },
+              { "glob": "robots.txt", "input": "src", "output": "/" },
               "src/assets"
             ],
             "styles": [

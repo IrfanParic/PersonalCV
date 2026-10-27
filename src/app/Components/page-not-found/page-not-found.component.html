@@ -1,5 +1,30 @@
-<main class="mx-auto flex min-h-screen max-w-[1200px] flex-col items-start justify-center px-5 py-20 sm:px-8">
+<main class="not-found-page mx-auto flex min-h-screen max-w-[1200px] flex-col items-start justify-center px-5 py-20 sm:px-8">
+  <div class="not-found-atmosphere" aria-hidden="true">
+    <div class="hero-glow"></div>
+    <div class="hero-particles">
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <svg class="not-found-orbit" viewBox="0 0 480 480" fill="none">
+      <defs>
+        <linearGradient id="not-found-glass" x1="180" y1="165" x2="305" y2="310" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#b6d8ff" stop-opacity=".35" />
+          <stop offset="1" stop-color="#3474ce" stop-opacity=".08" />
+        </linearGradient>
+      </defs>
+      <ellipse cx="240" cy="240" rx="202" ry="88" transform="rotate(-32 240 240)" stroke="#75b2ff" stroke-opacity=".3" stroke-dasharray="6 10" />
+      <path d="M93 334C35 311 58 239 115 181" stroke="#a7d1ff" stroke-opacity=".65" stroke-linecap="round" />
+      <circle cx="93" cy="334" r="5" fill="#9bcaff" />
+      <circle cx="389" cy="135" r="3" fill="#9bcaff" fill-opacity=".65" />
+      <g class="not-found-cube" stroke="#a7d1ff" stroke-opacity=".65" stroke-linejoin="round">
+        <path d="m240 163 68 39v78l-68 39-68-39v-78z" fill="url(#not-found-glass)" />
+        <path d="m172 202 68 39 68-39M240 241v78M240 163v78" />
+        <path d="m172 280 68-39 68 39" stroke-dasharray="4 7" stroke-opacity=".2" />
+      </g>
+      <path d="m335 332 10 10m0-10-10 10M123 115v12m-6-6h12" stroke="#8fbfff" stroke-opacity=".55" stroke-linecap="round" />
+    </svg>
+  </div>
   <p class="mb-5 text-sm tracking-[0.2em] text-accent uppercase">404 error</p>
   <h1 class="max-w-2xl text-5xl leading-tight font-bold tracking-tight sm:text-7xl">Page not found</h1>
-  <a routerLink="/" class="mt-10 inline-flex items-center gap-4 rounded-lg bg-accent px-6 py-3.5 font-bold text-canvas hover:bg-blue-300"><i class="bi bi-arrow-left" aria-hidden="true"></i> Let's go back</a>
+  <a routerLink="/" class="project-external-link mt-10 inline-flex items-center justify-center px-6 py-3.5 font-bold">Let's go back</a>
 </main>

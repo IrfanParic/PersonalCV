@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { SeoService } from './Services/seo.service';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'irfanparic';
+
+  constructor(seo: SeoService) {
+    seo.initialize();
+  }
 }
