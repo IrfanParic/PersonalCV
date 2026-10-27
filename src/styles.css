@@ -477,10 +477,11 @@ html:has(.gallery-viewer[open]), body:has(.gallery-viewer[open]) { overflow: hid
 .gallery-counter { grid-area: 3 / 1 / 4 / -1; text-align: center; }
 @media (max-width: 767px), (max-height: 500px) and (pointer: coarse) {
   .gallery-viewer { padding-inline: 0; }
-  .gallery-viewer[open] { grid-template-columns: minmax(0, 1fr); }
-  .gallery-close { grid-area: 1 / 1; justify-self: end; margin-right: max(16px, env(safe-area-inset-right)); }
-  .gallery-previous, .gallery-next { display: none; }
-  .gallery-viewer-image { grid-area: 2 / 1; }
+  .gallery-viewer[open] { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: 44px minmax(0, 1fr) auto 44px; }
+  .gallery-close { grid-area: 1 / 2; justify-self: end; margin-right: max(16px, env(safe-area-inset-right)); }
+  .gallery-previous { grid-area: 4 / 1; justify-self: end; }
+  .gallery-next { grid-area: 4 / 2; justify-self: start; }
+  .gallery-viewer-image { grid-area: 2 / 1 / 3 / -1; }
 }
 @media (prefers-reduced-motion: no-preference) {
   .project-technologies li:nth-child(2n) .about-tech-depth { animation-delay: -2s; animation-duration: 6s; }

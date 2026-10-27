@@ -44,7 +44,7 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
         for (const card of cards) {
           if (this.revealed.has(card)) continue;
           gsap.fromTo(card, { autoAlpha: 0, y: 24 }, {
-            autoAlpha: 1, y: 0, duration: 0.8, ease: 'power2.out',
+            autoAlpha: 1, y: 0, duration: 2, ease: 'sine.inOut',
             onStart: () => { this.revealed.add(card); },
             onComplete: () => { gsap.set(card, { clearProps: 'opacity,visibility,transform' }); },
             scrollTrigger: {

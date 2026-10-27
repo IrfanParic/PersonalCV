@@ -150,7 +150,11 @@ export class WelcomeComponent implements AfterViewInit, OnDestroy {
           return () => lifetime.abort();
         },
       ));
-      this.animationMedia.add('(prefers-reduced-motion: no-preference)', () => {
+      this.animationMedia.add({
+        mobile: '(width < 640px) and (prefers-reduced-motion: no-preference)',
+        desktop: '(width >= 640px) and (prefers-reduced-motion: no-preference)'
+      }, context => {
+        const mobile = Boolean(context.conditions?.['mobile']);
         scene.classList.add('hero-scene-animated', 'about-scene-animated');
         const about = scene.querySelector<HTMLElement>('#about')!;
         const stage = about.querySelector<HTMLElement>('.about-stage')!;
@@ -205,30 +209,30 @@ export class WelcomeComponent implements AfterViewInit, OnDestroy {
           .addLabel('cardEnter', 'quoteGone+=0.08')
           .set(about, { autoAlpha: 1 }, 'cardEnter')
           .fromTo(card, { autoAlpha: 0, scale: 0.78, z: -420, filter: 'blur(18px)' }, {
-            autoAlpha: 1, scale: 1, z: 0, filter: 'blur(0px)', duration: 0.8, ease: 'power2.out'
+            autoAlpha: 1, scale: 1, z: 0, filter: 'blur(0px)', duration: mobile ? 0.45 : 0.8, ease: 'power2.out'
           }, 'cardEnter')
-          .addLabel('aboutCentered', 'cardEnter+=0.8')
+          .addLabel('aboutCentered', mobile ? 'cardEnter+=0.45' : 'cardEnter+=0.8')
           .addLabel('cardCentered', 'aboutCentered')
           .set(card, { filter: 'none' }, 'aboutCentered')
-          .addLabel('surroundingsEnter', 'aboutCentered+=0.1')
+          .addLabel('surroundingsEnter', mobile ? 'cardEnter+=0.15' : 'aboutCentered+=0.1')
           .fromTo('.about-heading', {
             autoAlpha: 0, y: (_: number, element: HTMLElement) => element.offsetHeight + 32
-          }, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 'surroundingsEnter')
+          }, { autoAlpha: 1, y: 0, duration: mobile ? 0.35 : 0.5, ease: 'power2.out' }, 'surroundingsEnter')
           .fromTo(download, {
             autoAlpha: 0, y: () => download.offsetHeight + 32
-          }, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 'surroundingsEnter+=0.06')
-          .addLabel('headersComplete', 'surroundingsEnter+=0.56')
+          }, { autoAlpha: 1, y: 0, duration: mobile ? 0.35 : 0.5, ease: 'power2.out' }, mobile ? 'surroundingsEnter' : 'surroundingsEnter+=0.06')
+          .addLabel('headersComplete', mobile ? 'surroundingsEnter+=0.35' : 'surroundingsEnter+=0.56')
           .fromTo('.about-tech', {
             autoAlpha: 0,
-            x: (index: number, element: HTMLElement) => window.matchMedia('(max-width: 639px)').matches ? 0
+            x: (index: number, element: HTMLElement) => mobile ? 0
               : (index < 4 ? 1 : -1) * ((element.parentElement?.clientWidth ?? 0) + element.offsetWidth),
-            y: () => window.matchMedia('(max-width: 639px)').matches ? -48 : 0
-          }, { autoAlpha: 1, x: 0, y: 0, duration: 0.55, stagger: 0.04, ease: 'power2.out' }, 'surroundingsEnter+=0.02')
-          .addLabel('techComplete', 'surroundingsEnter+=0.85')
+            y: mobile ? -48 : 0
+          }, { autoAlpha: 1, x: 0, y: 0, duration: mobile ? 0.4 : 0.55, stagger: mobile ? 0.015 : 0.04, ease: 'power2.out' }, mobile ? 'surroundingsEnter' : 'surroundingsEnter+=0.02')
+          .addLabel('techComplete', mobile ? 'surroundingsEnter+=0.505' : 'surroundingsEnter+=0.85')
           .addLabel('surroundingsComplete', 'techComplete')
-          .addLabel('lightEnter', 'surroundingsComplete+=0.08')
-          .to('.about-glow, .about-particles', { autoAlpha: 1, duration: 0.5, ease: 'sine.inOut' }, 'lightEnter')
-          .addLabel('aboutReady', 'lightEnter+=0.5');
+          .addLabel('lightEnter', mobile ? 'surroundingsEnter' : 'surroundingsComplete+=0.08')
+          .to('.about-glow, .about-particles', { autoAlpha: 1, duration: mobile ? 0.4 : 0.5, ease: 'sine.inOut' }, 'lightEnter')
+          .addLabel('aboutReady', mobile ? 'surroundingsComplete' : 'lightEnter+=0.5');
         // The first settled frame is the navigation destination. Short screens then
         // traverse the rest of the composition before the scene releases its pin.
         const travel = gsap.fromTo(composition, { y: () => settledY }, {
@@ -236,8 +240,8 @@ export class WelcomeComponent implements AfterViewInit, OnDestroy {
           duration: Math.max(0.0001, overflow / scrollUnit),
           ease: 'none', immediateRender: false
         });
-        timeline.add(travel, 'aboutReady+=0.25');
-        const hold = gsap.to({}, { duration: 0.45 });
+        timeline.add(travel, mobile ? 'aboutReady+=0.08' : 'aboutReady+=0.25');
+        const hold = gsap.to({}, { duration: mobile ? 0.12 : 0.45 });
         timeline.add(hold, travel.endTime());
         timeline.addLabel('overflowEnd', travel.endTime());
         this.sceneTimeline = timeline;
