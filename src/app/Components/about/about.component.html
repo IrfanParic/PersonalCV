@@ -27,7 +27,7 @@
       </div>
       <ul class="about-technologies" aria-label="Technologies I work with">
         @for (technology of technologies; track technology.icon) {
-          <li class="about-tech-reveal" [attr.title]="technology.name">
+          <li class="about-tech-reveal max-[640px]:[clip-path:none]!" [attr.title]="technology.name">
             <div class="about-tech">
               <div class="about-tech-depth">
                 <img [src]="'assets/icons/' + technology.icon + '_icon.png'" [alt]="technology.name" width="48" height="48" loading="lazy" />

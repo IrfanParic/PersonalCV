@@ -50,7 +50,7 @@ export class SeoService {
     const description = project?.description ?? (isHome ? HOME_DESCRIPTION
       : unavailable ? 'This page is currently not available.' : 'Page not found.');
 
-    this.title.setTitle(title);
+    this.title.setTitle(title.replace('Irfan Parić', 'Irfan Paric'));
     this.meta.updateTag({ name: 'description', content: description });
     this.meta.updateTag({ name: 'robots', content: isHome || project ? 'index, follow' : 'noindex, follow' });
     this.meta.updateTag({ property: 'og:site_name', content: 'Irfan Parić' });
