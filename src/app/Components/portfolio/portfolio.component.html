@@ -1,36 +1,35 @@
 <section aria-label="Projects" class="mx-auto max-w-[1200px] space-y-20 px-5 py-20 sm:px-8 sm:py-24">
   <ng-template #projectCard let-project>
-    <article class="flex min-w-0 flex-col overflow-hidden rounded-2xl border border-white/10 bg-surface">
-      <a [routerLink]="['/project-page', project.id]" [attr.aria-label]="'Read more about ' + project.name" class="block border-b border-white/10 bg-canvas/30">
-        <img [src]="'assets/' + project.img" [alt]="project.name + ' project preview'" class="aspect-[16/10] w-full object-contain" loading="lazy" />
+    <article class="project-card flex min-w-0 flex-col overflow-hidden md:flex-row">
+      <a [routerLink]="['/project-page', project.id]" [attr.aria-label]="'Read more about ' + project.name" class="relative block aspect-[16/10] shrink-0 border-b border-white/10 bg-canvas/30 md:aspect-auto md:w-1/3 md:border-r md:border-b-0">
+        <img [src]="'assets/' + project.img" [alt]="project.name + ' project preview'" class="absolute inset-0 h-full w-full object-cover" loading="lazy" />
       </a>
-      <div class="flex flex-1 flex-col items-start p-6 sm:p-8">
+      <div class="flex min-w-0 flex-1 flex-col items-start p-6 sm:p-8">
         <p class="mb-3 text-sm text-muted">{{ project.startDate }} – {{ project.endDate }}</p>
-        <h3 class="mb-4 text-xl leading-snug font-semibold sm:text-2xl">{{ project.name }}</h3>
-        <span class="mb-5 rounded-full border px-3 py-1 text-xs font-bold" [style.border-color]="project.color">{{ project.role }}</span>
-        <p class="mb-7 leading-relaxed text-muted">{{ project.description }}</p>
-        <div class="mt-auto flex w-full flex-wrap items-center justify-between gap-5 border-t border-white/10 pt-5">
-          <a [routerLink]="['/project-page', project.id]" [attr.aria-label]="'Read more about ' + project.name" class="inline-flex items-center gap-3 font-bold text-accent hover:text-blue-300">Read more <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
-          <div class="flex items-center gap-5 text-xl text-muted">
+        <div class="mb-5 flex w-full flex-wrap items-center gap-x-4 gap-y-3">
+          <h3 class="min-w-0 text-xl leading-snug font-semibold sm:text-2xl">{{ project.name }}</h3>
+          <div class="flex shrink-0 items-center gap-3 text-xl">
             @if (project.pageLink) {
-              <a [href]="project.pageLink" target="_blank" rel="noopener noreferrer" [attr.aria-label]="project.name + ' website (opens in a new tab)'" class="hover:text-ink"><i class="bi bi-globe2" aria-hidden="true"></i></a>
+              <a [href]="project.pageLink" target="_blank" rel="noopener noreferrer" [attr.aria-label]="project.name + ' website (opens in a new tab)'" class="project-external-link inline-flex items-center justify-center"><i class="bi bi-globe2" aria-hidden="true"></i></a>
             }
             @if (project.gitLink) {
-              <a [href]="project.gitLink" target="_blank" rel="noopener noreferrer" [attr.aria-label]="project.name + ' on GitHub (opens in a new tab)'" class="hover:text-ink"><i class="bi bi-github" aria-hidden="true"></i></a>
+              <a [href]="project.gitLink" target="_blank" rel="noopener noreferrer" [attr.aria-label]="project.name + ' on GitHub (opens in a new tab)'" class="project-external-link inline-flex items-center justify-center"><i class="bi bi-github" aria-hidden="true"></i></a>
             }
             @if (project.behLink) {
-              <a [href]="project.behLink" target="_blank" rel="noopener noreferrer" [attr.aria-label]="project.name + ' on Behance (opens in a new tab)'" class="hover:text-ink"><i class="bi bi-behance" aria-hidden="true"></i></a>
+              <a [href]="project.behLink" target="_blank" rel="noopener noreferrer" [attr.aria-label]="project.name + ' on Behance (opens in a new tab)'" class="project-external-link inline-flex items-center justify-center"><i class="bi bi-behance" aria-hidden="true"></i></a>
             }
           </div>
         </div>
+        <span class="project-role mb-5 rounded-full px-3 py-1 text-xs font-bold" [style.--project-color]="project.color">{{ project.role }}</span>
+        <p class="mb-5 line-clamp-2 leading-relaxed text-muted">{{ project.description }}</p>
+        <a [routerLink]="['/project-page', project.id]" [attr.aria-label]="'Read more about ' + project.name" class="project-external-link mt-auto inline-flex items-center justify-center px-4 text-sm font-bold md:self-end">Read more</a>
       </div>
     </article>
   </ng-template>
   @if (currentProjects.length) {
     <div>
-      <p class="mb-3 text-sm tracking-[0.2em] text-accent uppercase">Now</p>
       <h2 class="mb-10 text-3xl font-bold tracking-tight sm:text-4xl">Current occupation</h2>
-      <div class="grid gap-7 md:grid-cols-2">
+      <div class="grid gap-14">
         @for (project of currentProjects; track project.id) {
           <ng-container [ngTemplateOutlet]="projectCard" [ngTemplateOutletContext]="{ $implicit: project }"></ng-container>
         }
@@ -38,9 +37,8 @@
     </div>
   }
   <div>
-    <p class="mb-3 text-sm tracking-[0.2em] text-accent uppercase">Projects</p>
     <h2 class="mb-10 text-3xl font-bold tracking-tight sm:text-4xl">Featured Projects</h2>
-    <div class="grid gap-7 md:grid-cols-2">
+    <div class="grid gap-14">
       @for (project of projects; track project.id) {
         <ng-container [ngTemplateOutlet]="projectCard" [ngTemplateOutletContext]="{ $implicit: project }"></ng-container>
       }

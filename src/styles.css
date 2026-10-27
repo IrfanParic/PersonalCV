@@ -395,3 +395,36 @@
 @media (prefers-reduced-motion: reduce) {
   .about-download-link, .about-note { transition: none; }
 }
+
+.project-card {
+  border: 1px solid rgb(180 211 255 / 19%);
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgb(137 184 255 / 10%), rgb(34 58 96 / 12%) 65%, rgb(104 143 215 / 7%));
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 7%), 0 24px 65px rgb(0 5 18 / 23%);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+.project-role {
+  border: 1px solid var(--project-color);
+  color: #eff7ff;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--project-color) 45%, #182232), color-mix(in srgb, var(--project-color) 22%, #182232));
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 25%), 0 3px 0 color-mix(in srgb, var(--project-color) 35%, #111318), 0 7px 12px rgb(0 0 0 / 20%);
+}
+.project-external-link {
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid rgb(174 211 255 / 40%);
+  border-radius: 9px;
+  color: #eff7ff;
+  background: linear-gradient(145deg, rgb(71 144 238 / 25%), rgb(36 84 153 / 20%));
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 25%), 0 4px 0 #173e72, 0 9px 16px rgb(0 0 0 / 25%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: translate 170ms ease, box-shadow 170ms ease, filter 170ms ease;
+}
+.project-external-link:hover { filter: brightness(1.13); translate: 0 -2px; }
+.project-external-link:active { translate: 0 3px; box-shadow: inset 0 1px 0 rgb(255 255 255 / 25%), 0 1px 0 #173e72, 0 4px 9px rgb(0 0 0 / 22%); }
+@media (prefers-reduced-motion: reduce) {
+  .project-external-link { transition: none; }
+  .project-external-link:hover, .project-external-link:active { translate: none; }
+}
