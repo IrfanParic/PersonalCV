@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, NgZone, OnDestroy } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, Component, ElementRef, NgZone, OnDestroy } from '@angular/core';
 import type { gsap } from 'gsap';
 import { loadGsap } from '../../platform/visual-tools';
 
@@ -8,7 +8,7 @@ import { loadGsap } from '../../platform/visual-tools';
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
-export class AboutComponent implements AfterViewInit, OnDestroy {
+export class AboutComponent implements OnDestroy {
   private animationMedia?: gsap.MatchMedia;
   private destroyed = false;
   private parallaxReady = false;
@@ -25,10 +25,8 @@ export class AboutComponent implements AfterViewInit, OnDestroy {
     { name: 'PostgreSQL', icon: 'postgree' }
   ];
 
-  constructor(private readonly element: ElementRef<HTMLElement>, private readonly zone: NgZone) {}
-
-  ngAfterViewInit(): void {
-    this.zone.runOutsideAngular(() => void this.initializeParallax());
+  constructor(private readonly element: ElementRef<HTMLElement>, private readonly zone: NgZone) {
+    afterNextRender(() => this.zone.runOutsideAngular(() => void this.initializeParallax()));
   }
 
   setParallaxReady(ready: boolean): void {

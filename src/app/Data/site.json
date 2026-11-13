@@ -1,0 +1,14 @@
+{
+  "url": "https://irfanparic.netlify.app/",
+  "name": "Irfan Parić",
+  "alternateName": "Irfan Paric",
+  "title": "Irfan Paric | Software Developer & Portfolio",
+  "description": "Irfan Parić (Irfan Paric), software developer building full-stack web applications with Vue.js, Laravel, PHP and JavaScript. Explore projects and UI/UX work.",
+  "socialImage": "assets/social-preview.jpg",
+  "skills": ["Vue.js", "Laravel", "PHP", "JavaScript", "Full-stack development", "UI/UX design"],
+  "profiles": [
+    "https://www.behance.net/irfanparich",
+    "https://github.com/IrfanParic",
+    "https://www.linkedin.com/in/irfan-paric-b96b6a160/"
+  ]
+}

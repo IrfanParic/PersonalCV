@@ -1,10 +1,12 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, ViewChild, inject, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, PLATFORM_ID, ViewChild, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { Project } from '../../Models/project';
 import { ProjectService } from '../../Services/project.service';
 import { scrollToSection } from '../../platform/visual-tools';
+import { imageFor } from '../../platform/images';
 
 @Component({
   selector: 'app-project-page',
@@ -13,6 +15,7 @@ import { scrollToSection } from '../../platform/visual-tools';
   standalone: false,
 })
 export class ProjectPageComponent {
+  readonly imageFor = imageFor;
   readonly project = signal<Project | undefined>(undefined);
   imageIndex = 0;
   readonly galleryOpen = signal(false);
@@ -20,6 +23,7 @@ export class ProjectPageComponent {
   private galleryTrigger?: HTMLElement;
   private swipeStart?: { id: number; x: number; y: number };
   private readonly destroyRef = inject(DestroyRef);
+  private readonly browser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly scrollLifetime = new AbortController();
 
   constructor(route: ActivatedRoute, projectService: ProjectService) {
@@ -53,7 +57,7 @@ export class ProjectPageComponent {
   closeGallery(): void {
     this.swipeStart = undefined;
     this.galleryOpen.set(false);
-    this.galleryDialog?.nativeElement.close();
+    if (this.browser) this.galleryDialog?.nativeElement.close();
   }
 
   onGalleryClose(): void {
@@ -95,7 +99,7 @@ export class ProjectPageComponent {
   }
 
   technologyName(filename: string): string {
-    const names: Record<string, string> = { postgree: 'PostgreSQL', googlecloud: 'Google Cloud', next: 'Next.js', nodejs: 'Node.js' };
+    const names: Record<string, string> = { postgree: 'PostgreSQL', googlecloud: 'Google Cloud', next: 'Next.js', nodejs: 'Node.js', vue: 'Vue.js' };
     const name = filename.replace('_icon.png', '');
     return names[name] ?? name.charAt(0).toUpperCase() + name.slice(1);
   }

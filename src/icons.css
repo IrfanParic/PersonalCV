@@ -1,0 +1,40 @@
+/*!
+ * Bootstrap Icons v1.13.2 (https://icons.getbootstrap.com/)
+ * Copyright 2019-2024 The Bootstrap Authors
+ * Licensed under MIT (https://github.com/twbs/icons/blob/main/LICENSE)
+ */
+
+@font-face {
+  font-display: block;
+  font-family: "bootstrap-icons";
+  src: url("../node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2?e34853135f9e39acf64315236852cd5a") format("woff2"),
+url("../node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff?e34853135f9e39acf64315236852cd5a") format("woff");
+}
+
+.bi::before,
+[class^="bi-"]::before,
+[class*=" bi-"]::before {
+  display: inline-block;
+  font-family: bootstrap-icons !important;
+  font-style: normal;
+  font-weight: normal !important;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: -.125em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Only glyphs used in this portfolio; keep their font and appearance unchanged. */
+.bi-arrow-left::before { content: "\f12f"; }
+.bi-behance::before { content: "\f65c"; }
+.bi-chevron-left::before { content: "\f284"; }
+.bi-chevron-right::before { content: "\f285"; }
+.bi-chevron-up::before { content: "\f286"; }
+.bi-download::before { content: "\f30a"; }
+.bi-emoji-frown::before { content: "\f31d"; }
+.bi-github::before { content: "\f3ed"; }
+.bi-globe2::before { content: "\f3ef"; }
+.bi-linkedin::before { content: "\f472"; }
+.bi-x-lg::before { content: "\f659"; }

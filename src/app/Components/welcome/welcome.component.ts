@@ -1,9 +1,11 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostListener, NgZone, OnDestroy, ViewChild } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { afterNextRender, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, HostListener, inject, NgZone, OnDestroy, PLATFORM_ID, ViewChild } from '@angular/core';
 import type { gsap } from 'gsap';
 import type { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { loadGsap, scrollToSection, stickyHeaderHeight } from '../../platform/visual-tools';
 import { AboutComponent } from '../about/about.component';
 import { ProjectNavigationService } from '../../Services/project-navigation.service';
+import { imageFor } from '../../platform/images';
 
 let homeLoaderShown = false;
 function claimHomeLoader(): boolean {
@@ -18,14 +20,15 @@ function claimHomeLoader(): boolean {
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
-export class WelcomeComponent implements AfterViewInit, OnDestroy {
-  loading = claimHomeLoader();
+export class WelcomeComponent implements OnDestroy {
+  readonly imageFor = imageFor;
+  loading = false;
   loaderLeaving = false;
   private readonly loaderInput = new AbortController();
   private readonly loaderTimers = new Set<ReturnType<typeof setTimeout>>();
   private loaderFrame = 0;
   headerScrolled = false;
-  logoVisible = window.matchMedia('(max-width: 1023px)').matches;
+  logoVisible = false;
   activeSection = 'home';
   readonly quoteLines = ['Small steps today.', 'Extraordinary things tomorrow.'].map(line => line.split(' '));
   @ViewChild('heroScene', { static: true }) private heroScene!: ElementRef<HTMLElement>;
@@ -37,11 +40,21 @@ export class WelcomeComponent implements AfterViewInit, OnDestroy {
   private animationMedia?: gsap.MatchMedia;
   private quoteTrigger?: ScrollTrigger;
   private sceneTimeline?: gsap.core.Timeline;
+  private shootingStarsTimeline?: gsap.core.Timeline;
+  private readonly browser = isPlatformBrowser(inject(PLATFORM_ID));
+  private readonly changeDetector = inject(ChangeDetectorRef);
 
-  constructor(private readonly projectNavigation: ProjectNavigationService, private readonly zone: NgZone) {}
+  constructor(private readonly projectNavigation: ProjectNavigationService, private readonly zone: NgZone) {
+    afterNextRender(() => this.zone.run(() => {
+      this.loading = claimHomeLoader();
+      this.logoVisible = window.matchMedia('(max-width: 1023px)').matches;
+      this.initializeBrowser();
+      this.changeDetector.markForCheck();
+    }));
+  }
 
-  ngAfterViewInit(): void {
-    this.animationReady = this.initializeQuoteAnimation();
+  private initializeBrowser(): void {
+    this.animationReady = this.zone.runOutsideAngular(() => this.initializeQuoteAnimation());
     const homeRestored = this.projectNavigation.restoreHome(this.animationReady, this.scrollLifetime.signal, () => {
       this.quoteTrigger?.refresh();
     }).then(() => {
@@ -113,10 +126,60 @@ export class WelcomeComponent implements AfterViewInit, OnDestroy {
   }
 
   private finishLoader(): void {
+    const wasLoading = this.loading;
     this.loading = false;
     this.loaderInput.abort();
     for (const timer of this.loaderTimers) clearTimeout(timer);
     this.loaderTimers.clear();
+    if (wasLoading && !this.scrollLifetime.signal.aborted) {
+      this.zone.runOutsideAngular(() => void this.playShootingStars());
+    }
+  }
+
+  private async playShootingStars(): Promise<void> {
+    const signal = this.scrollLifetime.signal;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (signal.aborted || reducedMotion.matches) return;
+    try {
+      const gsap = await loadGsap();
+      if (signal.aborted || reducedMotion.matches) return;
+      const scene = this.heroScene.nativeElement;
+      const hero = scene.querySelector<HTMLElement>('.hero')!;
+      const heroBounds = hero.getBoundingClientRect();
+      // Consume the intro even when startup restores a position below the hero.
+      if (hero.inert || heroBounds.bottom <= stickyHeaderHeight() || heroBounds.top >= window.innerHeight) return;
+      const atmosphere = scene.querySelector<HTMLElement>('.hero-atmosphere')!.getBoundingClientRect();
+      const portrait = scene.querySelector<HTMLElement>('.hero-portrait')!.getBoundingClientRect();
+      const stars = scene.querySelectorAll<HTMLElement>('.hero-shooting-star');
+      const stop = () => {
+        this.shootingStarsTimeline?.kill();
+        this.shootingStarsTimeline = undefined;
+        gsap.set(stars, { autoAlpha: 0 });
+        reducedMotion.removeEventListener('change', stop);
+      };
+      const timeline = this.shootingStarsTimeline = gsap.timeline({ onComplete: stop });
+      reducedMotion.addEventListener('change', stop, { once: true, signal });
+      stars.forEach((star, index) => {
+        const second = index === 1;
+        const delay = second ? 0.28 : 0;
+        const duration = second ? 1.6 : 1.15;
+        const startX = atmosphere.width * (second ? 0.22 : 0.12);
+        const startY = atmosphere.height * (second ? 0.05 : 0.08);
+        const endX = portrait.left - atmosphere.left + portrait.width * (second ? 0.98 : 0.92);
+        const endY = portrait.top - atmosphere.top + portrait.height * (second ? 0.96 : 0.86);
+        gsap.set(star, {
+          x: startX - star.offsetWidth, y: startY - star.offsetHeight / 2,
+          rotation: Math.atan2(endY - startY, endX - startX) * 180 / Math.PI,
+          transformOrigin: 'right center', autoAlpha: 0
+        });
+        timeline
+          .to(star, { x: endX - star.offsetWidth, y: endY - star.offsetHeight / 2, duration, ease: 'none' }, delay)
+          .to(star, { autoAlpha: second ? 0.55 : 0.9, duration: 0.1, ease: 'power1.out' }, delay)
+          .to(star, { autoAlpha: 0, duration: duration / 3, ease: 'power1.in' }, delay + duration * 2 / 3);
+      });
+    } catch {
+      // The decorative intro is optional; the hero remains usable if GSAP cannot load.
+    }
   }
 
   private async initializeQuoteAnimation(): Promise<void> {
@@ -124,6 +187,7 @@ export class WelcomeComponent implements AfterViewInit, OnDestroy {
       const [gsap, { ScrollTrigger }] = await Promise.all([loadGsap(), import('gsap/ScrollTrigger')]);
       if (this.scrollLifetime.signal.aborted) return;
       gsap.registerPlugin(ScrollTrigger);
+      ScrollTrigger.config({ ignoreMobileResize: true });
       const scene = this.heroScene.nativeElement;
       this.animationMedia = gsap.matchMedia(scene);
       this.zone.runOutsideAngular(() => this.animationMedia!.add(
@@ -165,12 +229,13 @@ export class WelcomeComponent implements AfterViewInit, OnDestroy {
         const words = scene.querySelectorAll('.quote-word');
         let settledY = 0;
         let overflow = 0;
-        let scrollUnit = window.innerHeight * 1.5;
+        let scrollUnit = 0;
         const measure = () => {
           // offset measurements ignore the current scroll and pointer transforms.
           settledY = Math.max(0, 8 - composition.offsetTop);
           overflow = Math.max(0, composition.offsetTop + settledY + composition.offsetHeight - stage.clientHeight + 8);
-          scrollUnit = window.innerHeight * 1.5;
+          // Match the stable CSS viewport so mobile browser chrome cannot shift the pin.
+          scrollUnit = (hero.offsetHeight + stickyHeaderHeight()) * 1.5;
         };
         measure();
         gsap.set(this.quote.nativeElement, { autoAlpha: 0 });
@@ -222,17 +287,25 @@ export class WelcomeComponent implements AfterViewInit, OnDestroy {
             autoAlpha: 0, y: () => download.offsetHeight + 32
           }, { autoAlpha: 1, y: 0, duration: mobile ? 0.35 : 0.5, ease: 'power2.out' }, mobile ? 'surroundingsEnter' : 'surroundingsEnter+=0.06')
           .addLabel('headersComplete', mobile ? 'surroundingsEnter+=0.35' : 'surroundingsEnter+=0.56')
-          .fromTo('.about-tech', {
+          .fromTo(mobile ? '.about-tech-reveal' : '.about-tech', {
             autoAlpha: 0,
             x: (index: number, element: HTMLElement) => mobile ? 0
               : (index < 4 ? 1 : -1) * ((element.parentElement?.clientWidth ?? 0) + element.offsetWidth),
-            y: mobile ? -48 : 0
-          }, { autoAlpha: 1, x: 0, y: 0, duration: mobile ? 0.4 : 0.55, stagger: mobile ? 0.015 : 0.04, ease: 'power2.out' }, mobile ? 'surroundingsEnter' : 'surroundingsEnter+=0.02')
-          .addLabel('techComplete', mobile ? 'surroundingsEnter+=0.505' : 'surroundingsEnter+=0.85')
+            y: 0,
+            ...(mobile ? { scale: 0.78, z: -420, filter: 'blur(8px)' } : {})
+          }, {
+            autoAlpha: 1, x: 0, y: 0,
+            ...(mobile ? { scale: 1, z: 0, filter: 'blur(0px)' } : {}),
+            duration: mobile ? 0.45 : 0.55, stagger: mobile ? 0.015 : 0.04, ease: 'power2.out'
+          }, mobile ? 'surroundingsEnter' : 'surroundingsEnter+=0.02')
+          .addLabel('techComplete', mobile ? 'surroundingsEnter+=0.555' : 'surroundingsEnter+=0.85')
           .addLabel('surroundingsComplete', 'techComplete')
           .addLabel('lightEnter', mobile ? 'surroundingsEnter' : 'surroundingsComplete+=0.08')
           .to('.about-glow, .about-particles', { autoAlpha: 1, duration: mobile ? 0.4 : 0.5, ease: 'sine.inOut' }, 'lightEnter')
           .addLabel('aboutReady', mobile ? 'surroundingsComplete' : 'lightEnter+=0.5');
+        if (mobile) {
+          timeline.set('.about-tech-reveal', { clearProps: 'filter,transform' }, 'techComplete');
+        }
         // The first settled frame is the navigation destination. Short screens then
         // traverse the rest of the composition before the scene releases its pin.
         const travel = gsap.fromTo(composition, { y: () => settledY }, {
@@ -346,7 +419,8 @@ export class WelcomeComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.scrollLifetime.abort();
-    cancelAnimationFrame(this.loaderFrame);
+    this.shootingStarsTimeline?.kill();
+    if (this.browser) cancelAnimationFrame(this.loaderFrame);
     this.finishLoader();
     this.animationMedia?.revert();
     this.resizeObserver?.disconnect();

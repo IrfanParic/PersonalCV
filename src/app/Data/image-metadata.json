@@ -1,0 +1,152 @@
+{
+  "assets/irfan-hero-duotone.png": {
+    "src": "assets/optimized/irfan-hero-duotone-960.webp",
+    "srcset": "assets/optimized/irfan-hero-duotone-480.webp 480w, assets/optimized/irfan-hero-duotone-960.webp 960w, assets/optimized/irfan-hero-duotone-1162.webp 1162w",
+    "width": 1162,
+    "height": 1354
+  },
+  "assets/googlecloud-img.png": {
+    "src": "assets/optimized/googlecloud-img-960.webp",
+    "srcset": "assets/optimized/googlecloud-img-480.webp 480w, assets/optimized/googlecloud-img-960.webp 960w, assets/optimized/googlecloud-img-1600.webp 1600w",
+    "width": 6000,
+    "height": 4000
+  },
+  "assets/mangoandlola-img.png": {
+    "src": "assets/optimized/mangoandlola-img-960.webp",
+    "srcset": "assets/optimized/mangoandlola-img-480.webp 480w, assets/optimized/mangoandlola-img-960.webp 960w, assets/optimized/mangoandlola-img-1600.webp 1600w",
+    "width": 6000,
+    "height": 4000
+  },
+  "assets/atlatnt-img.png": {
+    "src": "assets/optimized/atlatnt-img-960.webp",
+    "srcset": "assets/optimized/atlatnt-img-480.webp 480w, assets/optimized/atlatnt-img-960.webp 960w, assets/optimized/atlatnt-img-1600.webp 1600w",
+    "width": 6000,
+    "height": 4000
+  },
+  "assets/mockups/ita-intro.png": {
+    "src": "assets/optimized/ita-intro-960.webp",
+    "srcset": "assets/optimized/ita-intro-480.webp 480w, assets/optimized/ita-intro-960.webp 960w, assets/optimized/ita-intro-1600.webp 1600w",
+    "width": 6000,
+    "height": 4000
+  },
+  "assets/mockups/ita-1.png": {
+    "src": "assets/optimized/ita-1-960.webp",
+    "srcset": "assets/optimized/ita-1-480.webp 480w, assets/optimized/ita-1-960.webp 960w, assets/optimized/ita-1-1600.webp 1600w",
+    "width": 6000,
+    "height": 4000
+  },
+  "assets/mockups/ita-tasks.png": {
+    "src": "assets/optimized/ita-tasks-960.webp",
+    "srcset": "assets/optimized/ita-tasks-480.webp 480w, assets/optimized/ita-tasks-960.webp 960w, assets/optimized/ita-tasks-1600.webp 1600w",
+    "width": 6000,
+    "height": 4000
+  },
+  "assets/mockups/ita-2.png": {
+    "src": "assets/optimized/ita-2-960.webp",
+    "srcset": "assets/optimized/ita-2-480.webp 480w, assets/optimized/ita-2-960.webp 960w, assets/optimized/ita-2-1600.webp 1600w",
+    "width": 4500,
+    "height": 3000
+  },
+  "assets/mockups/ita-3.png": {
+    "src": "assets/optimized/ita-3-960.webp",
+    "srcset": "assets/optimized/ita-3-480.webp 480w, assets/optimized/ita-3-960.webp 960w, assets/optimized/ita-3-1600.webp 1600w",
+    "width": 4500,
+    "height": 3000
+  },
+  "assets/mockups/ita-4.png": {
+    "src": "assets/optimized/ita-4-960.webp",
+    "srcset": "assets/optimized/ita-4-480.webp 480w, assets/optimized/ita-4-960.webp 960w, assets/optimized/ita-4-1600.webp 1600w",
+    "width": 4500,
+    "height": 3000
+  },
+  "assets/mockups/ita-5.png": {
+    "src": "assets/optimized/ita-5-960.webp",
+    "srcset": "assets/optimized/ita-5-480.webp 480w, assets/optimized/ita-5-960.webp 960w, assets/optimized/ita-5-1600.webp 1600w",
+    "width": 4500,
+    "height": 3000
+  },
+  "assets/mockups/auctionapp-intro.png": {
+    "src": "assets/optimized/auctionapp-intro-960.webp",
+    "srcset": "assets/optimized/auctionapp-intro-480.webp 480w, assets/optimized/auctionapp-intro-960.webp 960w, assets/optimized/auctionapp-intro-1600.webp 1600w",
+    "width": 6000,
+    "height": 4000
+  },
+  "assets/mockups/auctionapp-1.png": {
+    "src": "assets/optimized/auctionapp-1-960.webp",
+    "srcset": "assets/optimized/auctionapp-1-480.webp 480w, assets/optimized/auctionapp-1-960.webp 960w, assets/optimized/auctionapp-1-1600.webp 1600w",
+    "width": 3000,
+    "height": 2000
+  },
+  "assets/mockups/auctionapp-tasks.png": {
+    "src": "assets/optimized/auctionapp-tasks-960.webp",
+    "srcset": "assets/optimized/auctionapp-tasks-480.webp 480w, assets/optimized/auctionapp-tasks-960.webp 960w, assets/optimized/auctionapp-tasks-1600.webp 1600w",
+    "width": 6000,
+    "height": 4000
+  },
+  "assets/mockups/auctionapp-2.png": {
+    "src": "assets/optimized/auctionapp-2-960.webp",
+    "srcset": "assets/optimized/auctionapp-2-480.webp 480w, assets/optimized/auctionapp-2-960.webp 960w, assets/optimized/auctionapp-2-1600.webp 1600w",
+    "width": 6000,
+    "height": 4000
+  },
+  "assets/mockups/auctionapp-3.png": {
+    "src": "assets/optimized/auctionapp-3-960.webp",
+    "srcset": "assets/optimized/auctionapp-3-480.webp 480w, assets/optimized/auctionapp-3-960.webp 960w, assets/optimized/auctionapp-3-1600.webp 1600w",
+    "width": 6000,
+    "height": 4000
+  },
+  "assets/mockups/auctionapp-4.png": {
+    "src": "assets/optimized/auctionapp-4-960.webp",
+    "srcset": "assets/optimized/auctionapp-4-480.webp 480w, assets/optimized/auctionapp-4-960.webp 960w, assets/optimized/auctionapp-4-1600.webp 1600w",
+    "width": 6000,
+    "height": 4000
+  },
+  "assets/rubicon_internship.png": {
+    "src": "assets/optimized/rubicon_internship-960.webp",
+    "srcset": "assets/optimized/rubicon_internship-480.webp 480w, assets/optimized/rubicon_internship-960.webp 960w, assets/optimized/rubicon_internship-1600.webp 1600w",
+    "width": 6000,
+    "height": 4000
+  },
+  "assets/dokumenta_project.png": {
+    "src": "assets/optimized/dokumenta_project-960.webp",
+    "srcset": "assets/optimized/dokumenta_project-480.webp 480w, assets/optimized/dokumenta_project-960.webp 960w, assets/optimized/dokumenta_project-1600.webp 1600w",
+    "width": 6000,
+    "height": 4000
+  },
+  "assets/sportnet-img.png": {
+    "src": "assets/optimized/sportnet-img-960.webp",
+    "srcset": "assets/optimized/sportnet-img-480.webp 480w, assets/optimized/sportnet-img-960.webp 960w, assets/optimized/sportnet-img-1600.webp 1600w",
+    "width": 6000,
+    "height": 4000
+  },
+  "assets/mockups/sportnet-intro.png": {
+    "src": "assets/optimized/sportnet-intro-960.webp",
+    "srcset": "assets/optimized/sportnet-intro-480.webp 480w, assets/optimized/sportnet-intro-960.webp 960w, assets/optimized/sportnet-intro-1600.webp 1600w",
+    "width": 6000,
+    "height": 4000
+  },
+  "assets/mockups/sportnet-1.png": {
+    "src": "assets/optimized/sportnet-1-960.webp",
+    "srcset": "assets/optimized/sportnet-1-480.webp 480w, assets/optimized/sportnet-1-960.webp 960w, assets/optimized/sportnet-1-1600.webp 1600w",
+    "width": 6000,
+    "height": 4000
+  },
+  "assets/mockups/sportnet-2.png": {
+    "src": "assets/optimized/sportnet-2-960.webp",
+    "srcset": "assets/optimized/sportnet-2-480.webp 480w, assets/optimized/sportnet-2-960.webp 960w, assets/optimized/sportnet-2-1600.webp 1600w",
+    "width": 6000,
+    "height": 4000
+  },
+  "assets/mockups/sportnet-3.png": {
+    "src": "assets/optimized/sportnet-3-960.webp",
+    "srcset": "assets/optimized/sportnet-3-480.webp 480w, assets/optimized/sportnet-3-960.webp 960w, assets/optimized/sportnet-3-1600.webp 1600w",
+    "width": 6000,
+    "height": 4000
+  },
+  "assets/mockups/sportnet-4.png": {
+    "src": "assets/optimized/sportnet-4-960.webp",
+    "srcset": "assets/optimized/sportnet-4-480.webp 480w, assets/optimized/sportnet-4-960.webp 960w, assets/optimized/sportnet-4-1600.webp 1600w",
+    "width": 6000,
+    "height": 4000
+  }
+}
