@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, ViewChild, inject, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, PLATFORM_ID, ViewChild, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
@@ -22,6 +23,7 @@ export class ProjectPageComponent {
   private galleryTrigger?: HTMLElement;
   private swipeStart?: { id: number; x: number; y: number };
   private readonly destroyRef = inject(DestroyRef);
+  private readonly browser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly scrollLifetime = new AbortController();
 
   constructor(route: ActivatedRoute, projectService: ProjectService) {
@@ -55,7 +57,7 @@ export class ProjectPageComponent {
   closeGallery(): void {
     this.swipeStart = undefined;
     this.galleryOpen.set(false);
-    this.galleryDialog?.nativeElement.close();
+    if (this.browser) this.galleryDialog?.nativeElement.close();
   }
 
   onGalleryClose(): void {
