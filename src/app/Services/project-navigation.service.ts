@@ -1,5 +1,5 @@
-import { Location } from '@angular/common';
-import { Injectable } from '@angular/core';
+import { isPlatformBrowser, Location } from '@angular/common';
+import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { NavigationStart, Router, Scroll } from '@angular/router';
 import { stickyHeaderHeight } from '../platform/visual-tools';
 
@@ -8,8 +8,10 @@ export class ProjectNavigationService {
   private homePosition?: [number, number];
   private homeNavigation?: { id: number; returnToProjects: boolean };
   private homeScroll?: Scroll;
+  private readonly browser = isPlatformBrowser(inject(PLATFORM_ID));
 
   constructor(private readonly router: Router, private readonly location: Location) {
+    if (!this.browser) return;
     const navigation = router.currentNavigation() ?? router.lastSuccessfulNavigation();
     if (navigation && router.serializeUrl(navigation.finalUrl ?? navigation.extractedUrl) === '/') {
       this.homeNavigation = { id: navigation.id, returnToProjects: navigation.extras.state?.['returnToProjects'] === true };
@@ -41,7 +43,7 @@ export class ProjectNavigationService {
 
   async restoreHome(ready: Promise<void>, signal: AbortSignal, refresh: () => void): Promise<void> {
     const navigation = this.homeNavigation;
-    if (signal.aborted || !navigation) return;
+    if (!this.browser || signal.aborted || !navigation) return;
     const scroll = this.homeScroll?.routerEvent.id === navigation.id ? Promise.resolve(this.homeScroll) : new Promise<Scroll | undefined>(resolve => {
       const subscription = this.router.events.subscribe(event => {
         if (event instanceof Scroll && event.routerEvent.id === navigation.id) {

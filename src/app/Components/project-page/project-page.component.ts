@@ -5,6 +5,7 @@ import { switchMap } from 'rxjs';
 import { Project } from '../../Models/project';
 import { ProjectService } from '../../Services/project.service';
 import { scrollToSection } from '../../platform/visual-tools';
+import { imageFor } from '../../platform/images';
 
 @Component({
   selector: 'app-project-page',
@@ -13,6 +14,7 @@ import { scrollToSection } from '../../platform/visual-tools';
   standalone: false,
 })
 export class ProjectPageComponent {
+  readonly imageFor = imageFor;
   readonly project = signal<Project | undefined>(undefined);
   imageIndex = 0;
   readonly galleryOpen = signal(false);
@@ -95,7 +97,7 @@ export class ProjectPageComponent {
   }
 
   technologyName(filename: string): string {
-    const names: Record<string, string> = { postgree: 'PostgreSQL', googlecloud: 'Google Cloud', next: 'Next.js', nodejs: 'Node.js' };
+    const names: Record<string, string> = { postgree: 'PostgreSQL', googlecloud: 'Google Cloud', next: 'Next.js', nodejs: 'Node.js', vue: 'Vue.js' };
     const name = filename.replace('_icon.png', '');
     return names[name] ?? name.charAt(0).toUpperCase() + name.slice(1);
   }

@@ -1,5 +1,5 @@
 import { NgModule, provideZoneChangeDetection } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './Components/welcome/welcome.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -29,7 +29,8 @@ import { FooterComponent } from './Components/footer/footer.component';
     AppRoutingModule
   ],
   providers: [
-    provideZoneChangeDetection()
+    provideZoneChangeDetection(),
+    provideClientHydration()
   ],
   bootstrap: [AppComponent]
 })

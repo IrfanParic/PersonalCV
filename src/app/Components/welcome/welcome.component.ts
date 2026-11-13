@@ -1,9 +1,11 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostListener, NgZone, OnDestroy, ViewChild } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { afterNextRender, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, HostListener, inject, NgZone, OnDestroy, PLATFORM_ID, ViewChild } from '@angular/core';
 import type { gsap } from 'gsap';
 import type { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { loadGsap, scrollToSection, stickyHeaderHeight } from '../../platform/visual-tools';
 import { AboutComponent } from '../about/about.component';
 import { ProjectNavigationService } from '../../Services/project-navigation.service';
+import { imageFor } from '../../platform/images';
 
 let homeLoaderShown = false;
 function claimHomeLoader(): boolean {
@@ -18,14 +20,15 @@ function claimHomeLoader(): boolean {
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
-export class WelcomeComponent implements AfterViewInit, OnDestroy {
-  loading = claimHomeLoader();
+export class WelcomeComponent implements OnDestroy {
+  readonly imageFor = imageFor;
+  loading = false;
   loaderLeaving = false;
   private readonly loaderInput = new AbortController();
   private readonly loaderTimers = new Set<ReturnType<typeof setTimeout>>();
   private loaderFrame = 0;
   headerScrolled = false;
-  logoVisible = window.matchMedia('(max-width: 1023px)').matches;
+  logoVisible = false;
   activeSection = 'home';
   readonly quoteLines = ['Small steps today.', 'Extraordinary things tomorrow.'].map(line => line.split(' '));
   @ViewChild('heroScene', { static: true }) private heroScene!: ElementRef<HTMLElement>;
@@ -38,11 +41,20 @@ export class WelcomeComponent implements AfterViewInit, OnDestroy {
   private quoteTrigger?: ScrollTrigger;
   private sceneTimeline?: gsap.core.Timeline;
   private shootingStarsTimeline?: gsap.core.Timeline;
+  private readonly browser = isPlatformBrowser(inject(PLATFORM_ID));
+  private readonly changeDetector = inject(ChangeDetectorRef);
 
-  constructor(private readonly projectNavigation: ProjectNavigationService, private readonly zone: NgZone) {}
+  constructor(private readonly projectNavigation: ProjectNavigationService, private readonly zone: NgZone) {
+    afterNextRender(() => this.zone.run(() => {
+      this.loading = claimHomeLoader();
+      this.logoVisible = window.matchMedia('(max-width: 1023px)').matches;
+      this.initializeBrowser();
+      this.changeDetector.markForCheck();
+    }));
+  }
 
-  ngAfterViewInit(): void {
-    this.animationReady = this.initializeQuoteAnimation();
+  private initializeBrowser(): void {
+    this.animationReady = this.zone.runOutsideAngular(() => this.initializeQuoteAnimation());
     const homeRestored = this.projectNavigation.restoreHome(this.animationReady, this.scrollLifetime.signal, () => {
       this.quoteTrigger?.refresh();
     }).then(() => {
@@ -408,7 +420,7 @@ export class WelcomeComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.scrollLifetime.abort();
     this.shootingStarsTimeline?.kill();
-    cancelAnimationFrame(this.loaderFrame);
+    if (this.browser) cancelAnimationFrame(this.loaderFrame);
     this.finishLoader();
     this.animationMedia?.revert();
     this.resizeObserver?.disconnect();

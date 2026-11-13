@@ -70,7 +70,7 @@
           </filter>
         </defs>
       </svg>
-      <img src="assets/irfan-hero-duotone.png" alt="Portrait of Irfan Paric" width="1162" height="1354" loading="eager" fetchpriority="high" class="[filter:url(#hero-portrait-duotone)]" />
+      <img [src]="imageFor('assets/irfan-hero-duotone.png').src" [attr.srcset]="imageFor('assets/irfan-hero-duotone.png').srcset" sizes="(min-width: 1024px) 50vw, (min-width: 640px) 640px, 100vw" alt="Irfan Parić, software developer and UI/UX designer" width="1162" height="1354" loading="eager" fetchpriority="high" class="[filter:url(#hero-portrait-duotone)]" />
     </div>
     <button type="button" (click)="explore()" class="hero-scroll">
       Scroll to explore

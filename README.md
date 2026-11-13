@@ -1,62 +1,58 @@
-# Irfan Parić — personal portfolio
+# Irfan Parić — developer portfolio
 
-Angular portfolio with Tailwind styling, project details, and an accessible image gallery. Project content lives in `src/app/Data/projects.json`; images and the CV live in `src/assets`.
+Angular portfolio with Tailwind, GSAP animations, project details, and an accessible image gallery. Production: https://irfanparic.netlify.app/.
 
-## Start locally
+## Local development
 
-Install [nvm](https://github.com/nvm-sh/nvm) if you use it to manage Node versions, then run from this directory:
+Use Node 24.15 or newer within Node 24 (`.nvmrc`), then:
 
 ```bash
-nvm install
-nvm use
 npm ci
 npm start
 ```
 
-Use Node **24.15 or newer within Node 24** (the version family in `.nvmrc`). If you manage Node another way, select that version before running npm. No global Angular CLI installation is needed.
-
-Open **http://localhost:4200**. Keep the terminal running; saving source files updates the browser. Stop the server with Ctrl+C. For another port, use `npm start -- --port 4300`.
+Open http://localhost:4200. For another port, use `npm start -- --port 4300`.
 
 ```bash
-npm run build                          # optimized production build
-npm run build -- --configuration development
-npm run watch                          # rebuild development output on changes
-
-git diff --stat                        # overview of local changes
-git diff                               # inspect the changes
+npm run build  # production Angular static prerender + sitemap/robots/404 generation
+npm run watch  # development rebuilds
 ```
 
-The production output directory is configured in `angular.json`. Preserve hash-based URLs such as `/#/project-page/1` when hosting the app. `npm start` is a local development server, not a production hosting command.
+## Deployment and URLs
 
-## Styling and content
+Netlify settings are checked in as `netlify.toml`: build with `npm run build`, publish `dist/irfanparic`. No runtime server is required. Deploy the complete output, including every prerendered directory, asset, `404.html`, `robots.txt`, and `sitemap.xml`.
 
-Use Tailwind utilities in component templates. Shared palette and typography tokens live in `src/styles.css`: canvas, surface, ink, muted, accent, body, and heading. Project role colors come from the project JSON and use Angular style bindings. Bootstrap Icons supplies icons only; Bootstrap layout/CSS/JavaScript is not used.
+The homepage and all project pages are prerendered using native Angular SSR tooling. Angular hydrates that HTML in the browser, then starts the existing loader, GSAP scroll scenes, and one-time shooting stars. With JavaScript disabled, portfolio content and project links remain readable.
 
-The site is intentionally static: no entrance effects, hover movement, smooth scrolling, or route transitions. About information is always visible. Gallery thumbnails open a native modal dialog; Escape closes it, arrow keys change images, and focus returns to the thumbnail.
+Canonical URLs are `/` and `/project-page/1/` through `/project-page/6/`. Existing `/#/project-page/1` links remain supported: the browser replaces them with the corresponding clean URL before hydration. Unknown routes and invalid project IDs use the existing not-found view; Netlify serves them with HTTP 404 instead of a successful SPA fallback. Unavailable/error pages are `noindex` and omitted from the sitemap.
 
-## Adding animation and 3D later
+## SEO configuration and Search Console
 
-GSAP and Three.js are installed. `src/app/platform/visual-tools.ts` exports `loadGsap()` and `loadThree()` using dynamic imports. Call these only from the component that needs them; ordinary visits should not download either library. The hero's `data-scene-host` element is the integration point for a future scene, currently showing static artwork.
+`src/app/Data/site.json` is the source for the production origin, name variants, skills, social profiles, and share image. `SeoService` updates unique page titles/descriptions, canonicals, Open Graph/Twitter cards, and JSON-LD for direct requests and client navigation. Person and WebSite entities use stable IDs; project pages also describe their CreativeWork.
 
-For a future GSAP feature:
+`npm run build` generates the sitemap from the project data and verifies each canonical prerender exists. Experience dates are not page-edit dates, so the sitemap deliberately omits `lastmod` rather than fabricating dates. If the production hostname changes, update `site.json`, the source metadata in `src/index.html`, and `src/robots.txt`, then rebuild. The generated sitemap/robots use the configured origin.
 
-- Initialize after the component view exists and scope selectors with `gsap.context(callback, hostElement)`.
-- Register context cleanup with Angular `DestroyRef`; call `context.revert()` on destruction. Clean up plugins and listeners created outside the context too.
-- Respect `prefers-reduced-motion: reduce` using `gsap.matchMedia()`, retain a readable static state, and revert media contexts during cleanup.
-- If a dynamic import resolves after the component is destroyed, do not create an animation or access its view.
+After deploying:
 
-For a future Three.js feature:
+1. Open https://search.google.com/search-console and select or verify the `https://irfanparic.netlify.app/` URL-prefix property. The existing Google verification meta tag is preserved; no credentials are added.
+2. In **Sitemaps**, submit `https://irfanparic.netlify.app/sitemap.xml`.
+3. Use **URL inspection** for the homepage and project pages, run **Test live URL**, and request indexing where appropriate.
+4. Monitor indexing and Core Web Vitals. Sitemap submission helps discovery; Google controls indexing and rankings.
 
-- Dynamically load the renderer only when the scene is needed. Keep the existing artwork as the fallback if WebGL is unavailable or initialization fails.
-- Keep the canvas inside the hero host and observe its dimensions with `ResizeObserver`; update the renderer size and camera aspect when they change. Bound device pixel ratio for performance.
-- Keep render loops outside Angular change detection when using Zone.js. Pause when the scene is hidden; do not start a loop for an unused scene.
-- On destruction, cancel animation frames or clear the animation loop, disconnect observers, remove listeners/canvas, and dispose controls, geometries, materials, textures, and the renderer.
-- Reduced-motion users should receive the static fallback or a single nonmoving render. No continuous rendering or active GSAP effects are enabled by this foundation.
+The branded social preview is `src/assets/social-preview.jpg` (1200×630), composed from the existing portrait and logo.
+
+## Content, assets, and appearance
+
+Project content lives in `src/app/Data/projects.json`; the CV and original images remain in `src/assets`. Preserve truthful content and existing profile links. New projects automatically enter prerendering and the sitemap after rebuilding.
+
+Responsive WebP variants live in `src/assets/optimized`, with paths/dimensions in `src/app/Data/image-metadata.json` and the `imageFor` helper. The originals remain available. New source images can use the original-asset fallback until matching variants/metadata are generated. Keep variants visually faithful and preserve portrait transparency; use 480/960/1600px widths capped to the original, and quality around 0.92. Thumbnails load lazily, hero/project previews are prioritized, and full gallery content loads when opened.
+
+Shared palette/typography live in `src/styles.css`. Google Fonts are requested directly from the document head with preconnect and `display=swap`. `src/icons.css` includes only the 11 Bootstrap Icons used by the templates, retaining the installed icon font; when adding an icon, copy its matching rule from the installed Bootstrap Icons stylesheet.
+
+GSAP is dynamically imported, initializes only in the browser after rendering, respects reduced motion, and cleans up on destruction. Three.js remains unused and lazy. Preserve these constraints when extending animations. Gallery dialogs support Escape, arrow keys, touch swipes, and focus restoration.
 
 ## Verification
 
-No new tests are added. Validate dependency installation and development/production builds, then check the home sections, project links and galleries, invalid project URLs, unavailable/not-found views, contact links, CV download, keyboard navigation, and layouts at 320px, 768px, and desktop widths.
+No new tests are added. Validate with a production build, direct requests with JavaScript disabled, and browser checks at mobile/tablet/desktop widths. Check unique metadata, canonical URLs, structured-data JSON, sitemap entries, existing hash links, direct project reloads, 404 status, gallery controls, CV/social links, loader/shooting-star timing, scroll restoration, and reduced-motion behavior.
 
-Validated with a clean `npm ci`, production/development builds, and browser checks at 320px, 768px, and 1440px. All six project URLs, gallery controls and focus restoration, fallback pages, CV download, and contact links were checked. GSAP and Three.js are absent from normal page requests.
-
-Dependency audit at this update: production dependencies report zero vulnerabilities. The full audit reports six high-severity entries from the retained Karma development tooling's transitive `braces` dependency; no compatible patched release is available. Existing test sources are unchanged.
+Production SEO changes become publicly accessible only after the updated build is deployed to Netlify. Existing external sites may block automated link checks; do not replace their links with guessed destinations.

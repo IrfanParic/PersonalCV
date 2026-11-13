@@ -1,8 +1,9 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, NgZone, OnDestroy } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, Component, ElementRef, NgZone, OnDestroy } from '@angular/core';
 import type { gsap } from 'gsap';
 import { Project } from '../../Models/project';
 import { ProjectService } from '../../Services/project.service';
 import { loadGsap } from '../../platform/visual-tools';
+import { imageFor } from '../../platform/images';
 
 @Component({
   selector: 'app-portfolio',
@@ -10,7 +11,8 @@ import { loadGsap } from '../../platform/visual-tools';
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
-export class PortfolioComponent implements AfterViewInit, OnDestroy {
+export class PortfolioComponent implements OnDestroy {
+  readonly imageFor = imageFor;
   readonly projects: Project[];
   readonly currentProjects: Project[];
   private animationMedia?: gsap.MatchMedia;
@@ -20,10 +22,7 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
   constructor(projectService: ProjectService, private readonly element: ElementRef<HTMLElement>, private readonly zone: NgZone) {
     this.projects = projectService.getProjects();
     this.currentProjects = this.projects.filter(project => project.active);
-  }
-
-  ngAfterViewInit(): void {
-    this.zone.runOutsideAngular(() => void this.initializeReveals());
+    afterNextRender(() => this.zone.runOutsideAngular(() => void this.initializeReveals()));
   }
 
   private async initializeReveals(): Promise<void> {
