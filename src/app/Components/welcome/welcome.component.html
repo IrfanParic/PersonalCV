@@ -6,11 +6,11 @@
     </div>
     <div class="home-loader-detail">
       <svg class="home-loader-cube" viewBox="0 0 200 200" width="160" height="160" fill="none" aria-hidden="true">
-        <ellipse class="home-loader-orbit" cx="100" cy="100" rx="86" ry="34" stroke="#60a5fa" stroke-opacity=".45" stroke-dasharray="4 8" />
-        <g stroke="#b7d7ff" stroke-width="1.5" stroke-linejoin="round">
-          <path d="M100 48 145 74 100 100 55 74Z" fill="#8ebfff" fill-opacity=".25" />
-          <path d="M55 74 100 100 100 152 55 126Z" fill="#397acc" fill-opacity=".25" />
-          <path d="M100 100 145 74 145 126 100 152Z" fill="#60a5fa" fill-opacity=".13" />
+        <ellipse class="home-loader-orbit" cx="100" cy="100" rx="86" ry="34" stroke="#6cc6cf" stroke-opacity=".45" stroke-dasharray="4 8" />
+        <g stroke="#fefffa" stroke-width="1.5" stroke-linejoin="round">
+          <path d="M100 48 145 74 100 100 55 74Z" fill="#b7e3e3" fill-opacity=".25" />
+          <path d="M55 74 100 100 100 152 55 126Z" fill="#237f9e" fill-opacity=".25" />
+          <path d="M100 100 145 74 145 126 100 152Z" fill="#6cc6cf" fill-opacity=".13" />
         </g>
       </svg>
       <p role="status">Loading portfolio</p>
@@ -49,7 +49,26 @@
       <p class="hero-role">Software Developer and Designer</p>
     </div>
     <div class="hero-portrait">
-      <img src="assets/irfan-hero-duotone.png" alt="Portrait of Irfan Paric" width="1162" height="1354" loading="eager" fetchpriority="high" />
+      <svg width="0" height="0" class="absolute pointer-events-none" aria-hidden="true" focusable="false">
+        <defs>
+          <filter id="hero-portrait-duotone" color-interpolation-filters="sRGB">
+            <feColorMatrix type="saturate" values="0" />
+            <!-- Lift fabric detail and midtones, retaining deep shadows and soft highlights. -->
+            <feComponentTransfer>
+              <feFuncR type="table" tableValues="0 0.055 0.20 0.38 0.54 0.65 0.76 0.875 1" />
+              <feFuncG type="table" tableValues="0 0.055 0.20 0.38 0.54 0.65 0.76 0.875 1" />
+              <feFuncB type="table" tableValues="0 0.055 0.20 0.38 0.54 0.65 0.76 0.875 1" />
+            </feComponentTransfer>
+            <!-- Map shadow/highlight channels to #092742 and #fefffa; preserve alpha. -->
+            <feComponentTransfer>
+              <feFuncR type="table" tableValues="0.035294 0.996078" />
+              <feFuncG type="table" tableValues="0.152941 1" />
+              <feFuncB type="table" tableValues="0.258824 0.980392" />
+            </feComponentTransfer>
+          </filter>
+        </defs>
+      </svg>
+      <img src="assets/irfan-hero-duotone.png" alt="Portrait of Irfan Paric" width="1162" height="1354" loading="eager" fetchpriority="high" class="[filter:url(#hero-portrait-duotone)]" />
     </div>
     <button type="button" (click)="explore()" class="hero-scroll">
       Scroll to explore

@@ -124,6 +124,7 @@ export class WelcomeComponent implements AfterViewInit, OnDestroy {
       const [gsap, { ScrollTrigger }] = await Promise.all([loadGsap(), import('gsap/ScrollTrigger')]);
       if (this.scrollLifetime.signal.aborted) return;
       gsap.registerPlugin(ScrollTrigger);
+      ScrollTrigger.config({ ignoreMobileResize: true });
       const scene = this.heroScene.nativeElement;
       this.animationMedia = gsap.matchMedia(scene);
       this.zone.runOutsideAngular(() => this.animationMedia!.add(
@@ -165,12 +166,13 @@ export class WelcomeComponent implements AfterViewInit, OnDestroy {
         const words = scene.querySelectorAll('.quote-word');
         let settledY = 0;
         let overflow = 0;
-        let scrollUnit = window.innerHeight * 1.5;
+        let scrollUnit = 0;
         const measure = () => {
           // offset measurements ignore the current scroll and pointer transforms.
           settledY = Math.max(0, 8 - composition.offsetTop);
           overflow = Math.max(0, composition.offsetTop + settledY + composition.offsetHeight - stage.clientHeight + 8);
-          scrollUnit = window.innerHeight * 1.5;
+          // Match the stable CSS viewport so mobile browser chrome cannot shift the pin.
+          scrollUnit = (hero.offsetHeight + stickyHeaderHeight()) * 1.5;
         };
         measure();
         gsap.set(this.quote.nativeElement, { autoAlpha: 0 });
@@ -222,17 +224,25 @@ export class WelcomeComponent implements AfterViewInit, OnDestroy {
             autoAlpha: 0, y: () => download.offsetHeight + 32
           }, { autoAlpha: 1, y: 0, duration: mobile ? 0.35 : 0.5, ease: 'power2.out' }, mobile ? 'surroundingsEnter' : 'surroundingsEnter+=0.06')
           .addLabel('headersComplete', mobile ? 'surroundingsEnter+=0.35' : 'surroundingsEnter+=0.56')
-          .fromTo('.about-tech', {
+          .fromTo(mobile ? '.about-tech-reveal' : '.about-tech', {
             autoAlpha: 0,
             x: (index: number, element: HTMLElement) => mobile ? 0
               : (index < 4 ? 1 : -1) * ((element.parentElement?.clientWidth ?? 0) + element.offsetWidth),
-            y: mobile ? -48 : 0
-          }, { autoAlpha: 1, x: 0, y: 0, duration: mobile ? 0.4 : 0.55, stagger: mobile ? 0.015 : 0.04, ease: 'power2.out' }, mobile ? 'surroundingsEnter' : 'surroundingsEnter+=0.02')
-          .addLabel('techComplete', mobile ? 'surroundingsEnter+=0.505' : 'surroundingsEnter+=0.85')
+            y: 0,
+            ...(mobile ? { scale: 0.78, z: -420, filter: 'blur(8px)' } : {})
+          }, {
+            autoAlpha: 1, x: 0, y: 0,
+            ...(mobile ? { scale: 1, z: 0, filter: 'blur(0px)' } : {}),
+            duration: mobile ? 0.45 : 0.55, stagger: mobile ? 0.015 : 0.04, ease: 'power2.out'
+          }, mobile ? 'surroundingsEnter' : 'surroundingsEnter+=0.02')
+          .addLabel('techComplete', mobile ? 'surroundingsEnter+=0.555' : 'surroundingsEnter+=0.85')
           .addLabel('surroundingsComplete', 'techComplete')
           .addLabel('lightEnter', mobile ? 'surroundingsEnter' : 'surroundingsComplete+=0.08')
           .to('.about-glow, .about-particles', { autoAlpha: 1, duration: mobile ? 0.4 : 0.5, ease: 'sine.inOut' }, 'lightEnter')
           .addLabel('aboutReady', mobile ? 'surroundingsComplete' : 'lightEnter+=0.5');
+        if (mobile) {
+          timeline.set('.about-tech-reveal', { clearProps: 'filter,transform' }, 'techComplete');
+        }
         // The first settled frame is the navigation destination. Short screens then
         // traverse the rest of the composition before the scene releases its pin.
         const travel = gsap.fromTo(composition, { y: () => settledY }, {
