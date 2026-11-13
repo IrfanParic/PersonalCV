@@ -86,6 +86,35 @@
 .hero-particles span:nth-child(6) { left: 43%; top: 82%; }
 .hero-particles span:nth-child(7) { left: 70%; top: 60%; }
 .hero-particles span:nth-child(8) { left: 92%; top: 76%; }
+.hero-shooting-star {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: clamp(64px, 10vw, 150px);
+  height: 3px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.hero-shooting-star::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--color-accent));
+  clip-path: polygon(0 50%, 100% 0, 100% 100%);
+}
+.hero-shooting-star::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  transform: translate(50%, -50%);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-accent) 75%, var(--color-ink));
+  box-shadow: 0 0 9px rgb(255 122 26 / 75%);
+}
 @media (prefers-reduced-motion: no-preference) {
   .hero-particles span { animation: hero-particle-float 7s ease-in-out infinite; }
   .hero-particles span:nth-child(2n) { animation-duration: 9s; animation-delay: -3s; }

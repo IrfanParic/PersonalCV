@@ -37,6 +37,7 @@ export class WelcomeComponent implements AfterViewInit, OnDestroy {
   private animationMedia?: gsap.MatchMedia;
   private quoteTrigger?: ScrollTrigger;
   private sceneTimeline?: gsap.core.Timeline;
+  private shootingStarsTimeline?: gsap.core.Timeline;
 
   constructor(private readonly projectNavigation: ProjectNavigationService, private readonly zone: NgZone) {}
 
@@ -113,10 +114,60 @@ export class WelcomeComponent implements AfterViewInit, OnDestroy {
   }
 
   private finishLoader(): void {
+    const wasLoading = this.loading;
     this.loading = false;
     this.loaderInput.abort();
     for (const timer of this.loaderTimers) clearTimeout(timer);
     this.loaderTimers.clear();
+    if (wasLoading && !this.scrollLifetime.signal.aborted) {
+      this.zone.runOutsideAngular(() => void this.playShootingStars());
+    }
+  }
+
+  private async playShootingStars(): Promise<void> {
+    const signal = this.scrollLifetime.signal;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (signal.aborted || reducedMotion.matches) return;
+    try {
+      const gsap = await loadGsap();
+      if (signal.aborted || reducedMotion.matches) return;
+      const scene = this.heroScene.nativeElement;
+      const hero = scene.querySelector<HTMLElement>('.hero')!;
+      const heroBounds = hero.getBoundingClientRect();
+      // Consume the intro even when startup restores a position below the hero.
+      if (hero.inert || heroBounds.bottom <= stickyHeaderHeight() || heroBounds.top >= window.innerHeight) return;
+      const atmosphere = scene.querySelector<HTMLElement>('.hero-atmosphere')!.getBoundingClientRect();
+      const portrait = scene.querySelector<HTMLElement>('.hero-portrait')!.getBoundingClientRect();
+      const stars = scene.querySelectorAll<HTMLElement>('.hero-shooting-star');
+      const stop = () => {
+        this.shootingStarsTimeline?.kill();
+        this.shootingStarsTimeline = undefined;
+        gsap.set(stars, { autoAlpha: 0 });
+        reducedMotion.removeEventListener('change', stop);
+      };
+      const timeline = this.shootingStarsTimeline = gsap.timeline({ onComplete: stop });
+      reducedMotion.addEventListener('change', stop, { once: true, signal });
+      stars.forEach((star, index) => {
+        const second = index === 1;
+        const delay = second ? 0.28 : 0;
+        const duration = second ? 1.6 : 1.15;
+        const startX = atmosphere.width * (second ? 0.22 : 0.12);
+        const startY = atmosphere.height * (second ? 0.05 : 0.08);
+        const endX = portrait.left - atmosphere.left + portrait.width * (second ? 0.98 : 0.92);
+        const endY = portrait.top - atmosphere.top + portrait.height * (second ? 0.96 : 0.86);
+        gsap.set(star, {
+          x: startX - star.offsetWidth, y: startY - star.offsetHeight / 2,
+          rotation: Math.atan2(endY - startY, endX - startX) * 180 / Math.PI,
+          transformOrigin: 'right center', autoAlpha: 0
+        });
+        timeline
+          .to(star, { x: endX - star.offsetWidth, y: endY - star.offsetHeight / 2, duration, ease: 'none' }, delay)
+          .to(star, { autoAlpha: second ? 0.55 : 0.9, duration: 0.1, ease: 'power1.out' }, delay)
+          .to(star, { autoAlpha: 0, duration: duration / 3, ease: 'power1.in' }, delay + duration * 2 / 3);
+      });
+    } catch {
+      // The decorative intro is optional; the hero remains usable if GSAP cannot load.
+    }
   }
 
   private async initializeQuoteAnimation(): Promise<void> {
@@ -356,6 +407,7 @@ export class WelcomeComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.scrollLifetime.abort();
+    this.shootingStarsTimeline?.kill();
     cancelAnimationFrame(this.loaderFrame);
     this.finishLoader();
     this.animationMedia?.revert();
